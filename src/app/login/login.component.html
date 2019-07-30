@@ -1,0 +1,143 @@
+
+<div>
+<div id="signup">
+    <ul class="nav nav-pills mb-3 mmmb" id="pills-tab" role="tablist">
+        <li class="nav-item">
+            <button class="nav-link active btn btn-outline-primary btn-sm see" id="pills-home-tab" data-toggle="pill" href="#Search-home" role="tab"
+                aria-controls="pills-home" aria-selected="true">Search</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link btn btn-outline-primary btn-sm see" id="pills-profile-tab" data-toggle="pill" href="#Sign-profile" role="tab"
+                aria-controls="pills-profile" aria-selected="false">Sign up</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="Search-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <span class="badge badge-success">Try this app</span>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Peroid 
+                        <div *ngIf="isDone" class="spinner-border" style="width: 1rem; height: 1rem;" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    <b>-{{luncper}}-</b> building</label>
+                </div>
+                <select (change)="isFirstLunch($event)" value={{room}} class="custom-select" id="inputGrojjupSelect01">
+                    <option value="">Options</option>
+                    <option value="B">B</option>
+                    <option value="Talon">Talon</option>
+                    <option value="C">C</option>
+                    <option value="S">S</option>
+                    <option value="G115">G115</option>
+                    <option value="G116">G116</option>
+                    <option value="G117">G117</option>
+                    <option value="A">A</option>
+                    <option value="T">T</option>
+                    <option value="R">R</option>
+                    <option value="G">G</option>
+                    <option value="GYM">GYM</option>
+                    <option value="Library">Library</option>
+                </select>
+            </div>
+            <div class="alert alert-info" role="alert">
+                {{result}}
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="Sign-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <form (submit)="signup($event)">
+                <h1>Sign Up</h1>
+                <div class="{{alerttype.signup}} errorr signupe" role="alert">
+                    <strong>Hello!</strong> {{error.signup}}
+                    <button type="button" class="close" data-dismiss="alet" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail2">User Name</label>
+                    <input (input)="checkSignUp($event)" type="text" class="form-control" id="sign-username"
+                        aria-describedby="emailHelp" placeholder="User Name" />
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Display Name</label>
+                    <input (input)="checkSignUp($event)" type="text" class="form-control" id="sign-display"
+                        placeholder="Display Name" />
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1"><b>SM</b> Email</label>
+                    <input (input)="checkSignUp($event)" type="text" class="form-control" id="sign-email"
+                        placeholder="your sm email" />
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword2">Password</label>
+                    <input (input)="checkSignUp($event)" type="password" class="form-control" id="sign-password"
+                        placeholder="Password" />
+                    <small id="emailHelp" class="form-text text-muted">DO NOT use your SM password</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password Confirm</label>
+                    <input (input)="checkSignUp($event)" type="password" class="form-control" id="sign-passwordcon"
+                        placeholder="Password Again" />
+                </div>
+                <div class="form-group form-check">
+                    <input (input)="checkSignUp($event)" type="checkbox" class="form-check-input" id="sign-check">
+                    <label class="form-check-label agree" for="exampleCheck1">Agree To <a>Terms and Condition</a></label>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+
+            </form>
+        </div>
+    </div>
+    
+</div>
+
+<div id="logins" *ngIf="loginb">
+    <form (submit)="loginUser($event)">
+        <h1>Login</h1>
+        <div class="{{alerttype.login}} errorr logine" role="alert">
+            <strong>Hello!</strong> {{error.login}}
+            <button type="button" class="close" data-dismiss="alet" aria-label="Close">
+                <span aria-hidden="true"></span>
+            </button>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">User Name or Email</label>
+            <input (input)="checkLogin()" type="text" class="form-control" id="name-or-email"
+                aria-describedby="emailHelp" placeholder="Name or Email">
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input (input)="checkLogin()" type="password" class="form-control" id="login-password"
+                placeholder="Password">
+        </div>
+
+        <button type="submit" id="login-btn" class="btn btn-primary">Login</button>
+    </form>
+    <div class="alert alert-warning warr" role="alert">
+        We <b>ARE NOT</b> responsible for any wrong information on this website
+        It's to help you understand SM schedule faster. You should <b>NOT</b> rely on this app
+    </div>
+</div>
+
+</div>
+
+<!--//////////////////modal///////////-->
+
+<!--
+<div *ngIf="loginb" class="carousel slide ad" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-interval="2000">
+            <img src="http://frcscouting.ga/Scope_Ad.png" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item" data-interval="2000">
+            <img id="yoshi" src="http://frcscouting.ga/Scope_Ad.png" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item" data-interval="2000">
+            <img src="http://frcscouting.ga/Scope_Ad.png" class="d-block w-100" alt="...">
+        </div>
+    </div>
+</div>-->
+<!--end of ad-->

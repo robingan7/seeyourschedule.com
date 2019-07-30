@@ -1,0 +1,276 @@
+<ul class="nav nav-tabs">
+
+    <li class="nav-item">
+        <a class="nav-link active" id="today-tab" data-toggle="tab" href="#today" role="tab" aria-controls="today" aria-selected="true">Today</a>
+    </li>
+    <li *ngIf="false" class="nav-item">
+        <a class="nav-link" id="direction-tab" data-toggle="tab" href="#direction" role="tab" aria-controls="direction" aria-selected="false">Map</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="account-tab" data-toggle="tab" href="#account" role="tab" aria-controls="account" aria-selected="false">Account</a>
+    </li>
+    <li class="nav-item">
+        <button (click)="signOut()" class="btn btn-warning btn-sm signno"><b>Sign Out</b></button>
+    </li>    
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="today" role="tabpanel" aria-labelledby="today-tab">
+        <div *ngIf="isPeriodAll" class="alert alert-danger" role="alert">
+            You haven't finish your building info Click "Account" tab.
+        </div>
+
+        <div *ngIf="!isPeriodAll" class="alert alert-success" role="alert">
+            Today's block: <b>{{todayblockD}}</b>
+        </div>
+        <div *ngIf="isLoad" class="spinner-border text-dark" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div *ngIf="!isPeriodAll" id="timeL">
+            <div *ngFor="let obj of time_line; index as i;" class="btn-group sep a{{i}}" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-primary a{{i}}_1 spbtn">{{obj.title}}</button>
+                <button type="button" class="btn btn-info spbtn a{{i}}_2" >{{obj.where}}</button>
+                <button type="button" class="btn btn-dark spbtn a{{i}}_3">{{obj.time}}</button>
+                <button type="button" class="btn btn-success spbtn a{{i}}_4">{{obj.timeleft}}</button>
+            </div>
+        </div>
+
+        <div *ngIf="!isPeriodAll" class="toast" role="alert" aria-live="polite" aria-atomic="true" data-autohide="true">
+            <div class="toast-header">
+                <img src="https://smlunch.000webhostapp.com/logoo_5805.png" 
+                width="40" height="40" class="rounded mr-2" alt="...">
+                <strong class="mr-auto">You have {{lunchOfDay}}</strong>
+                <small>Now</small>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">;)</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                Hello, <b>{{display}}</b>! FROM <a style="text-decoration: underline;" href="https://www.smhs.org/academics/departments-and-courses/science/robotics"><b>SMbly Required 5805</b></a>
+            </div>
+        </div>
+
+        <div *ngIf="isBreak" class="alert alert-info" role="alert">
+            You're at break now :)
+        </div>
+
+        
+    </div>
+
+    <div class="tab-pane fade" id="direction" role="tabpanel" aria-labelledby="direction-tab">
+        map
+    </div>
+
+    <div class="tab-pane fade" id="account" role="tabpanel" aria-labelledby="account-tab">
+        <span class="badge badge-info">User Name</span>
+        <div class="input-group mb-3">
+            <input type="text" value={{name}} class="form-control upname" placeholder="username" aria-label="Recipient's username"
+                aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button (click)="updateUsername()" placement="left" ngbPopover="{{updatemessage.name}}" class="btn btn-outline-success" type="button" id="button-addon2">Change</button>
+            </div>
+        </div>
+
+        <span class="badge badge-info">Display Name</span>
+        <div class="input-group mb-3">
+            <input type="text" value={{display}} class="form-control updisplay" placeholder="username" aria-label="Recipient's username"
+                aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button (click)="updateDisplay()" class="btn btn-outline-success" 
+                placement="left" ngbPopover="{{updatemessage.display}}"
+                type="button" id="button-addon2">Change</button>
+            </div>
+        </div>
+
+        <span class="badge badge-info">Email</span>
+        <div class="input-group mb-3">
+            <input type="text" value={{email}} class="form-control upemail" placeholder="username" aria-label="Recipient's username"
+                aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button (click)="updateEmail()" placement="left" ngbPopover="{{updatemessage.email}}" class="btn btn-outline-success" type="button" id="button-addon2">Change</button>
+            </div>
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">P 1 Building</label>
+            </div>
+            <select (change)="updatePeriod($event)" value={{sche.p1}} class="custom-select" id="inputGroupSelect01">
+                    <option value="">Options</option>
+                    <option value="B">B</option>
+                    <option value="Talon">Talon</option>
+                    <option value="C">C</option>
+                    <option value="S">S</option>
+                    <option value="G115">G115</option>
+                    <option value="G116">G116</option>
+                    <option value="G117">G117</option>
+                    <option value="A">A</option>
+                    <option value="T">T</option>
+                    <option value="R">R</option>
+                    <option value="G">G</option>
+                    <option value="GYM">GYM</option>
+                    <option value="Library">Library</option>
+            </select>
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">P 2 Building</label>
+            </div>
+            <select (change)="updatePeriod($event)" value={{sche.p2}} class="custom-select" id="inputGroupSelect02">
+                <option value="">Options</option>
+                <option value="B">B</option>
+                <option value="Talon">Talon</option>
+                <option value="C">C</option>
+                <option value="S">S</option>
+                <option value="G115">G115</option>
+                <option value="G116">G116</option>
+                <option value="G117">G117</option>
+                <option value="A">A</option>
+                <option value="T">T</option>
+                <option value="R">R</option>
+                <option value="G">G</option>
+                <option value="GYM">GYM</option>
+                <option value="Library">Library</option>
+            </select>
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">P 3 Building</label>
+            </div>
+            <select (change)="updatePeriod($event)" value={{sche.p3}} class="custom-select" id="inputGroupSelect03">
+                <option value="">Options</option>
+                <option value="B">B</option>
+                <option value="Talon">Talon</option>
+                <option value="C">C</option>
+                <option value="S">S</option>
+                <option value="G115">G115</option>
+                <option value="G116">G116</option>
+                <option value="G117">G117</option>
+                <option value="A">A</option>
+                <option value="T">T</option>
+                <option value="R">R</option>
+                <option value="G">G</option>
+                <option value="GYM">GYM</option>
+                <option value="Library">Library</option>
+            </select>
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">P 4 Building</label>
+            </div>
+            <select (change)="updatePeriod($event)" value={{sche.p4}} class="custom-select" id="inputGroupSelect04">
+                <option value="">Options</option>
+                <option value="B">B</option>
+                <option value="Talon">Talon</option>
+                <option value="C">C</option>
+                <option value="S">S</option>
+                <option value="G115">G115</option>
+                <option value="G116">G116</option>
+                <option value="G117">G117</option>
+                <option value="A">A</option>
+                <option value="T">T</option>
+                <option value="R">R</option>
+                <option value="G">G</option>
+                <option value="GYM">GYM</option>
+                <option value="Library">Library</option>
+            </select>
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">P 5 Building</label>
+            </div>
+            <select (change)="updatePeriod($event)" value={{sche.p5}} class="custom-select" id="inputGroupSelect05">
+                <option value="">Options</option>
+                <option value="B">B</option>
+                <option value="Talon">Talon</option>
+                <option value="C">C</option>
+                <option value="S">S</option>
+                <option value="G115">G115</option>
+                <option value="G116">G116</option>
+                <option value="G117">G117</option>
+                <option value="A">A</option>
+                <option value="T">T</option>
+                <option value="R">R</option>
+                <option value="G">G</option>
+                <option value="GYM">GYM</option>
+                <option value="Library">Library</option>
+            </select>
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">P 6 Building</label>
+            </div>
+            <select (change)="updatePeriod($event)" value={{sche.p6}} class="custom-select" id="inputGroupSelect06">
+                <option value="">Options</option>
+                <option value="B">B</option>
+                <option value="Talon">Talon</option>
+                <option value="C">C</option>
+                <option value="S">S</option>
+                <option value="G115">G115</option>
+                <option value="G116">G116</option>
+                <option value="G117">G117</option>
+                <option value="A">A</option>
+                <option value="T">T</option>
+                <option value="R">R</option>
+                <option value="G">G</option>
+                <option value="GYM">GYM</option>
+                <option value="Library">Library</option>
+            </select>
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">P 7 Building</label>
+            </div>
+            <select (change)="updatePeriod($event)" value={{sche.p7}} class="custom-select" id="inputGroupSelect07">
+                <option value="">Options</option>
+                <option value="B">B</option>
+                <option value="Talon">Talon</option>
+                <option value="C">C</option>
+                <option value="S">S</option>
+                <option value="G115">G115</option>
+                <option value="G116">G116</option>
+                <option value="G117">G117</option>
+                <option value="A">A</option>
+                <option value="T">T</option>
+                <option value="R">R</option>
+                <option value="G">G</option>
+                <option value="GYM">GYM</option>
+                <option value="Library">Library</option>
+            </select>
+        </div>
+
+        <div class="form-group form-check">
+            <input *ngIf="!isPeriod8" type="checkbox" class="form-check-input" (change)="period8($event)" id="exampleCheck1">
+            <input *ngIf="isPeriod8" type="checkbox" class="form-check-input" (change)="period8($event)" id="exampleCheck1" checked>
+            <label class="form-check-label" for="exampleCheck1">Check if you have period 8th class</label>
+        </div>  
+        
+        <div *ngIf="isPeriod8" class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">P 8 Building</label>
+            </div>
+            <select (change)="updatePeriod($event)" value={{sche.p8}} class="custom-select" id="inputGroupSelect08">
+                <option value="">Options(if you have period 8th class)</option>
+                <option value="B">B</option>
+                <option value="Talon">Talon</option>
+                <option value="C">C</option>
+                <option value="S">S</option>
+                <option value="G115">G115</option>
+                <option value="G116">G116</option>
+                <option value="G117">G117</option>
+                <option value="A">A</option>
+                <option value="T">T</option>
+                <option value="R">R</option>
+                <option value="G">G</option>
+                <option value="GYM">GYM</option>
+                <option value="Library">Library</option>
+            </select>
+        </div>
+
+    </div>
+</div>

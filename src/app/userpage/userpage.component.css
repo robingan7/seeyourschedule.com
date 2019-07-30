@@ -1,0 +1,47 @@
+#account{
+    height:100%;
+    overflow-y: scroll;
+    padding: 0 250px;
+}
+.mb-3, .my-3 {
+    margin-bottom: 5px !important;
+}
+.signno{
+    margin-top:3px;
+    margin-left:5px;
+}
+.form-group {
+    margin-bottom: 0px;
+}
+.sep{
+    margin-top:5px;
+    margin-left:5px;
+    transform: translateY(-15px);
+}
+.spbtn{
+    width:80px;
+    font-size: 14px;
+    padding:0;
+}
+#timeL{
+    width:320px;
+    margin: 0 auto;
+}
+.gray{
+    background-color:#aaa;
+}
+.toast {
+    opacity: 1;
+}
+@media (max-width:940px){
+    #account{
+        height: 600px;
+        padding: 0 50px;
+    }
+}
+
+@media (max-height:568px){
+    #account{
+        height: 450px;
+    }
+}
