@@ -1,0 +1,37 @@
+R#
+Regular
+S#
+Single
+Block
+Mtg
+D#
+Double
+Block Mtg
+Mn#
+Minimum
+All#
+All
+Periods
+Ms#
+Mass
+Rly#
+Rally
+A#
+Assembly
+Sp#
+Special
+RE#
+Regular
+ETV
+SE#
+Single
+Block
+Mtg ETV
+RlyE#
+Rally ETV
+SpE#
+Special
+ETV
+AP
+Academic
+Period

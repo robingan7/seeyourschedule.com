@@ -1,50 +1,70 @@
 
-<div>
-<div id="signup">
-    <ul class="nav nav-pills mb-3 mmmb" id="pills-tab" role="tablist">
-        <li class="nav-item">
-            <button class="nav-link active btn btn-outline-primary btn-sm see" id="pills-home-tab" data-toggle="pill" href="#Search-home" role="tab"
-                aria-controls="pills-home" aria-selected="true">Search</button>
-        </li>
-        <li class="nav-item">
-            <button class="nav-link btn btn-outline-primary btn-sm see" id="pills-profile-tab" data-toggle="pill" href="#Sign-profile" role="tab"
-                aria-controls="pills-profile" aria-selected="false">Sign up</button>
-        </li>
-    </ul>
-    <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="Search-home" role="tabpanel" aria-labelledby="pills-home-tab">
-            <span class="badge badge-success">Try this app</span>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelect01">Peroid 
-                        <div *ngIf="isDone" class="spinner-border" style="width: 1rem; height: 1rem;" role="status">
-                            <span class="sr-only">Loading...</span>
-                        </div>
+<ul class="nav nav-pills mb-3 mmmb" id="pills-tab" role="tablist">
+    <li class="nav-item">
+        <button class="nav-link active btn btn-outline-primary btn-sm see" id="pills-home-tab" data-toggle="pill"
+            href="#Search-home" role="tab" aria-controls="pills-home" aria-selected="true">Search</button>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link btn btn-outline-primary btn-sm see" id="pills-profile-tab" data-toggle="pill"
+            href="#Sign-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Login & Sign up</button>
+    </li>
+</ul>
+
+<div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active width320" id="Search-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <span class="badge badge-success" style="font-size: 20px;">Quick Check</span>
+        <br>
+        <span class="badge badge-dark">You can do a quick check of your lunch here.</span>
+        <span class="badge badge-dark">You can create an account to see more features.</span>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Peroid
+                    <div *ngIf="isDone" class="spinner-border" style="width: 1rem; height: 1rem;" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
                     <b>-{{luncper}}-</b> building</label>
-                </div>
-                <select (change)="isFirstLunch($event)" value={{room}} class="custom-select" id="inputGrojjupSelect01">
-                    <option value="">Options</option>
-                    <option value="B">B</option>
-                    <option value="Talon">Talon</option>
-                    <option value="C">C</option>
-                    <option value="S">S</option>
-                    <option value="G115">G115</option>
-                    <option value="G116">G116</option>
-                    <option value="G117">G117</option>
-                    <option value="A">A</option>
-                    <option value="T">T</option>
-                    <option value="R">R</option>
-                    <option value="G">G</option>
-                    <option value="GYM">GYM</option>
-                    <option value="Library">Library</option>
-                </select>
             </div>
-            <div class="alert alert-info" role="alert">
-                {{result}}
+            <select (change)="isFirstLunch($event)" value={{room}} class="custom-select op" id="inputGrojjupSelect01">
+                <option value="">Options</option>
+                <option value="B">B</option>
+                <option value="Talon">Talon</option>
+                <option value="C">C</option>
+                <option value="S">S</option>
+                <option value="G115">G115</option>
+                <option value="G116">G116</option>
+                <option value="G117">G117</option>
+                <option value="A">A</option>
+                <option value="T">T</option>
+                <option value="R">R</option>
+                <option value="G">G</option>
+                <option value="GYM">GYM</option>
+                <option value="Library">Library</option>
+            </select>
+        </div>
+        <div class="toast" role="alert" aria-live="polite" aria-atomic="true" data-autohide="true">
+            <div class="toast-header">
+                <img src="https://smlunch.000webhostapp.com/logoo_5805.png" width="40" height="40" class="rounded mr-2" alt="...">
+                <strong class="mr-auto">You have <b style="color:black;">{{lunchOfDay}}</b></strong>
+                <small></small>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">;)</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                Hello, friend! FROM <a style="text-decoration: underline;"
+                    href="https://www.smhs.org/academics/departments-and-courses/science/robotics"><b>SMbly Required 5805</b></a>
             </div>
         </div>
+        <div class="alert alert-warning warr" role="alert">
+            We <b>ARE NOT</b> responsible for any wrong information on this website
+            It's to help you understand SM schedule faster. You should <b>NOT</b> rely on this app
+        </div>
+    </div>
 
-        <div class="tab-pane fade" id="Sign-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+<div class="tab-pane fade" id="Sign-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+   
+        <div id="signup">
             <form (submit)="signup($event)">
                 <h1>Sign Up</h1>
                 <div class="{{alerttype.signup}} errorr signupe" role="alert">
@@ -88,39 +108,37 @@
 
             </form>
         </div>
-    </div>
     
-</div>
 
-<div id="logins" *ngIf="loginb">
-    <form (submit)="loginUser($event)">
-        <h1>Login</h1>
-        <div class="{{alerttype.login}} errorr logine" role="alert">
-            <strong>Hello!</strong> {{error.login}}
-            <button type="button" class="close" data-dismiss="alet" aria-label="Close">
-                <span aria-hidden="true"></span>
-            </button>
+        <div id="logins" *ngIf="loginb">
+            <form (submit)="loginUser($event)">
+                <h1>Login</h1>
+                <div class="{{alerttype.login}} errorr logine" role="alert">
+                    <strong>Hello!</strong> {{error.login}}
+                    <button type="button" class="close" data-dismiss="alet" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">User Name or Email</label>
+                    <input (input)="checkLogin()" type="text" class="form-control" id="name-or-email"
+                        aria-describedby="emailHelp" placeholder="Name or Email">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input (input)="checkLogin()" type="password" class="form-control" id="login-password"
+                        placeholder="Password">
+                </div>
+
+                <button type="submit" id="login-btn" class="btn btn-primary">Login</button>
+            </form>
+            <div class="alert alert-warning warr" role="alert">
+                We <b>ARE NOT</b> responsible for any wrong information on this website
+                It's to help you understand SM schedule faster. You should <b>NOT</b> rely on this app
+            </div>
         </div>
-
-        <div class="form-group">
-            <label for="exampleInputEmail1">User Name or Email</label>
-            <input (input)="checkLogin()" type="text" class="form-control" id="name-or-email"
-                aria-describedby="emailHelp" placeholder="Name or Email">
-        </div>
-
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input (input)="checkLogin()" type="password" class="form-control" id="login-password"
-                placeholder="Password">
-        </div>
-
-        <button type="submit" id="login-btn" class="btn btn-primary">Login</button>
-    </form>
-    <div class="alert alert-warning warr" role="alert">
-        We <b>ARE NOT</b> responsible for any wrong information on this website
-        It's to help you understand SM schedule faster. You should <b>NOT</b> rely on this app
-    </div>
-</div>
 
 </div>
 

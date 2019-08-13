@@ -52,15 +52,29 @@ export class ServiceService {
 
   constructor(private http: HttpClient) { }
   private isloggin: boolean
-  //private path = "http://localhost/SMart_php/"
+  private path = "http://localhost/SMart_php/"
   private userInfo
+  private isAuto = true
+  private isChange = false
   //private path ="https://smlunch.000webhostapp.com/"
-  private path = ""
+  //private path = ""
+  setIsChange(b: boolean) {
+    this.isChange = b;
+  }
+  get getisChange(){
+    return this.isChange
+  }
+  get getisAuto(){
+    return this.isAuto
+  }
+  setIsAuto(b:boolean){
+    this.isAuto = b;
+  }
   setLoggedIn(b:boolean){
     this.isloggin = b
   }
   getSche(non) {
-    return this.http.post<timeData>(this.path+'schedule.php',{
+    return this.http.post<timeData>(this.path +'scheduleYuhan(1).php',{
       non
     })
   }

@@ -1,3 +1,4 @@
+
 h1{
     font-size:30px;
 }
@@ -64,11 +65,23 @@ label {
 .see{
     padding:0;
     height:30px;
-    width:65px;
+    width:125px;
 }
 .mmmb{
     margin-bottom: 0;
 }
 .warr{
     font-size:14.5px;
+}
+.width320{
+    width:320px;
+    margin: 0 auto;
+}
+.op{
+    border:5px solid blue;
+    height:45px;
+}
+
+.toast {
+    opacity: 1;
 }

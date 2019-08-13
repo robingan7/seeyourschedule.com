@@ -3,9 +3,36 @@
     class="d-inline-block align-top" alt="">
   <p>Lunch</p>
 </a>
-<h1 id="clock"></h1>
-<h4 id="date"></h4>
-<h4 style="display:none" id="monnum"></h4>
+<button class="btn btn-outline-secondary drr" aria-expanded="false" (click)="switch($event)">Current</button>
+
+<div id="currentTimes">
+  <h1 id="clock">{{clock}}</h1>
+  <h4 id="date">{{date}}</h4>
+  <h4 style="display:none" id="monnum">{{monnum}}</h4>
+</div>
+
+<div *ngIf="isManual">
+  <div class="input-group mb-3 clll">
+    <input type="text" class="form-control cllin" aria-label="Dollar amount (with dot and two decimal places)">
+    <span class="input-group-text cllin"><b>:</b></span>
+
+    <input type="text" class="form-control cllin" aria-label="Dollar amount (with dot and two decimal places)">
+    <span class="input-group-text cllin"><b>:</b></span>
+    <input type="text" class="form-control cllin" aria-label="Dollar amount (with dot and two decimal places)">
+
+  </div>
+
+  <div *ngIf="load" class="spinner-border text-dark" role="status" style="width:10px; height:10px;">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div *ngIf="!load"class="input-group mb-3 ccc">
+    <select (change)="changeData()" class="custom-select de2" id="manual_date">
+      <option selected>Dates</option>
+      <option *ngFor="let date of datelist">{{date}}</option>
+    </select>
+  </div>
+</div>
+
 
 <!--
 <agm-map [latitude]="lat" [longitude]="lng">

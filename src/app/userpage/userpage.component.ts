@@ -13,7 +13,7 @@ export class UserpageComponent implements OnInit {
   private blocktypes={
     R: `Regular`,
     S: `Single Block Mtg`,
-    D: `Double Block Mtg`,
+    Db: `Double Block Mtg`,
     Mn: `Minimum`,
     All: `All Periods`,
     Ms: `Mass`,
@@ -24,7 +24,14 @@ export class UserpageComponent implements OnInit {
     SE: `Single Block Mtg ETV`,
     RlyE: `Rally ETV`,
     SpE: `Special ETV`,
-    AP:`Academic Period`
+    AP:`Academic Period`,
+    MsE :'Mass Special',
+    OHM: "Office hour meeting",
+    TA:"Modified schedule Trial run All periods",
+    TR:"Modified schedule Trial run Regular day",
+    TM:"Modified schedule Trial run Meeting",
+    Ex :'Exam',
+    ExO : "Exam"
   }
   
   private isBreak:boolean
@@ -39,10 +46,17 @@ export class UserpageComponent implements OnInit {
   private userid
   private todayblock
   private todayblockD
-  private formdate
   private date=""
   private time
   private todaytimes
+  private isAAuto = true
+  private isDateChange = false
+  private isSpecial = false
+  private isGotDate = false
+  private formerDate = ""
+  private count_updatetime = 0
+  private runTwice = 0
+  private formerTime = 0
   private updatemessage={
     name:"Data Uploaded",
     email: "Data Uploaded",
@@ -84,55 +98,128 @@ export class UserpageComponent implements OnInit {
   ngOnInit() {
     this.getPeriods()
     setInterval(()=>{
+
       this.time = (<HTMLButtonElement>document.querySelector("#clock")).innerText
-      this.updateTimeLeft()
-      if (this.time =="00 : 00 : 01"){
-          this.getPeriods()
+      var cTime = Number(this.time.split(":")[1])
+      if (this.time =="00 : 00 : 01" || !this.isGotDate){
+        this.getSche()
+      }
+      var b = this.auth.getisAuto
+      if (b != this.isAAuto) {
+        this.isAAuto = b
+        this.getSche()
+        this.runTwice = 0
+      }
+
+      var b2 = this.auth.getisChange
+      if (!this.isAAuto && b2 != this.isDateChange){
+        this.isDateChange = b2;
+        this.getSche()
+      }
+
+      var cuurentD = (<HTMLElement>document.querySelector("#monnum")).innerText;
+      if (this.isAAuto && cuurentD != this.formerDate) {
+        this.formerDate = cuurentD
+        this.getSche()
+      }
+      
+      /*
+      if (!this.isSpecial && this.count_updatetime == 0) {
+        this.updateTimeLeft()
+        this.count_updatetime++
+      }else{
+        this.count_updatetime++
+        if (this.count_updatetime == 41) {
+          this.count_updatetime = 0
+        }
+      }*/
+
+      if (cTime != this.formerTime){
+        this.updateTimeLeft()
+        this.formerTime = cTime
+      }
+
+      if(this.runTwice <= 1){
+        this.updateTimeLeft()    
+        this.runTwice++ 
+      }
+
+      var hjhjh = (<HTMLElement>document.querySelector(".hjhjh"))
+
+      if (hjhjh != undefined && hjhjh.innerText == "You have " ){
+        hjhjh.innerText = "You have "+this.lunchOfDay
       }
     },1000)
   }
 
   updateTimeLeft(){
-    //for testing
-    //this.time="11 : 00 : 00"
     var count = 0
-    var numnow = Number(this.time.split(' : ')[0] + this.time.split(' : ')[1])
-    for(var ele in this.time_line){
-      var diff = this.isInRange(this.time_line[ele].time, numnow)
-      var eleclas = (<HTMLElement>document.querySelector(".a" + ele))
-      if (diff != ""){
-        count++;
-        this.time_line[ele].timeleft = diff;
-        if(eleclas != undefined){
-          (<HTMLElement>eleclas.children[0]).style.backgroundColor = "#007bff";
-          (<HTMLElement>eleclas.children[1]).style.backgroundColor = "#17a2b8";
-          (<HTMLElement>eleclas.children[2]).style.backgroundColor = "#343a40";
-          (<HTMLElement>eleclas.children[3]).style.backgroundColor = "#28a745";
-        }
-      }else{
-        if (eleclas != undefined) {
-          (<HTMLElement>eleclas.children[0]).style.backgroundColor = "#aaa";
-          (<HTMLElement>eleclas.children[1]).style.backgroundColor = "#aaa";
-          (<HTMLElement>eleclas.children[2]).style.backgroundColor = "#aaa";
-          (<HTMLElement> eleclas.children[3]).style.backgroundColor = "#aaa";
+    if (this.time != undefined){
+      var numnow = Number(this.time.split(' : ')[0] + this.time.split(' : ')[1])
+      for (var ele in this.time_line) {
+        var diff = this.isInRange(this.time_line[ele].time, numnow)
+        var eleclas = (<HTMLElement>document.querySelector(".a" + ele))
+        if (diff != "" || !this.isAAuto) {
+          count++;
+          if (this.isAAuto){
+              if(this.todayblockD == "Off"){
+                this.time_line[ele].timeleft = "today"
+              }else{
+                this.time_line[ele].timeleft = diff;
+              }
+          }else{
+            this.time_line[ele].timeleft = ""
+          }
+          if (eleclas != undefined) {
+            (<HTMLElement>eleclas.children[0]).style.backgroundColor = "#007bff";
+            (<HTMLElement>eleclas.children[1]).style.backgroundColor = "#17a2b8";
+            (<HTMLElement>eleclas.children[2]).style.backgroundColor = "#343a40";
+            (<HTMLElement>eleclas.children[3]).style.backgroundColor = "#28a745";
+          }
+        } else {
+          this.time_line[ele].timeleft = ""
+          if (eleclas != undefined) {
+            (<HTMLElement>eleclas.children[0]).style.backgroundColor = "#aaa";
+            (<HTMLElement>eleclas.children[1]).style.backgroundColor = "#aaa";
+            (<HTMLElement>eleclas.children[2]).style.backgroundColor = "#aaa";
+            (<HTMLElement>eleclas.children[3]).style.backgroundColor = "#aaa";
+          }
         }
       }
-    }
-    if(count ==0){
-      this.isBreak =true
-    }else{
-      this.isBreak = false
+      if (count == 0 || this.todayblockD == "Off") {
+        this.isBreak = true
+      } else {
+        this.isBreak = false
+      }
     }
   }
 
   isInRange(str,numm){
-    var big = Number(str.split('-')[1].split(':').join(''))
-    var small = Number(str.split('-')[0].split(':').join(''))
+    if (str.split('-')[1] != undefined){
+      var big = Number(str.split('-')[1].split(':').join(''))
+      var small = Number(str.split('-')[0].split(':').join(''))
+      
+      if (numm > small && numm <= big) {
+        var result = 0
+        var big_0 = Number(str.split('-')[1].split(':')[0])
+        var big_1 = Number(str.split('-')[1].split(':')[1])
 
-    if (numm > small && numm < big){
-      return (big - numm)+" mins left"
-    }else{
-      return ""
+        var sm_0 = Number(String(numm).substring(0, String(numm).length -2))
+        var sm_1 = Number(String(numm).substring(String(numm).length - 2, 4))
+
+        result += (big_0 - sm_0)*60
+
+        if (big_1 < sm_1){
+          result -= 60
+          result += big_1 + (60 - sm_1)
+        }else{
+          result += big_1 - sm_1
+        }
+
+        return result + " mins left"
+      } else {
+        return ""
+      }
     }
   }
   updateBANDP(c=-1,sche){
@@ -140,7 +227,7 @@ export class UserpageComponent implements OnInit {
     if(c==-1){
 
     }else{
-      if (sche == "All"){
+      if (sche == "All" || sche == "0812Sp" || sche == "Rec" || sche =="TA"){
         for(var i =c;i<c+7;i++){
           if(i <=7){
             this.blockAndTime.push("p"+i)
@@ -218,7 +305,8 @@ export class UserpageComponent implements OnInit {
               timeleft: ""
             })
           }
-        } else if (key.includes("Period")){
+
+      } else if (key.includes("Period") && !key.includes("Academic")){
           this.time_line.push({
             title: "p8",
             where: this.sche["p8"],
@@ -236,6 +324,7 @@ export class UserpageComponent implements OnInit {
           })
         }
     }
+    this.updateTimeLeft()
   }
 
   updateTimelineF() {
@@ -280,7 +369,7 @@ export class UserpageComponent implements OnInit {
             timeleft: ""
           })
         }
-      } else if (key.includes("Period")) {
+      } else if (key.includes("Period") && !key.includes("Academic")) {
         this.time_line.push({
           title: "p8",
           where: this.sche["p8"],
@@ -296,43 +385,117 @@ export class UserpageComponent implements OnInit {
         })
       }
     }
+    this.updateTimeLeft()
+  }
+  updateTimelineNo(){
+    this.time_line = []
+    for (let [key, value] of Object.entries(this.todaytimes)) {
+      if (key.substring(0, 7).includes("Block")) {
+        var nnum = Number(key[6]) - 1
+        var actual = this.blockAndTime[nnum]
+        this.time_line.push({
+          title: actual,
+          where: this.sche[actual],
+          time: value,
+          timeleft: ""
+        })
+      } else if (key.includes("Period") && !key.includes("Academic")) {
+        this.time_line.push({
+          title: "p8",
+          where: this.sche["p8"],
+          time: value,
+          timeleft: ""
+        })
+      } else {
+        this.time_line.push({
+          title: key,
+          where: " ",
+          time: value,
+          timeleft: ""
+        })
+      }
+    }
+    this.updateTimeLeft()
   }
   isFirstLunch(){
-    var luncper = this.todaytimes['First Lunch'].split('/')[1]
-    var room = this.sche[this.blockAndTime[Number(luncper[6]-1)]]
+    if (this.todaytimes != undefined){
+      this.isSpecial = false;
+      if (this.todaytimes['First Lunch']!=undefined){
+        var luncper = this.todaytimes['First Lunch'].split('/')[1]
+        var room = this.sche[this.blockAndTime[Number(luncper[6] - 1)]]
 
-    if (room == 'B' || room == 'C' || room == 'S' || room == 'G115' || room == 'G116'
-    || room == 'G117' || room=='Talon') {
-      this.updateTimelineF()
-      this.lunchOfDay="First Lunch"
-      return true
-    }
-    else {
-      this.lunchOfDay = "Second Lunch"
-      this.updateTimelineS()
-      return false
+        if (room == 'B' || room == 'C' || room == 'S' || room == 'G115' || room == 'G116'
+          || room == 'G117' || room == 'Talon') {
+          this.updateTimelineF()
+          this.lunchOfDay = "First Lunch"
+          return true
+        }
+        else {
+          this.lunchOfDay = "Second Lunch"
+          this.updateTimelineS()
+          return false
+        }
+      }else{
+        this.updateTimelineNo()
+      }     
+    }else{
+      this.isLoad = false
+      this.isSpecial = true
+
+      this.time_line = [{
+        title: "You",
+        where:"have",
+        time:"day off",
+        timeleft:"today"
+      }]
+      this.lunchOfDay = ""
     }
   }
   getSche(){
     this.isLoad = true
 
     this.auth.getSche("non").subscribe(data=>{
-      this.date = (<HTMLButtonElement>document.querySelector("#monnum")).innerText
-      //for testing
-      //this.date = "2019-9-11"
-
+      if (this.isAAuto){
+        this.date = (<HTMLButtonElement>document.querySelector("#monnum")).innerText
+      }else{
+        this.date = (<HTMLButtonElement>document.querySelector("#manual_date")).value
+      }
       this.todayblock=data.block[this.date]
 
-      if (this.isNumeric(this.todayblock[this.todayblock.length-1])){
-        var schestr = this.todayblock.substring(0, this.todayblock.length - 1)
-        var num = this.todayblock[this.todayblock.length - 1]
-        this.todayblockD = this.blocktypes[schestr] + num
-        this.todaytimes = data.sche[this.todayblock.substring(0, this.todayblock.length - 1)]
-        this.updateBANDP(Number(num), schestr)
+      if (this.todayblock != undefined) {
+        this.isGotDate = true
+        if (this.isNumeric(this.todayblock[this.todayblock.length-1])){
+          var schestr = this.todayblock.substring(0, this.todayblock.length - 1)
+          var num = this.todayblock[this.todayblock.length - 1]
+          this.todayblockD = this.blocktypes[schestr] + num
+          if (this.blocktypes[schestr] == undefined){
+              this.todayblockD = "Special" + num
+            if (schestr.includes("SpE")){
+              this.todayblockD = "Special ETV" + num
+            }
+          }
+          this.todaytimes = data.sche[this.todayblock.substring(0, this.todayblock.length - 1)]
+          this.updateBANDP(Number(num), schestr)
+        }else{
+          this.todayblockD = this.blocktypes[this.todayblock]
+          if (this.todayblockD == undefined){
+            if (this.todayblock!="Off"){
+              this.todayblockD = "Special"
+            }else{
+              this.todayblockD = "Off"
+            }
+          }
+          this.todaytimes = data.sche[this.todayblock]
+          this.updateBANDP( -1,"S")
+        }
       }else{
-        this.todayblockD = this.blocktypes[this.todayblock]
-        this.todaytimes = data.sche[this.todayblock]
-        this.updateBANDP( -1,"S")
+        if(this.date.length == 0){
+          this.isGotDate = false
+        }else{
+          this.isGotDate = true
+          this.todayblockD = "Off"
+          this.todaytimes=undefined
+        }
       }
       this.isFirstLunch()
       this.isLoad = false
@@ -392,6 +555,7 @@ export class UserpageComponent implements OnInit {
     if (val.length != 0) {
       this.auth.updateDisplay(this.userid, val).subscribe(data => {
         this.cookie.set("display_smlunch", val)
+        this.display = val
       })
     } else {
       this.updatemessage.display = "Can't be empty"

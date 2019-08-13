@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
   private luncper
   private blockAndTime
   private room
-  private result = "your result is here"
   private blocktypes = {
     R: `Regular`,
     S: `Single Block Mtg`,
@@ -62,6 +61,10 @@ export class LoginComponent implements OnInit {
     signup: "No error so far"
   }
   private loginb = true
+  private isAAuto= true
+  private isDateChange = false
+  private isGotDate = false
+  private forFormerD = ""
   ngOnInit() {
 
     this.getSche()
@@ -74,12 +77,30 @@ export class LoginComponent implements OnInit {
     else {
       this.lunchOfDay = "Second Lunch"
     }
-    this.result = "You have " + this.lunchOfDay
 
     setInterval(()=>{
-      if (this.date == "00 : 00 : 01") {
+      if (this.date == "00 : 00 : 01" || !this.isGotDate) {
         this.getSche()
       }
+
+      var b = this.auth.getisAuto
+      if (b != this.isAAuto) {
+        this.isAAuto = b
+        this.getSche()
+      }
+
+      var b2 = this.auth.getisChange
+      if (!this.isAAuto && b2 != this.isDateChange) {
+        this.getSche()
+        this.isDateChange = b2;
+      }
+
+      var mmmm = (<HTMLButtonElement>document.querySelector("#monnum"))
+      if (mmmm != undefined && this.forFormerD != mmmm.innerText && this.isAAuto){
+          this.getSche()
+          this.forFormerD = mmmm.innerText
+      }
+
     },1000)
     
   }
@@ -87,24 +108,49 @@ export class LoginComponent implements OnInit {
     this.isDone = true
 
     this.auth.getSche("non").subscribe(data => {
-      this.date = (<HTMLButtonElement>document.querySelector("#monnum")).innerText
+      if (this.isAAuto) {
+        this.date = (<HTMLButtonElement>document.querySelector("#monnum")).innerText
+      } else {
+        this.date = (<HTMLButtonElement>document.querySelector("#manual_date")).value
+      }
       //for testing
       //this.date = "2019-9-11"
 
       this.todayblock = data.block[this.date]
 
-      if (this.isNumeric(this.todayblock[this.todayblock.length - 1])) {
-        var schestr = this.todayblock.substring(0, this.todayblock.length - 1)
-        var num = this.todayblock[this.todayblock.length - 1]
-        this.todayblockD = this.blocktypes[schestr] + num
-        this.todaytimes = data.sche[this.todayblock.substring(0, this.todayblock.length - 1)]
-        this.updateBANDP(Number(num), schestr)   
-        this.luncper = " "+this.blockAndTime[Number(this.todaytimes['First Lunch'].split('/')[1][6]) - 1][1]+" "
-      } else {
-        this.todayblockD = this.blocktypes[this.todayblock]
-        this.todaytimes = data.sche[this.todayblock]
-        this.updateBANDP(-1, "S")
-        this.luncper = " " + this.blockAndTime[Number(this.todaytimes['First Lunch'].split('/')[1][6]) - 1][1] + " "
+      if(this.todayblock != undefined){
+        this.isGotDate = true
+      
+        if (this.isNumeric(this.todayblock[this.todayblock.length - 1])) {
+          var schestr = this.todayblock.substring(0, this.todayblock.length - 1)
+          var num = this.todayblock[this.todayblock.length - 1]
+          this.todayblockD = this.blocktypes[schestr] + num
+          this.todaytimes = data.sche[this.todayblock.substring(0, this.todayblock.length - 1)]
+          if(this.todaytimes != undefined){
+            this.updateBANDP(Number(num), schestr)   
+            this.luncper = " " + this.blockAndTime[Number(this.todaytimes['First Lunch'].split('/')[1][6]) - 1][1] + " "
+          }else{
+            this.isDone = false
+            this.luncper = "No"
+          }
+        } else {
+          this.todayblockD = this.blocktypes[this.todayblock]
+          this.todaytimes = data.sche[this.todayblock]
+          if (this.todaytimes != undefined){
+            this.updateBANDP(-1, "S")
+            this.luncper = " " + this.blockAndTime[Number(this.todaytimes['First Lunch'].split('/')[1][6]) - 1][1] + " "
+          }else{
+            this.isDone = false
+            this.luncper = "No"
+          }
+        }
+      }else{
+        if (this.date.length == 0){
+          this.isGotDate = false
+        }else{
+          this.isGotDate = true
+          this.luncper = "No"
+        }
       }
       this.isDone = false
     })
@@ -165,7 +211,6 @@ export class LoginComponent implements OnInit {
     else {
       this.lunchOfDay = "Second Lunch"
     }
-    this.result = "You have " + this.lunchOfDay
 }
   checkLogin(){
     const username = (<HTMLButtonElement>document.querySelector("#name-or-email")).value
@@ -228,7 +273,6 @@ export class LoginComponent implements OnInit {
       const name = target.querySelector('#name-or-email').value
       const password = target.querySelector('#login-password').value
 
-
       this.auth.login(name, password).subscribe(data => {
         if (data.success) {
           this.auth.setLoggedIn(true)
@@ -248,12 +292,14 @@ export class LoginComponent implements OnInit {
           this.alerttype.login = "alert alert-danger alert-dismissible fade show"
         }
       })
+    }else{
+      (<HTMLButtonElement>document.querySelector("#login-btn")).innerText = "Login"
     }
   }
 
   signup(event) {
+    event.preventDefault()
     if (this.error.signup== "No error so far") {
-      event.preventDefault()
       const target = event.target
       const username = target.querySelector("#sign-username").value
       const display = target.querySelector('#sign-display').value
