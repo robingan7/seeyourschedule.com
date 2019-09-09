@@ -15,25 +15,28 @@ export class AppComponent implements OnInit{
   }
   ngOnInit(){
     this.auth.getSche("non").subscribe(data => {
-      for (let [key, value] of Object.entries(data.block)) {
-        this.datelist.push(key)
-      }
+      this.datelist = data.scheArray
       this.load = false;
     })
 
     setInterval(()=>{
       this.hexClock()
+
+      if(this.displayNom != this.monnum){
+        this.displayNom = this.monnum
+      }
     },1000)
   }
   title = 'SM Lunch';
   lat: number = 51.678418;
   lng: number = 7.809007;
   private isManual = false
-  private datelist =[]
+  private datelist 
   private load = true
   private clock = "11 : 00 : 00"
   private date = "2019-8-11"
   private monnum = "2019-8-11"
+  private displayNom = ""
   switch(e){
     var tee = (<HTMLElement>document.getElementById('currentTimes'))
     e.preventDefault();

@@ -1,8 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-*{
+* {
     font-family: "proxima-nova", sans-serif !important;
     -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
 }
-img[alt="www.000webhost.com"]{
-    display:none;
+
+img[alt="www.000webhost.com"] {
+    display: none;
 }

@@ -73,8 +73,9 @@ export class LoginComponent implements OnInit {
     if (this.room == 'B' || this.room == 'C' || this.room == 'S' || this.room == 'G115' || this.room == 'G116'
       || this.room == 'G117' || this.room == 'Talon') {
       this.lunchOfDay = "First Lunch"
-    }
-    else {
+    } else if (this.room == '') {
+      this.lunchOfDay = "a nice day!"
+    } else {
       this.lunchOfDay = "Second Lunch"
     }
 
@@ -207,8 +208,9 @@ export class LoginComponent implements OnInit {
     if (this.room == 'B' || this.room == 'C' || this.room == 'S' || this.room == 'G115' || this.room == 'G116'
       || this.room == 'G117' || this.room == 'Talon') {
       this.lunchOfDay = "First Lunch"
-    }
-    else {
+    }else if (this.room == ''){
+      this.lunchOfDay = "a nice day!"
+    }else{
       this.lunchOfDay = "Second Lunch"
     }
 }

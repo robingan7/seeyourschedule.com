@@ -9,13 +9,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { ServiceService } from './service.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { PushNotificationsModule } from 'ng-push'; //import the module
+import { PushNotificationsModule } from 'ng-push';
+import { YuhanComponent } from './yuhan/yuhan.component'; //import the module
 
 @NgModule({
   declarations: [
     routingRoads,
     PageNotFoundComponent,
-    LoginComponent
+    LoginComponent,
+    YuhanComponent
   ],
   imports: [
     BrowserModule,

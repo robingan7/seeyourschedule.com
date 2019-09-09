@@ -26,8 +26,8 @@
     <span class="sr-only">Loading...</span>
   </div>
   <div *ngIf="!load"class="input-group mb-3 ccc">
-    <select (change)="changeData()" class="custom-select de2" id="manual_date">
-      <option selected>Dates</option>
+    <select (change)="changeData()" value={{displayNom}} class="custom-select de2" id="manual_date">
+      <option>Dates</option>
       <option *ngFor="let date of datelist">{{date}}</option>
     </select>
   </div>

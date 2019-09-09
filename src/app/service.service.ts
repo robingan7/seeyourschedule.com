@@ -41,7 +41,17 @@ interface status{
 
 interface timeData {
   block: string,
-  sche: string
+  sche: string,
+  scheArray:string,
+  startAndEnd:string
+}
+
+interface sendemail{
+   back: string
+}
+
+interface version{
+  version:string
 }
 
 @Injectable({
@@ -58,6 +68,11 @@ export class ServiceService {
   private isChange = false
   //private path ="https://smlunch.000webhostapp.com/"
   //private path = ""
+  sendEmail(non) {
+    return this.http.post<sendemail>(this.path + 'sendEmail.php', {
+      non
+    })
+  }
   setIsChange(b: boolean) {
     this.isChange = b;
   }
@@ -72,6 +87,11 @@ export class ServiceService {
   }
   setLoggedIn(b:boolean){
     this.isloggin = b
+  }
+  getScheVersion(non) {
+    return this.http.post<version>(this.path + 'getScheVersion.php', {
+      non
+    })
   }
   getSche(non) {
     return this.http.post<timeData>(this.path +'scheduleYuhan(1).php',{

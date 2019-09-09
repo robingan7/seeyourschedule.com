@@ -14,13 +14,13 @@ p{
     position: absolute;
     top:0px;
     right:5px;
-    font-size: 20px;
+    font-size: 1.25rem;
 }
 #date {
     position: absolute;
     top:20px;
     right:5px;
-    font-size: 20px;
+    font-size: 1.25rem;
 }
 .drr{
     position: absolute;
@@ -40,7 +40,7 @@ p{
 }
 .cllin{
     height:20px;
-    font-size:15px;
+    font-size:0.9375rem;
     padding:0;
 }
 .ccc{
@@ -52,6 +52,6 @@ p{
 }
 .de2{
     padding:0;
-    font-size:14px;
+    font-size:0.875rem;
     height: 25px;
 }
