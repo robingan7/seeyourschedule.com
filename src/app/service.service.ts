@@ -62,7 +62,7 @@ export class ServiceService {
 
   constructor(private http: HttpClient) { }
   private isloggin: boolean
-  private path = "http://localhost/SMart_php/php/"
+  private path = "http://localhost/SMart/php/"
   private userInfo
   private isAuto = true
   private isChange = false
