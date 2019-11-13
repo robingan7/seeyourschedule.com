@@ -116,7 +116,7 @@ let AppRoutingModule = class AppRoutingModule {
 };
 AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-        imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(routes, { useHash: true })],
+        imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(routes, { useHash: false })],
         exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
     })
 ], AppRoutingModule);
@@ -1251,7 +1251,11 @@ let UserpageComponent = class UserpageComponent {
                             body: "Go after block" + (nnum + 1) + "(Period " + (actual[1]) + ")",
                             icon: "https://smlunch.000webhostapp.com/seal.svg"
                         };
-                        this.push.create('Second Lunch', options).subscribe(res => console.log(res), err => console.log(err));
+                        /*
+                        this.push.create('Second Lunch', options).subscribe(
+                          res => console.log(res),
+                          err => console.log(err)
+                        )*/
                         this.notificationOffPeriof = 13;
                     }
                 }
@@ -1314,7 +1318,11 @@ let UserpageComponent = class UserpageComponent {
                         body: "Go after block" + (nnum) + "(Period " + (periodSquence[nnum - 1][1]) + ")",
                         icon: "https://smlunch.000webhostapp.com/seal.svg"
                     };
-                    this.push.create('First Lunch', options).subscribe(res => console.log(res), err => console.log(err));
+                    /*
+                    this.push.create('First Lunch', options).subscribe(
+                      res => console.log(res),
+                      err => console.log(err)
+                    )*/
                     this.notificationOffPeriof = 13;
                 }
             }
@@ -1396,7 +1404,7 @@ let UserpageComponent = class UserpageComponent {
                 var luncper = rawBlock['First Lunch'].split('/')[1];
                 var room = this.sche[this.blockAndTime[Number(luncper[6] - 1)]];
                 if (room == 'B' || room == 'C' || room == 'S' || room == 'G115' || room == 'G116'
-                    || room == 'G117' || room == 'Talon') {
+                    || room == 'G117' || room == 'Talon' || this.isModifiedSchedule(this.todayblock)) {
                     this.updateTimelineF(rawBlock, this.blockAndTime, day);
                     this.lunchOfDay = "First Lunch";
                     return true;
@@ -1448,7 +1456,7 @@ let UserpageComponent = class UserpageComponent {
             }
             //get current day and calculate the current week days
             this.datelist = this.getDateList(this.date);
-            if (spiltToCheckSunday == "Sun") {
+            if (spiltToCheckSunday == "Sun" && this.isAAuto) {
                 this.date = this.rawDateList[this.rawDateList.indexOf(this.date) - 1]; //reset the current back
             }
             this.datelist.push(this.date);
@@ -1661,6 +1669,9 @@ let UserpageComponent = class UserpageComponent {
             }
         });
     }
+    isModifiedSchedule(todayBlock) {
+        return todayBlock.includes("TM") || todayBlock.includes("TA") || todayBlock.includes("TR") || todayBlock.includes("1115SpE6") || todayBlock.includes("1122SpE5");
+    }
     signOut() {
         this.cookie.set("isLog_smlunch", "false");
         this.cookie.set("userid_smlunch", "");
@@ -1816,7 +1827,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/SMart/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/robingan7/Desktop/Programming/Website Project/smlunch/src/main.ts */"./src/main.ts");
 
 
 /***/ })

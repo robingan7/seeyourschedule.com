@@ -10,45 +10,44 @@ import { PushNotificationsService } from 'ng-push';
   styleUrls: ['./userpage.component.css']
 })
 
-
 export class UserpageComponent implements OnInit {
 
   constructor(private cookie: CookieService,
     private router: Router,
     private auth: ServiceService,
-    private push: PushNotificationsService ) {
+    private push: PushNotificationsService) {
     //used in getSche check if the user has the lastest verison
-    this.isLoad = true
+    this.isLoad = true;
 
     this.auth.getScheVersion("non").subscribe(data2 => {
       if (localStorage.getItem("smlunch.ga_scheVersion") != data2.version) {
-        localStorage.setItem("smlunch.ga_scheVersion", data2.version)
+        localStorage.setItem("smlunch.ga_scheVersion", data2.version);
         this.auth.getSche("non").subscribe(data => {
-          localStorage.setItem("smlunch.ga_sche", JSON.stringify(data))
-        })
+          localStorage.setItem("smlunch.ga_sche", JSON.stringify(data));
+        });
       }
     })
 
-    const islo = this.cookie.get('isLog_smlunch')
-      if (islo == "true") {
-        this.name = this.cookie.get('name_smlunch')
-        this.email = this.cookie.get('email_smlunch')
-        this.userid = this.cookie.get('userid_smlunch')
-        this.display = this.cookie.get('display_smlunch')
-        this.push.requestPermission();
-      } else {
-        this.cookie.set("isLog_smlunch", "false");
-        this.cookie.set("userid_smlunch", "");
-        this.cookie.set("name_smlunch", "");
-        this.cookie.set("display_smlunch", "");
-        this.cookie.set("email_smlunch", "");
-        this.router.navigate([''])
-      }
+    const islo = this.cookie.get('isLog_smlunch');
+    if (islo == "true") {
+      this.name = this.cookie.get('name_smlunch');
+      this.email = this.cookie.get('email_smlunch');
+      this.userid = this.cookie.get('userid_smlunch');
+      this.display = this.cookie.get('display_smlunch');
+      this.push.requestPermission();
+    } else {
+      this.cookie.set("isLog_smlunch", "false");
+      this.cookie.set("userid_smlunch", "");
+      this.cookie.set("name_smlunch", "");
+      this.cookie.set("display_smlunch", "");
+      this.cookie.set("email_smlunch", "");
+      this.router.navigate(['']);
     }
+  }
 
   ngOnInit() {
     this.getPeriods()
-    setInterval(()=>{
+    setInterval(() => {
 
       //get the current time from getElementbyId
       this.time = (<HTMLButtonElement>document.querySelector("#clock")).innerText
@@ -57,7 +56,7 @@ export class UserpageComponent implements OnInit {
       var cTime = Number(this.time.split(":")[1])
 
       //if the there is new day, or we didn;t have the schedule, we get the scedule
-      if (this.time =="00 : 00 : 01" || !this.isGotDate){
+      if (this.time == "00 : 00 : 01" || !this.isGotDate) {
         this.getSche()
       }
 
@@ -71,7 +70,7 @@ export class UserpageComponent implements OnInit {
 
       //check if the DATE has changed
       var b2 = this.auth.getisChange
-      if (!this.isAAuto && b2 != this.isDateChange){
+      if (!this.isAAuto && b2 != this.isDateChange) {
         this.isDateChange = b2;
         this.getSche()
       }
@@ -85,30 +84,30 @@ export class UserpageComponent implements OnInit {
 
       //check if the minute value has change, 
       //CTime-current minute value
-      if (cTime != this.formerTime){
-        this.updateTimeLeft()
-        this.formerTime = cTime
+      if (cTime != this.formerTime) {
+        this.updateTimeLeft();
+        this.formerTime = cTime;
       }
 
-      if(this.runTwice <= 1){
-        this.updateTimeLeft()    
-        this.runTwice++ 
+      if (this.runTwice <= 1) {
+        this.updateTimeLeft()
+        this.runTwice++
       }
 
       var hjhjh = (<HTMLElement>document.querySelector(".hjhjh"))
       //fix the lunch-empty bug
-      if (hjhjh != undefined && hjhjh.innerText == "You have " ){
-        hjhjh.innerText = "You have "+this.lunchOfDay
+      if (hjhjh != undefined && hjhjh.innerText == "You have ") {
+        hjhjh.innerText = "You have " + this.lunchOfDay
       }
 
-      if(this.notificationOffPeriof > 0){
+      if (this.notificationOffPeriof > 0) {
         this.canSendNotification = false;
         this.notificationOffPeriof--;
-      }else{
+      } else {
         this.canSendNotification = true;
       }
 
-    },1000)
+    }, 1000)
   }
 
   //display block type
@@ -146,7 +145,7 @@ export class UserpageComponent implements OnInit {
   private display
   private email
   private userid
-  private todayblock//raw today block type
+  private todayblock:string//raw today block type
   private todayblockD = { //today block type diplay
     today: "",
     monday: "",
@@ -223,83 +222,83 @@ export class UserpageComponent implements OnInit {
   private currentWeek: any
 
   //use to generate weekStartAndEnd in php file
-  getWeekStartAndEnd(){
+  getWeekStartAndEnd() {
     let out = "{"
-    this.weekList.forEach((ele)=>{
+    this.weekList.forEach((ele) => {
       let list = this.getDateList(this.rawDateList[(ele - 1) * 7])
       let num = (ele - 1) * 7
 
-      out += '"' + num + '":{ "start": "' + list[0] + '", "end" : "' + list[list.length - 1]+'"},'
-      
+      out += '"' + num + '":{ "start": "' + list[0] + '", "end" : "' + list[list.length - 1] + '"},'
+
     })
     out += "}"
     console.log(out)
   }
   //get date for the week
-  getDateList(todayDate:string){
+  getDateList(todayDate: string) {
     let indexToday = this.rawDateList.indexOf(todayDate)
     var result = []
 
     //iterate through the day after this day
-    for (let i = 1; i < 7 - indexToday % 7; i++){
-      if (indexToday + i < this.rawDateList.length && this.rawDateList[indexToday + i] != undefined){
+    for (let i = 1; i < 7 - indexToday % 7; i++) {
+      if (indexToday + i < this.rawDateList.length && this.rawDateList[indexToday + i] != undefined) {
         result.push(this.rawDateList[indexToday + i])
       }
     }
 
     //iterate through the day before this day
-    for (let i = 0; i < indexToday % 7 + 1; i++){
-      if (this.rawDateList[indexToday - i] != undefined){
+    for (let i = 0; i < indexToday % 7 + 1; i++) {
+      if (this.rawDateList[indexToday - i] != undefined) {
         result.push(this.rawDateList[indexToday - i])
       }
     }
 
-    result.sort((date1: string, date2: string)=>{
+    result.sort((date1: string, date2: string) => {
       let sp1 = date1.split("-").map(ele => Number(ele))
       let sp2 = date2.split("-").map(ele => Number(ele))
 
-      for (let i = 0; i < sp1.length; i++){
+      for (let i = 0; i < sp1.length; i++) {
         if (sp1[i] < sp2[i]) {
           return -1
-        } else if (sp1[i] > sp2[i]){
+        } else if (sp1[i] > sp2[i]) {
           return 1
         }
 
-        if (i == sp1.length - 1){
+        if (i == sp1.length - 1) {
           return 0
         }
       }
-      
+
     })
 
-    if(result.length == 7){
+    if (result.length == 7) {
       result.splice(result.length - 1, 1)
       result.splice(result.length - 1, 1)
     }
     return result
   }
-  
+
   //update the time left for the current period
-  updateTimeLeft(){
+  updateTimeLeft() {
     var count = 0
-    if (this.time != undefined){
-      var numnow = Number(this.time.split(' : ')[0] + this.time.split(' : ')[1])
-      try{
+    if (this.time != undefined) {
+      var numnow = Number(this.time.split(' : ')[0] + this.time.split(' : ')[1]);
+      try {
         for (var ele in this.timeLines.today.timeline) {
-          var diff = this.isInRange(this.timeLines.today.timeline[ele].time, numnow)
-          var eleclas = (<HTMLElement>document.querySelector(".a" + ele))
+          var diff = this.isInRange(this.timeLines.today.timeline[ele].time, numnow);
+          var eleclas = (<HTMLElement>document.querySelector(".a" + ele));
           if (diff != "" || !this.isAAuto) {
             count++;
-            if (this.isAAuto){
-                if(this.todayblockD.today == "Off"){
-                  this.timeLines.today.timeline[ele].timeleft = "today"
-                }else{
-                  this.timeLines.today.timeline[ele].timeleft = diff;
-                }
-            }else{
-              this.timeLines.today.timeline[ele].timeleft = ""
+            if (this.isAAuto) {
+              if (this.todayblockD.today == "Off") {
+                this.timeLines.today.timeline[ele].timeleft = "today"
+              } else {
+                this.timeLines.today.timeline[ele].timeleft = diff;
+              }
+            } else {
+              this.timeLines.today.timeline[ele].timeleft = "";
             }
-            
+
             if (eleclas != undefined) {
               (<HTMLElement>eleclas.children[0]).style.backgroundColor = "#007bff";
               (<HTMLElement>eleclas.children[1]).style.backgroundColor = "#17a2b8";
@@ -321,32 +320,32 @@ export class UserpageComponent implements OnInit {
         } else {
           this.isBreak = false
         }
-      }catch{
-        this.isBreak = true       
+      } catch{
+        this.isBreak = true
       }
     }
   }
 
   //check if the time is in range
-  isInRange(str,numm){
-    if (str.split('-')[1] != undefined){
+  isInRange(str, numm) {
+    if (str.split('-')[1] != undefined) {
       var big = Number(str.split('-')[1].split(':').join(''))
       var small = Number(str.split('-')[0].split(':').join(''))
-      
+
       if (numm > small && numm <= big) {
         var result = 0
         var big_0 = Number(str.split('-')[1].split(':')[0])
         var big_1 = Number(str.split('-')[1].split(':')[1])
 
-        var sm_0 = Number(String(numm).substring(0, String(numm).length -2))
+        var sm_0 = Number(String(numm).substring(0, String(numm).length - 2))
         var sm_1 = Number(String(numm).substring(String(numm).length - 2, 4))
 
-        result += (big_0 - sm_0)*60
+        result += (big_0 - sm_0) * 60
 
-        if (big_1 < sm_1){
+        if (big_1 < sm_1) {
           result -= 60
           result += big_1 + (60 - sm_1)
-        }else{
+        } else {
           result += big_1 - sm_1
         }
 
@@ -358,18 +357,18 @@ export class UserpageComponent implements OnInit {
   }
 
   //find the period that correspond to the block including wrapping around algrithm
-  updateBANDP(sche:string, c = -1){
+  updateBANDP(sche: string, c = -1) {
     this.blockAndTime = []
-    if(c != -1){
-      if (sche == "All" || sche == "0812Sp" || sche == "Rec" || sche =="TA"){
-        for(var i =c;i<c+7;i++){
-          if(i <=7){
+    if (c != -1) {
+      if (sche == "All" || sche == "0812Sp" || sche == "Rec" || sche == "TA") {
+        for (var i = c; i < c + 7; i++) {
+          if (i <= 7) {
             this.blockAndTime.push("p" + i)
-          }else{
+          } else {
             this.blockAndTime.push("p" + (i - 7))
           }
         }
-      } else if (sche =="Mn" || sche=="Ms"){
+      } else if (sche == "Mn" || sche == "Ms") {
         for (var i = c; i < c + 4; i++) {
           if (i <= 7) {
             this.blockAndTime.push("p" + i)
@@ -377,7 +376,7 @@ export class UserpageComponent implements OnInit {
             this.blockAndTime.push("p" + (i - 7))
           }
         }
-      } else if (sche == "S"){
+      } else if (sche == "S") {
         this.blockAndTime.push("meeting")
         for (var i = c; i < c + 5; i++) {
           if (i <= 7) {
@@ -386,7 +385,7 @@ export class UserpageComponent implements OnInit {
             this.blockAndTime.push("p" + (i - 7))
           }
         }
-      }else{
+      } else {
         for (var i = c; i < c + 6; i++) {
           if (i <= 7) {
             this.blockAndTime.push("p" + i)
@@ -400,68 +399,69 @@ export class UserpageComponent implements OnInit {
   }
 
   //genrate the time line if the person has second lunch
-  updateTimelineS(todayBlock: any, periodSquence: string[], result_timeLineDay: any){
+  updateTimelineS(todayBlock: any, periodSquence: string[], result_timeLineDay: any) {
     this.timeLines[result_timeLineDay].timeline = []
     var luncper = todayBlock['First Lunch'].split('/')[1]
     for (let [key, value] of Object.entries(todayBlock)) {
-      if (key.substring(0, 7).includes("Block")){
-          if (key == luncper){
-            var nnum = Number(luncper[6]) - 1
-            actual = periodSquence[nnum]
-            var sppstr = todayBlock['First Lunch'].split("/")
+      if (key.substring(0, 7).includes("Block")) {
+        if (key == luncper) {
+          var nnum = Number(luncper[6]) - 1
+          actual = periodSquence[nnum]
+          var sppstr = todayBlock['First Lunch'].split("/")
 
-            this.timeLines[result_timeLineDay].timeline.push({
-              title: actual,
-              where: this.sche[actual],
-              time: sppstr[2],
-              timeleft:""
-            },
+          this.timeLines[result_timeLineDay].timeline.push({
+            title: actual,
+            where: this.sche[actual],
+            time: sppstr[2],
+            timeleft: ""
+          },
             {
               title: 'Second Lunch',
               where: " ",
               time: todayBlock[luncper].split("/")[2],
               timeleft: ""
             })
-            
-            if (this.isAAuto && this.canSendNotification && result_timeLineDay == "today"){
-              let options = {
-                body: "Go after block" + (nnum + 1) + "(Period " + (actual[1]) + ")",
-                icon: "https://smlunch.000webhostapp.com/seal.svg"
-              }
-              this.push.create('Second Lunch', options).subscribe(
-                res => console.log(res),
-                err => console.log(err)
-              )
-              this.notificationOffPeriof = 13
+
+          if (this.isAAuto && this.canSendNotification && result_timeLineDay == "today") {
+            let options = {
+              body: "Go after block" + (nnum + 1) + "(Period " + (actual[1]) + ")",
+              icon: "https://smlunch.000webhostapp.com/seal.svg"
             }
-          }else{
-            nnum = Number(key[6])-1
-            var actual = periodSquence[nnum]
-            this.timeLines[result_timeLineDay].timeline.push({
-              title: actual,
-              where: this.sche[actual],
-              time: value,
-              timeleft: ""
-            })
+            /*
+            this.push.create('Second Lunch', options).subscribe(
+              res => console.log(res),
+              err => console.log(err)
+            )*/
+            this.notificationOffPeriof = 13
           }
-
-      } else if (key.includes("Period") && !key.includes("Academic")){
-        this.timeLines[result_timeLineDay].timeline.push({
-            title: "p8",
-            where: this.sche["p8"],
-            time: value,
-            timeleft: ""
-          })
-        }else if(key=="First Lunch"){
-
-        }else{
-        this.timeLines[result_timeLineDay].timeline.push({
-            title: key,
-            where: " ",
+        } else {
+          nnum = Number(key[6]) - 1
+          var actual = periodSquence[nnum]
+          this.timeLines[result_timeLineDay].timeline.push({
+            title: actual,
+            where: this.sche[actual],
             time: value,
             timeleft: ""
           })
         }
+
+      } else if (key.includes("Period") && !key.includes("Academic")) {
+        this.timeLines[result_timeLineDay].timeline.push({
+          title: "p8",
+          where: this.sche["p8"],
+          time: value,
+          timeleft: ""
+        })
+      } else if (key == "First Lunch") {
+
+      } else {
+        this.timeLines[result_timeLineDay].timeline.push({
+          title: key,
+          where: " ",
+          time: value,
+          timeleft: ""
+        })
+      }
     }
     if (result_timeLineDay == "today") {
       this.updateTimeLeft()
@@ -469,13 +469,13 @@ export class UserpageComponent implements OnInit {
   }
 
   //genrate the time line if the person has first lunch
-  updateTimelineF(todayBlock:any, periodSquence:string[], result_timeLineDay:any) {
+  updateTimelineF(todayBlock: any, periodSquence: string[], result_timeLineDay: any) {
     this.timeLines[result_timeLineDay].timeline = []
     var luncper = todayBlock['First Lunch'].split('/')[1]
     for (let [key, value] of Object.entries(todayBlock)) {
       if (key == 'First Lunch') {
         var sppstr = String(value).split('/')
-        var nnum = Number(luncper[6])-1
+        var nnum = Number(luncper[6]) - 1
         var actual = periodSquence[nnum]
         this.timeLines[result_timeLineDay].timeline.push(
           {
@@ -483,30 +483,31 @@ export class UserpageComponent implements OnInit {
             where: " ",
             time: sppstr[0],
             timeleft: ""
-          },{
-            title: actual,
-            where: this.sche[actual],
-            time: todayBlock[luncper].split("/")[0],
-            timeleft: ""
-          })
+          }, {
+          title: actual,
+          where: this.sche[actual],
+          time: todayBlock[luncper].split("/")[0],
+          timeleft: ""
+        })
 
-        if (this.isAAuto && this.canSendNotification && result_timeLineDay == "today"){
+        if (this.isAAuto && this.canSendNotification && result_timeLineDay == "today") {
           let options = {
-            body: "Go after block" + (nnum) + "(Period " + (periodSquence[nnum-1][1])+")",
+            body: "Go after block" + (nnum) + "(Period " + (periodSquence[nnum - 1][1]) + ")",
             icon: "https://smlunch.000webhostapp.com/seal.svg"
           }
+          /*
           this.push.create('First Lunch', options).subscribe(
             res => console.log(res),
             err => console.log(err)
-          )
+          )*/
 
           this.notificationOffPeriof = 13
         }
-      }else if (key.substring(0,7).includes("Block")) {
+      } else if (key.substring(0, 7).includes("Block")) {
         if (key == luncper) {
-          
+
         } else {
-          nnum = Number(key[6])-1
+          nnum = Number(key[6]) - 1
           actual = periodSquence[nnum]
           this.timeLines[result_timeLineDay].timeline.push({
             title: actual,
@@ -537,7 +538,7 @@ export class UserpageComponent implements OnInit {
   }
 
   //update the time line if there is no lunch
-  updateTimelineNo(todayBlock: any, periodSquence: string[], result_timeLineDay: any){
+  updateTimelineNo(todayBlock: any, periodSquence: string[], result_timeLineDay: any) {
     this.timeLines[result_timeLineDay].timeline = []
     for (let [key, value] of Object.entries(this.todaytimes)) {
       if (key.substring(0, 7).includes("Block")) {
@@ -571,52 +572,52 @@ export class UserpageComponent implements OnInit {
   }
 
   //decide which lunch the person has
-  isFirstLunch(rawBlock:any, day:string){
-    if (rawBlock != undefined){
+  isFirstLunch(rawBlock: any, day: string) {
+    if (rawBlock != undefined) {
       this.isSpecial = false;
-      if (rawBlock['First Lunch']!=undefined){
+      if (rawBlock['First Lunch'] != undefined) {
         var luncper = rawBlock['First Lunch'].split('/')[1]
         var room = this.sche[this.blockAndTime[Number(luncper[6] - 1)]]
 
         if (room == 'B' || room == 'C' || room == 'S' || room == 'G115' || room == 'G116'
-          || room == 'G117' || room == 'Talon') {
+          || room == 'G117' || room == 'Talon' || this.isModifiedSchedule(this.todayblock)) {
           this.updateTimelineF(rawBlock, this.blockAndTime, day)
           this.lunchOfDay = "First Lunch"
           return true
         }
         else {
-          this.lunchOfDay = "Second Lunch"
-          this.updateTimelineS(rawBlock, this.blockAndTime, day)
-          return false
+          this.lunchOfDay = "Second Lunch";
+          this.updateTimelineS(rawBlock, this.blockAndTime, day);
+          return false;
         }
-      }else{
-        this.updateTimelineNo(rawBlock, this.blockAndTime, day)
-      }     
-    }else{
-      this.isLoad = false
-      this.isSpecial = true
+      } else {
+        this.updateTimelineNo(rawBlock, this.blockAndTime, day);
+      }
+    } else {
+      this.isLoad = false;
+      this.isSpecial = true;
 
       this.timeLines[day].timeline = [{
         title: "You",
-        where:"have",
-        time:"day off",
-        timeleft:"today"
-      }]
-      this.lunchOfDay = "a nice day!"
+        where: "have",
+        time: "day off",
+        timeleft: "today"
+      }];
+      this.lunchOfDay = "a nice day!";
     }
   }
 
   //get schedule from server
-  getSche(){
+  getSche() {
     this.getScheHelper()
   }
-  getScheHelper(){
-    try{
+  getScheHelper() {
+    try {
       let data = JSON.parse(localStorage.getItem("smlunch.ga_sche"))
-      let day =  (<HTMLButtonElement>document.querySelector("#date")).innerText
-      
+      let day = (<HTMLButtonElement>document.querySelector("#date")).innerText
+
       this.rawDateList = data.scheArray
-      
+
       //check if we are on the auto mode
       if (this.isAAuto) {
         this.date = (<HTMLButtonElement>document.querySelector("#monnum")).innerText
@@ -627,25 +628,24 @@ export class UserpageComponent implements OnInit {
       //get current week
       this.currentWeek = this.rawDateList.indexOf(this.date) / 7 | 0
 
-      let spiltToCheckSunday = day.split(" ")[0]
-      if (spiltToCheckSunday == "Sun"){
-        this.currentWeek = this.currentWeek + 1
-        this.date = this.rawDateList[this.rawDateList.indexOf(this.date) + 1]//set the current front more
+      let spiltToCheckSunday = day.split(" ")[0];
+      if (spiltToCheckSunday == "Sun") {
+        this.currentWeek = this.currentWeek + 1;
+        this.date = this.rawDateList[this.rawDateList.indexOf(this.date) + 1];//set the current front more
       }
 
       //get current day and calculate the current week days
       this.datelist = this.getDateList(this.date)
 
-      if (spiltToCheckSunday == "Sun" && this.isAAuto){
-        this.date = this.rawDateList[this.rawDateList.indexOf(this.date) - 1]//reset the current back
+      if (spiltToCheckSunday == "Sun" && this.isAAuto) {
+        this.date = this.rawDateList[this.rawDateList.indexOf(this.date) - 1];//reset the current back
       }
-      this.datelist.push(this.date)
+      this.datelist.push(this.date);
 
       for (let i = 0; i < this.datelist.length; i++) {
-        this.todayblock = data.block[this.datelist[i]]
-
+        this.todayblock = data.block[this.datelist[i]];
         //today's algrithm
-        if (i == this.datelist.length - 1 && this.isAAuto) {
+        if (i == this.datelist.length - 1) {
           this.setDisplayBlockType("today", data)
           this.isFirstLunch(this.todaytimes, "today")//decide which lunch and generate time chart
         } else {
@@ -654,24 +654,24 @@ export class UserpageComponent implements OnInit {
           this.isFirstLunch(this.todaytimes, this.datePairWithNumber[i])//decide which lunch and generate time chart
         }
 
-        this.isLoad = false
+        this.isLoad = false;
       }
-    }catch{
-      
+    } catch{
+
     }
   }
   //use to switch week
-  switchWeek(e:any){
+  switchWeek(e: any) {
 
     this.isLoad = true
     let dataPassIn = JSON.parse(localStorage.getItem("smlunch.ga_sche"))
     e.preventDefault();
     let val = e.target.value
 
-    let todayDate:string
-    if (val <= this.rawDateList.length){
+    let todayDate: string
+    if (val <= this.rawDateList.length) {
       todayDate = this.rawDateList[val]
-    }else{
+    } else {
       todayDate = this.rawDateList[val - 4]
     }
 
@@ -683,13 +683,13 @@ export class UserpageComponent implements OnInit {
       this.timeLines[this.datePairWithNumber[i]].date = this.datelist[i]
       this.setDisplayBlockType(this.datePairWithNumber[i], dataPassIn)
       this.isFirstLunch(this.todaytimes, this.datePairWithNumber[i])//decide which lunch and generate time chart
-      
+
 
       this.isLoad = false
     }
   }
   //set the display block type that is bind to HTML
-  setDisplayBlockType(dayOfWeek:string, parseInData:any){
+  setDisplayBlockType(dayOfWeek: string, parseInData: any) {
     if (this.todayblock != undefined) {
       this.isGotDate = true
 
@@ -735,31 +735,31 @@ export class UserpageComponent implements OnInit {
   isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
   }
-  isFullPeriods(){
+  isFullPeriods() {
     if (this.sche.p1.length == 0 || this.sche.p2.length == 0 || this.sche.p3.length == 0 || this.sche.p4.length == 0 ||
       this.sche.p5.length == 0 || this.sche.p6.length == 0 || this.sche.p7.length == 0) {
 
-        return false
-    }else{
+      return false
+    } else {
       return true
     }
   }
 
-  updatePeriod(e){
+  updatePeriod(e) {
     e.preventDefault()
     const target = e.target
     var val = target.value
     var idd = target.id
 
-    var idin = "p" + idd[idd.length-1]
+    var idin = "p" + idd[idd.length - 1]
     if (val.length != 0) {
-      this.auth.updatePeriod(this.userid, val,idin).subscribe(data => {
-        (<HTMLButtonElement>document.querySelector("#"+idd)).style.border = "1px solid #aaa"
-        this.sche[idin]=val
-        if (this.isFullPeriods()){
+      this.auth.updatePeriod(this.userid, val, idin).subscribe(data => {
+        (<HTMLButtonElement>document.querySelector("#" + idd)).style.border = "1px solid #aaa"
+        this.sche[idin] = val
+        if (this.isFullPeriods()) {
           this.isPeriodAll = false
           this.getPeriods()
-        }else{
+        } else {
           this.isPeriodAll = true
         }
       })
@@ -767,13 +767,13 @@ export class UserpageComponent implements OnInit {
       this.updatemessage.periods = "Can't be empty"
     }
   }
-  updateUsername(){
+  updateUsername() {
     var val = (<HTMLButtonElement>document.querySelector(".upname")).value
-    if(val.length!=0){
-      this.auth.updateUsername(this.userid,val).subscribe(data=>{
-        if(data.meesage != "hhh"){
+    if (val.length != 0) {
+      this.auth.updateUsername(this.userid, val).subscribe(data => {
+        if (data.meesage != "hhh") {
           this.updatemessage.name = data.meesage
-        }else{
+        } else {
           this.cookie.set("name_smlunch", val)
         }
       })
@@ -796,32 +796,32 @@ export class UserpageComponent implements OnInit {
 
   updateEmail() {
     var val = (<HTMLButtonElement>document.querySelector(".upemail")).value
-    const valSP= val.split('@')
+    const valSP = val.split('@')
     if (val.length != 0) {
       if (valSP[1] != "smhsstudents.org" && valSP[1] != "smhs.org"
-        || valSP.length > 2){
-          this.updatemessage.email = "Not a SM Email"
-      }else{
+        || valSP.length > 2) {
+        this.updatemessage.email = "Not a SM Email"
+      } else {
         this.auth.updateEmail(this.userid, val).subscribe(data => {
-          if(data.meesage!="hhh"){
-            this.updatemessage.email = data.meesage            
-          }else{
+          if (data.meesage != "hhh") {
+            this.updatemessage.email = data.meesage
+          } else {
             this.cookie.set("email_smlunch", val)
           }
         })
-      } 
-    }else{
+      }
+    } else {
       this.updatemessage.email = "Can't be empty"
     }
   }
 
-  period8(e){
+  period8(e) {
     e.preventDefault()
     this.isPeriod8 = e.target.checked
   }
-  
-  getPeriods(){
-    this.auth.getPeriods(this.userid).subscribe(data=>{
+
+  getPeriods() {
+    this.auth.getPeriods(this.userid).subscribe(data => {
       this.sche.p1 = data.p1
       this.sche.p2 = data.p2
       this.sche.p3 = data.p3
@@ -831,22 +831,22 @@ export class UserpageComponent implements OnInit {
       this.sche.p7 = data.p7
       this.sche.p8 = data.p8
 
-      if (this.isFullPeriods()){
+      if (this.isFullPeriods()) {
         this.isPeriodAll = false
         this.getSche()
-      }else{
+      } else {
         this.isPeriodAll = true
       }
 
-      if(data.p8.length!=0){
-        this.isPeriod8=true
-      }else{
+      if (data.p8.length != 0) {
+        this.isPeriod8 = true
+      } else {
         this.isPeriod8 = false
       }
 
-      for(var i = 1;i<9;i++){
-        if(data["p"+i].length==0){
-          if ((<HTMLButtonElement>document.querySelector("#inputGroupSelect0" + i))!=null){
+      for (var i = 1; i < 9; i++) {
+        if (data["p" + i].length == 0) {
+          if ((<HTMLButtonElement>document.querySelector("#inputGroupSelect0" + i)) != null) {
             (<HTMLButtonElement>document.querySelector("#inputGroupSelect0" + i)).style.border = "2px solid red";
           }
         }
@@ -854,7 +854,11 @@ export class UserpageComponent implements OnInit {
     })
   }
 
-  signOut(){
+  isModifiedSchedule(todayBlock:string){
+    return todayBlock.includes("TM") || todayBlock.includes("TA") || todayBlock.includes("TR") || todayBlock.includes("1115SpE6") || todayBlock.includes("1122SpE5");
+  }
+
+  signOut() {
     this.cookie.set("isLog_smlunch", "false");
     this.cookie.set("userid_smlunch", "");
     this.cookie.set("name_smlunch", "");
