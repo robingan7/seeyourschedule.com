@@ -11,7 +11,9 @@ h1 {
     padding-left: 10px;
     padding-right: 10px;
 }
-
+#sign-check{
+    cursor: pointer;
+}
 button {
     margin-left: 3px;
     margin-top: 3px;
@@ -58,11 +60,12 @@ label {
 }
 
 .agree a {
+    cursor: pointer;
     text-decoration: underline;
 }
 
 .agree a:hover {
-    color: blue;
+    color: var(--primary);;
 }
 
 .agree a:visited {
@@ -93,7 +96,7 @@ label {
 }
 
 .op {
-    border: 5px solid blue;
+    border: 5px solid var(--primary);
     height: 45px;
 }
 

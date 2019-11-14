@@ -62,11 +62,11 @@ export class ServiceService {
 
   constructor(private http: HttpClient) { }
   private isloggin: boolean
-  //private path = "http://localhost/smlunch_php/"
+  private path = "http://localhost/smlunch_php/"
   private userInfo
   private isAuto = true
   private isChange = false
-  private path = "/php/";
+  //private path = "/php/";
   sendEmail(non) {
     return this.http.post<sendemail>(this.path + 'sendEmail.php', {
       non

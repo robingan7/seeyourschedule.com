@@ -300,18 +300,20 @@ export class UserpageComponent implements OnInit {
             }
 
             if (eleclas != undefined) {
-              (<HTMLElement>eleclas.children[0]).style.backgroundColor = "#007bff";
-              (<HTMLElement>eleclas.children[1]).style.backgroundColor = "#17a2b8";
-              (<HTMLElement>eleclas.children[2]).style.backgroundColor = "#343a40";
-              (<HTMLElement>eleclas.children[3]).style.backgroundColor = "#28a745";
+              let childrenList = eleclas.children;
+
+              for (let ele of Array.from(childrenList)) {
+                (<HTMLElement>ele).classList.remove("gray");
+              }
             }
           } else {
             this.timeLines.today.timeline[ele].timeleft = ""
             if (eleclas != undefined) {
-              (<HTMLElement>eleclas.children[0]).style.backgroundColor = "#aaa";
-              (<HTMLElement>eleclas.children[1]).style.backgroundColor = "#aaa";
-              (<HTMLElement>eleclas.children[2]).style.backgroundColor = "#aaa";
-              (<HTMLElement>eleclas.children[3]).style.backgroundColor = "#aaa";
+              let childrenList = eleclas.children;
+              
+              for (let ele of Array.from(childrenList)){
+                (<HTMLElement>ele).classList.add("gray");
+              }
             }
           }
         }

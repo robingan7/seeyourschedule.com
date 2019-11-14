@@ -29,6 +29,8 @@ p{
     width:70px;
     height:20px;
     padding: 0;
+    padding-top:0px;
+    font-size: 15px;
 }
 .clll{
     position: absolute;
