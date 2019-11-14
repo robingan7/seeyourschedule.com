@@ -425,7 +425,7 @@ export class UserpageComponent implements OnInit {
           if (this.isAAuto && this.canSendNotification && result_timeLineDay == "today") {
             let options = {
               body: "Go after block" + (nnum + 1) + "(Period " + (actual[1]) + ")",
-              icon: "https://smlunch.000webhostapp.com/seal.svg"
+              icon: "http://seeyourschedule.com/seal.svg"
             }
             /*
             this.push.create('Second Lunch', options).subscribe(
@@ -493,7 +493,7 @@ export class UserpageComponent implements OnInit {
         if (this.isAAuto && this.canSendNotification && result_timeLineDay == "today") {
           let options = {
             body: "Go after block" + (nnum) + "(Period " + (periodSquence[nnum - 1][1]) + ")",
-            icon: "https://smlunch.000webhostapp.com/seal.svg"
+            icon: "http://seeyourschedule.com/seal.svg"
           }
           /*
           this.push.create('First Lunch', options).subscribe(

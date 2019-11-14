@@ -66,8 +66,7 @@ export class ServiceService {
   private userInfo
   private isAuto = true
   private isChange = false
-  //private path ="https://smlunch.000webhostapp.com/"
-  private path = ""
+  private path = "/php/";
   sendEmail(non) {
     return this.http.post<sendemail>(this.path + 'sendEmail.php', {
       non
