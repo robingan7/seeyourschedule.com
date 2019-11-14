@@ -206,7 +206,7 @@ export class LoginComponent implements OnInit {
     this.room = e.target.value
     this.cookie.set("tem_smlunch", this.room)
     if (this.room == 'B' || this.room == 'C' || this.room == 'S' || this.room == 'G115' || this.room == 'G116'
-      || this.room == 'G117' || this.room == 'Talon') {
+      || this.room == 'G117' || this.room == 'Talon' || this.isModifiedSchedule(this.todayblock)) {
       this.lunchOfDay = "First Lunch"
     }else if (this.room == ''){
       this.lunchOfDay = "a nice day!"
@@ -264,6 +264,10 @@ export class LoginComponent implements OnInit {
         this.alerttype.signup = "alert alert-danger alert-dismissible fade show"
       }   
     }
+  }
+
+  isModifiedSchedule(todayBlock: string) {
+    return todayBlock.includes("TM") || todayBlock.includes("TA") || todayBlock.includes("TR") || todayBlock.includes("1115SpE6") || todayBlock.includes("1122SpE5");
   }
 
   loginUser(event) {
