@@ -96,9 +96,9 @@ export class UserpageComponent implements OnInit {
 
       var hjhjh = (<HTMLElement>document.querySelector(".hjhjh"))
       //fix the lunch-empty bug
-      if (hjhjh != undefined && hjhjh.innerText == "You have ") {
+      //if (hjhjh != undefined && hjhjh.innerText == "You have ") {
         hjhjh.innerText = "You have " + this.lunchOfDay
-      }
+      //}
 
       if (this.notificationOffPeriof > 0) {
         this.canSendNotification = false;
@@ -693,42 +693,42 @@ export class UserpageComponent implements OnInit {
   //set the display block type that is bind to HTML
   setDisplayBlockType(dayOfWeek: string, parseInData: any) {
     if (this.todayblock != undefined) {
-      this.isGotDate = true
+      this.isGotDate = true;
 
       //deciding the title of today page
       if (this.isNumeric(this.todayblock[this.todayblock.length - 1])) {
         var schestr = this.todayblock.substring(0, this.todayblock.length - 1)
         var num = this.todayblock[this.todayblock.length - 1]
-        this.todayblockD[dayOfWeek] = this.blocktypes[schestr] + num
+        this.todayblockD[dayOfWeek] = this.blocktypes[schestr] + num;
         if (this.blocktypes[schestr] == undefined) {
-          this.todayblockD[dayOfWeek] = "Special" + num
+          this.todayblockD[dayOfWeek] = "Special" + num;
           if (schestr.includes("SpE")) {
-            this.todayblockD[dayOfWeek] = "Special ETV" + num
+            this.todayblockD[dayOfWeek] = "Special ETV" + num;
           }
         }
-        this.todaytimes = parseInData.sche[this.todayblock.substring(0, this.todayblock.length - 1)]
-        this.updateBANDP(schestr, Number(num))
+        this.todaytimes = parseInData.sche[this.todayblock.substring(0, this.todayblock.length - 1)];
+        this.updateBANDP(schestr, Number(num));
       } else {
-        this.todayblockD[dayOfWeek] = this.blocktypes[this.todayblock]
+        this.todayblockD[dayOfWeek] = this.blocktypes[this.todayblock];
         if (this.todayblockD[dayOfWeek] == undefined) {
           if (this.todayblock != "Off") {
-            this.todayblockD[dayOfWeek] = "Special"
+            this.todayblockD[dayOfWeek] = "Special";
           } else {
-            this.todayblockD[dayOfWeek] = "Off"
+            this.todayblockD[dayOfWeek] = "Off";
           }
         }
         this.todaytimes = parseInData.sche[this.todayblock]
-        this.updateBANDP("S")
+        this.updateBANDP("S");
       }
 
     } else {
       //if the date is undefined which mean day off
       if (this.date.length == 0) {
-        this.isGotDate = false
+        this.isGotDate = false;
       } else {
-        this.isGotDate = true
-        this.todayblockD[dayOfWeek] = "Off"
-        this.todaytimes = undefined
+        this.isGotDate = true;
+        this.todayblockD[dayOfWeek] = "Off";
+        this.todaytimes = undefined;
       }
     }
     //deciding the title of today page---END MARK
@@ -741,32 +741,32 @@ export class UserpageComponent implements OnInit {
     if (this.sche.p1.length == 0 || this.sche.p2.length == 0 || this.sche.p3.length == 0 || this.sche.p4.length == 0 ||
       this.sche.p5.length == 0 || this.sche.p6.length == 0 || this.sche.p7.length == 0) {
 
-      return false
+      return false;
     } else {
-      return true
+      return true;
     }
   }
 
   updatePeriod(e) {
-    e.preventDefault()
-    const target = e.target
-    var val = target.value
-    var idd = target.id
+    e.preventDefault();
+    const target = e.target;
+    var val = target.value;
+    var idd = target.id;
 
     var idin = "p" + idd[idd.length - 1]
     if (val.length != 0) {
       this.auth.updatePeriod(this.userid, val, idin).subscribe(data => {
-        (<HTMLButtonElement>document.querySelector("#" + idd)).style.border = "1px solid #aaa"
+        (<HTMLButtonElement>document.querySelector("#" + idd)).style.border = "1px solid #aaa";
         this.sche[idin] = val
         if (this.isFullPeriods()) {
-          this.isPeriodAll = false
-          this.getPeriods()
+          this.isPeriodAll = false;
+          this.getPeriods();
         } else {
-          this.isPeriodAll = true
+          this.isPeriodAll = true;
         }
       })
     } else {
-      this.updatemessage.periods = "Can't be empty"
+      this.updatemessage.periods = "Can't be empty";
     }
   }
   updateUsername() {
@@ -774,13 +774,13 @@ export class UserpageComponent implements OnInit {
     if (val.length != 0) {
       this.auth.updateUsername(this.userid, val).subscribe(data => {
         if (data.meesage != "hhh") {
-          this.updatemessage.name = data.meesage
+          this.updatemessage.name = data.meesage;
         } else {
-          this.cookie.set("name_smlunch", val)
+          this.cookie.set("name_smlunch", val);
         }
       })
     } else {
-      this.updatemessage.name = "Can't be empty"
+      this.updatemessage.name = "Can't be empty";
     }
   }
 
@@ -792,7 +792,7 @@ export class UserpageComponent implements OnInit {
         this.display = val
       })
     } else {
-      this.updatemessage.display = "Can't be empty"
+      this.updatemessage.display = "Can't be empty";
     }
   }
 
@@ -800,50 +800,45 @@ export class UserpageComponent implements OnInit {
     var val = (<HTMLButtonElement>document.querySelector(".upemail")).value
     const valSP = val.split('@')
     if (val.length != 0) {
-      if (valSP[1] != "smhsstudents.org" && valSP[1] != "smhs.org"
-        || valSP.length > 2) {
-        this.updatemessage.email = "Not a SM Email"
-      } else {
         this.auth.updateEmail(this.userid, val).subscribe(data => {
           if (data.meesage != "hhh") {
-            this.updatemessage.email = data.meesage
+            this.updatemessage.email = data.meesage;
           } else {
-            this.cookie.set("email_smlunch", val)
+            this.cookie.set("email_smlunch", val);
           }
-        })
-      }
+        });
     } else {
-      this.updatemessage.email = "Can't be empty"
+      this.updatemessage.email = "Can't be empty";
     }
   }
 
   period8(e) {
-    e.preventDefault()
-    this.isPeriod8 = e.target.checked
+    e.preventDefault();
+    this.isPeriod8 = e.target.checked;
   }
 
   getPeriods() {
     this.auth.getPeriods(this.userid).subscribe(data => {
-      this.sche.p1 = data.p1
-      this.sche.p2 = data.p2
-      this.sche.p3 = data.p3
-      this.sche.p4 = data.p4
-      this.sche.p5 = data.p5
-      this.sche.p6 = data.p6
-      this.sche.p7 = data.p7
-      this.sche.p8 = data.p8
+      this.sche.p1 = data.p1;
+      this.sche.p2 = data.p2;
+      this.sche.p3 = data.p3;
+      this.sche.p4 = data.p4;
+      this.sche.p5 = data.p5;
+      this.sche.p6 = data.p6;
+      this.sche.p7 = data.p7;
+      this.sche.p8 = data.p8;
 
       if (this.isFullPeriods()) {
-        this.isPeriodAll = false
-        this.getSche()
+        this.isPeriodAll = false;
+        this.getSche();
       } else {
-        this.isPeriodAll = true
+        this.isPeriodAll = true;
       }
 
       if (data.p8.length != 0) {
-        this.isPeriod8 = true
+        this.isPeriod8 = true;
       } else {
-        this.isPeriod8 = false
+        this.isPeriod8 = false;
       }
 
       for (var i = 1; i < 9; i++) {
@@ -880,4 +875,10 @@ export class UserpageComponent implements OnInit {
         if (this.count_updatetime == 41) {
           this.count_updatetime = 0
         }
-      }*/
+      }
+
+      if (valSP[1] != "smhsstudents.org" && valSP[1] != "smhs.org"
+        || valSP.length > 2) {
+        this.updatemessage.email = "Not a SM Email"
+      } else
+*/

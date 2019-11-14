@@ -41,7 +41,7 @@ module.exports = "<a class=\"navbar-brand logo\" href=\"https://www.smhs.org\">\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<ul class=\"nav nav-pills mb-3 mmmb\" id=\"pills-tab\" role=\"tablist\">\n    <li class=\"nav-item\">\n        <button class=\"nav-link active btn btn-outline-primary btn-sm see\" id=\"pills-home-tab\" data-toggle=\"pill\"\n            href=\"#Search-home\" role=\"tab\" aria-controls=\"pills-home\" aria-selected=\"true\">Search</button>\n    </li>\n    <li class=\"nav-item\">\n        <button class=\"nav-link btn btn-outline-primary btn-sm see\" id=\"pills-profile-tab\" data-toggle=\"pill\"\n            href=\"#loginAndSignUp\" role=\"tab\" aria-controls=\"pills-profile\" aria-selected=\"false\">Login & Sign up</button>\n    </li>\n</ul>\n\n<div class=\"tab-content\" id=\"pills-tabContent\">\n    <div class=\"tab-pane fade show active width320\" id=\"Search-home\" role=\"tabpanel\" aria-labelledby=\"pills-home-tab\">\n        <span class=\"badge badge-success\" style=\"font-size: 20px;\">Quick Check</span>\n        <br>\n        <span class=\"badge badge-dark\">You can do a quick check of your lunch here.</span>\n        <span class=\"badge badge-dark\">You can create an account to see more features.</span>\n        <div class=\"input-group mb-3\">\n            <div class=\"input-group-prepend\">\n                <label class=\"input-group-text\" for=\"inputGroupSelect01\">Peroid\n                    <div *ngIf=\"isDone\" class=\"spinner-border\" style=\"width: 1rem; height: 1rem;\" role=\"status\">\n                        <span class=\"sr-only\">Loading...</span>\n                    </div>\n                    <b>-{{luncper}}-</b> building</label>\n            </div>\n            <select (change)=\"isFirstLunch($event)\" value={{room}} class=\"custom-select op\" id=\"inputGrojjupSelect01\">\n                <option value=\"\">Options</option>\n                <option value=\"B\">B</option>\n                <option value=\"Talon\">Talon</option>\n                <option value=\"C\">C</option>\n                <option value=\"S\">S</option>\n                <option value=\"G115\">G115</option>\n                <option value=\"G116\">G116</option>\n                <option value=\"G117\">G117</option>\n                <option value=\"A\">A</option>\n                <option value=\"T\">T</option>\n                <option value=\"R\">R</option>\n                <option value=\"G\">G</option>\n                <option value=\"GYM\">GYM</option>\n                <option value=\"Library\">Library</option>\n            </select>\n        </div>\n        <div class=\"toast\" role=\"alert\" aria-live=\"polite\" aria-atomic=\"true\" data-autohide=\"true\">\n            <div class=\"toast-header\">\n                <img src=\"http://seeyourschedule.com/logoo_5805.png\" width=\"40\" height=\"40\" class=\"rounded mr-2\" alt=\"...\">\n                <strong class=\"mr-auto\">You have <b style=\"color:black;\">{{lunchOfDay}}</b></strong>\n                <small></small>\n                <button type=\"button\" class=\"ml-2 mb-1 close\" data-dismiss=\"toast\" aria-label=\"Close\">\n                    <span aria-hidden=\"true\">;)</span>\n                </button>\n            </div>\n            <div class=\"toast-body\">\n                Hello, friend! FROM <a style=\"text-decoration: underline;\"\n                    href=\"https://www.smhs.org/academics/departments-and-courses/science/robotics\"><b>SMbly Required 5805</b></a>\n            </div>\n        </div>\n        <div class=\"alert alert-warning warr\" role=\"alert\">\n            We <b>ARE NOT</b> responsible for any wrong information on this website\n            It's to help you understand SM schedule faster. You should <b>NOT</b> rely on this app\n        </div>\n    </div>\n\n<div class=\"tab-pane fade\" id=\"loginAndSignUp\" role=\"tabpanel\" aria-labelledby=\"pills-profile-tab\">\n    \n        <div class=\"credit-container\">\n            <div id=\"logins\" *ngIf=\"loginb\" class=\"credit\">\n                <form (submit)=\"loginUser($event)\">\n                    <h1>Login</h1>\n                    <div class=\"{{alerttype.login}} errorr logine\" role=\"alert\">\n                        <strong>Hello!</strong> {{error.login}}\n                        <button type=\"button\" class=\"close\" data-dismiss=\"alet\" aria-label=\"Close\">\n                            <span aria-hidden=\"true\"></span>\n                        </button>\n                    </div>\n\n                    <div class=\"form-group\">\n                        <label for=\"exampleInputEmail1\">User Name or Email</label>\n                        <input (input)=\"checkLogin()\" type=\"text\" class=\"form-control\" id=\"name-or-email\"\n                            aria-describedby=\"emailHelp\" placeholder=\"Name or Email\">\n                    </div>\n\n                    <div class=\"form-group\">\n                        <label for=\"exampleInputPassword1\">Password</label>\n                        <input (input)=\"checkLogin()\" type=\"password\" class=\"form-control\" id=\"login-password\"\n                            placeholder=\"Password\">\n                    </div>\n\n                    <button type=\"submit\" id=\"login-btn\" class=\"btn btn-primary\">Login</button>\n                </form>\n                <div class=\"alert alert-warning warr\" role=\"alert\">\n                    We <b>ARE NOT</b> responsible for any wrong information on this website\n                    It's to help you understand SM schedule faster. You should <b>NOT</b> rely on this app\n                </div>\n            </div>\n        </div>\n\n        <div class=\"credit-container\">\n            <div id=\"signup\" class=\"credit\">\n                <form (submit)=\"signup($event)\">\n                    <h1>Sign Up</h1>\n                    <div class=\"{{alerttype.signup}} errorr signupe\" role=\"alert\">\n                        <strong>Hello!</strong> {{error.signup}}\n                        <button type=\"button\" class=\"close\" data-dismiss=\"alet\" aria-label=\"Close\">\n                            <span aria-hidden=\"true\"></span>\n                        </button>\n                    </div>\n        \n                    <div class=\"form-group\">\n                        <label for=\"exampleInputEmail2\">User Name</label>\n                        <input (input)=\"checkSignUp($event)\" type=\"text\" class=\"form-control\" id=\"sign-username\"\n                            aria-describedby=\"emailHelp\" placeholder=\"User Name\" />\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"exampleInputPassword1\">Display Name</label>\n                        <input (input)=\"checkSignUp($event)\" type=\"text\" class=\"form-control\" id=\"sign-display\"\n                            placeholder=\"Display Name\" />\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"exampleInputPassword1\"><b>SM</b> Email</label>\n                        <input (input)=\"checkSignUp($event)\" type=\"text\" class=\"form-control\" id=\"sign-email\"\n                            placeholder=\"your sm email\" />\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"exampleInputPassword2\">Password</label>\n                        <input (input)=\"checkSignUp($event)\" type=\"password\" class=\"form-control\" id=\"sign-password\"\n                            placeholder=\"Password\" />\n                        <small id=\"emailHelp\" class=\"form-text text-muted\">DO NOT use your SM password</small>\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"exampleInputPassword1\">Password Confirm</label>\n                        <input (input)=\"checkSignUp($event)\" type=\"password\" class=\"form-control\" id=\"sign-passwordcon\"\n                            placeholder=\"Password Again\" />\n                    </div>\n                    <div class=\"form-group form-check\">\n                        <input (input)=\"checkSignUp($event)\" type=\"checkbox\" class=\"form-check-input\" id=\"sign-check\">\n                        <label class=\"form-check-label agree\" for=\"exampleCheck1\">Agree To <a>Terms and Condition</a></label>\n                    </div>\n                    <button type=\"submit\" class=\"btn btn-primary\">Sign Up</button>\n        \n                </form>\n            </div>\n        </div>\n</div>\n\n<!--//////////////////modal///////////-->\n\n<!--\n<div *ngIf=\"loginb\" class=\"carousel slide ad\" data-ride=\"carousel\">\n    <div class=\"carousel-inner\">\n        <div class=\"carousel-item active\" data-interval=\"2000\">\n            <img src=\"http://frcscouting.ga/Scope_Ad.png\" class=\"d-block w-100\" alt=\"...\">\n        </div>\n        <div class=\"carousel-item\" data-interval=\"2000\">\n            <img id=\"yoshi\" src=\"http://frcscouting.ga/Scope_Ad.png\" class=\"d-block w-100\" alt=\"...\">\n        </div>\n        <div class=\"carousel-item\" data-interval=\"2000\">\n            <img src=\"http://frcscouting.ga/Scope_Ad.png\" class=\"d-block w-100\" alt=\"...\">\n        </div>\n    </div>\n</div>-->\n<!--end of ad-->"
+module.exports = "\n<ul class=\"nav nav-pills mb-3 mmmb\" id=\"pills-tab\" role=\"tablist\">\n    <li class=\"nav-item\">\n        <button class=\"nav-link active btn btn-outline-primary btn-sm see\" id=\"pills-home-tab\" data-toggle=\"pill\"\n            href=\"#Search-home\" role=\"tab\" aria-controls=\"pills-home\" aria-selected=\"true\">Search</button>\n    </li>\n    <li class=\"nav-item\">\n        <button class=\"nav-link btn btn-outline-primary btn-sm see\" id=\"pills-profile-tab\" data-toggle=\"pill\"\n            href=\"#loginAndSignUp\" role=\"tab\" aria-controls=\"pills-profile\" aria-selected=\"false\">Login & Sign up</button>\n    </li>\n</ul>\n\n<div class=\"tab-content\" id=\"pills-tabContent\">\n    <div class=\"tab-pane fade show active width320\" id=\"Search-home\" role=\"tabpanel\" aria-labelledby=\"pills-home-tab\">\n        <span class=\"badge badge-success\" style=\"font-size: 20px;\">Quick Check</span>\n        <br>\n        <span class=\"badge badge-dark\">You can do a quick check of your lunch here.</span>\n        <span class=\"badge badge-dark\">You can create an account to see more features.</span>\n        <div class=\"input-group mb-3\">\n            <div class=\"input-group-prepend\">\n                <label class=\"input-group-text\" for=\"inputGroupSelect01\">Peroid\n                    <div *ngIf=\"isDone\" class=\"spinner-border\" style=\"width: 1rem; height: 1rem;\" role=\"status\">\n                        <span class=\"sr-only\">Loading...</span>\n                    </div>\n                    <b>-{{luncper}}-</b> building</label>\n            </div>\n            <select (change)=\"isFirstLunch($event)\" value={{room}} class=\"custom-select op\" id=\"inputGrojjupSelect01\">\n                <option value=\"\">Options</option>\n                <option value=\"B\">B</option>\n                <option value=\"Talon\">Talon</option>\n                <option value=\"C\">C</option>\n                <option value=\"S\">S</option>\n                <option value=\"G115\">G115</option>\n                <option value=\"G116\">G116</option>\n                <option value=\"G117\">G117</option>\n                <option value=\"A\">A</option>\n                <option value=\"T\">T</option>\n                <option value=\"R\">R</option>\n                <option value=\"G\">G</option>\n                <option value=\"GYM\">GYM</option>\n                <option value=\"Library\">Library</option>\n            </select>\n        </div>\n        <div class=\"toast\" role=\"alert\" aria-live=\"polite\" aria-atomic=\"true\" data-autohide=\"true\">\n            <div class=\"toast-header\">\n                <img src=\"http://seeyourschedule.com/logoo_5805.png\" width=\"40\" height=\"40\" class=\"rounded mr-2\" alt=\"...\">\n                <strong class=\"mr-auto\">You have <b style=\"color:black;\">{{lunchOfDay}}</b></strong>\n                <small></small>\n                <button type=\"button\" class=\"ml-2 mb-1 close\" data-dismiss=\"toast\" aria-label=\"Close\">\n                    <span aria-hidden=\"true\">;)</span>\n                </button>\n            </div>\n            <div class=\"toast-body\">\n                Hello, friend! FROM <a style=\"text-decoration: underline;\"\n                    href=\"https://www.smhs.org/academics/departments-and-courses/science/robotics\"><b>SMbly Required 5805</b></a>\n            </div>\n        </div>\n        <div class=\"alert alert-warning warr\" role=\"alert\">\n            We <b>ARE NOT</b> responsible for any wrong information on this website\n            It's to help you understand SM schedule faster. You should <b>NOT</b> rely on this app\n        </div>\n    </div>\n\n<div class=\"tab-pane fade\" id=\"loginAndSignUp\" role=\"tabpanel\" aria-labelledby=\"pills-profile-tab\">\n    \n        <div class=\"credit-container\">\n            <div id=\"logins\" *ngIf=\"loginb\" class=\"credit\">\n                <form (submit)=\"loginUser($event)\">\n                    <h1>Login</h1>\n                    <div class=\"{{alerttype.login}} errorr logine\" role=\"alert\">\n                        <strong>Hello!</strong> {{error.login}}\n                        <button type=\"button\" class=\"close\" data-dismiss=\"alet\" aria-label=\"Close\">\n                            <span aria-hidden=\"true\"></span>\n                        </button>\n                    </div>\n\n                    <div class=\"form-group\">\n                        <label for=\"exampleInputEmail1\">User Name or Email</label>\n                        <input (input)=\"checkLogin()\" type=\"text\" class=\"form-control\" id=\"name-or-email\"\n                            aria-describedby=\"emailHelp\" placeholder=\"Name or Email\">\n                    </div>\n\n                    <div class=\"form-group\">\n                        <label for=\"exampleInputPassword1\">Password</label>\n                        <input (input)=\"checkLogin()\" type=\"password\" class=\"form-control\" id=\"login-password\"\n                            placeholder=\"Password\">\n                    </div>\n\n                    <button type=\"submit\" id=\"login-btn\" class=\"btn btn-primary\">Login</button>\n                </form>\n                <div class=\"alert alert-warning warr\" role=\"alert\">\n                    We <b>ARE NOT</b> responsible for any wrong information on this website\n                    It's to help you understand SM schedule faster. You should <b>NOT</b> rely on this app\n                </div>\n            </div>\n        </div>\n\n        <div class=\"credit-container\">\n            <div id=\"signup\" class=\"credit\">\n                <form (submit)=\"signup($event)\">\n                    <h1>Sign Up</h1>\n                    <div class=\"{{alerttype.signup}} errorr signupe\" role=\"alert\">\n                        <strong>Hello!</strong> {{error.signup}}\n                        <button type=\"button\" class=\"close\" data-dismiss=\"alet\" aria-label=\"Close\">\n                            <span aria-hidden=\"true\"></span>\n                        </button>\n                    </div>\n        \n                    <div class=\"form-group\">\n                        <label for=\"exampleInputEmail2\">User Name</label>\n                        <input (input)=\"checkSignUp($event)\" type=\"text\" class=\"form-control\" id=\"sign-username\"\n                            aria-describedby=\"emailHelp\" placeholder=\"User Name\" />\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"exampleInputPassword1\">Display Name</label>\n                        <input (input)=\"checkSignUp($event)\" type=\"text\" class=\"form-control\" id=\"sign-display\"\n                            placeholder=\"Display Name\" />\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"exampleInputPassword1\">Email</label>\n                        <input (input)=\"checkSignUp($event)\" type=\"text\" class=\"form-control\" id=\"sign-email\"\n                            placeholder=\"prefer sm email\" />\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"exampleInputPassword2\">Password</label>\n                        <input (input)=\"checkSignUp($event)\" type=\"password\" class=\"form-control\" id=\"sign-password\"\n                            placeholder=\"Password\" />\n                    </div>\n                    <div class=\"form-group\">\n                        <label for=\"exampleInputPassword1\">Password Confirm</label>\n                        <input (input)=\"checkSignUp($event)\" type=\"password\" class=\"form-control\" id=\"sign-passwordcon\"\n                            placeholder=\"Password Again\" />\n                    </div>\n                    <div class=\"form-group form-check\">\n                        <input (input)=\"checkSignUp($event)\" type=\"checkbox\" class=\"form-check-input\" id=\"sign-check\">\n                        <label class=\"form-check-label agree\" for=\"exampleCheck1\">Agree To <a>Terms and Condition</a></label>\n                    </div>\n                    <button type=\"submit\" class=\"btn btn-primary\">Sign Up</button>\n        \n                </form>\n            </div>\n        </div>\n</div>\n\n<!--//////////////////modal///////////-->\n\n<!--\n<div *ngIf=\"loginb\" class=\"carousel slide ad\" data-ride=\"carousel\">\n    <div class=\"carousel-inner\">\n        <div class=\"carousel-item active\" data-interval=\"2000\">\n            <img src=\"http://frcscouting.ga/Scope_Ad.png\" class=\"d-block w-100\" alt=\"...\">\n        </div>\n        <div class=\"carousel-item\" data-interval=\"2000\">\n            <img id=\"yoshi\" src=\"http://frcscouting.ga/Scope_Ad.png\" class=\"d-block w-100\" alt=\"...\">\n        </div>\n        <div class=\"carousel-item\" data-interval=\"2000\">\n            <img src=\"http://frcscouting.ga/Scope_Ad.png\" class=\"d-block w-100\" alt=\"...\">\n        </div>\n    </div>\n</div>-->\n<!--end of ad-->"
 
 /***/ }),
 
@@ -580,25 +580,9 @@ var LoginComponent = /** @class */ (function () {
             this.error.signup = "Passwords don\'t match";
             this.alerttype.signup = "alert alert-danger alert-dismissible fade show";
         }
-        else if (emailSP[1] != "smhsstudents.org" && emailSP[1] != "smhs.org"
-            || emailSP.length > 2) {
-            this.error.signup = "It is not a SM email";
-            this.alerttype.signup = "alert alert-danger alert-dismissible fade show";
-        }
         else {
             this.error.signup = "No error so far";
             this.alerttype.signup = "alert alert-success alert-dismissible fade show";
-        }
-        if (tar.id == "sign-email") {
-            if (tar.value[tar.value.length - 1] == "@") {
-                tar.value = tar.value + "smhsstudents.org";
-            }
-            var emailSP_1 = tar.value.split('@');
-            if (emailSP_1[1] != "smhsstudents.org" && emailSP_1[1] != "smhs.org"
-                || emailSP_1.length > 2) {
-                this.error.signup = "It is not a SM email";
-                this.alerttype.signup = "alert alert-danger alert-dismissible fade show";
-            }
         }
     };
     LoginComponent.prototype.isModifiedSchedule = function (todayBlock) {
@@ -686,6 +670,29 @@ var LoginComponent = /** @class */ (function () {
     return LoginComponent;
 }());
 
+/*
+not used code
+checkSignUp
+      else if (emailSP[1] != "smhsstudents.org" && emailSP[1] != "smhs.org"
+        || emailSP.length > 2) {
+        this.error.signup = "It is not a SM email"
+        this.alerttype.signup = "alert alert-danger alert-dismissible fade show"
+      }
+
+      const emailSP = tar.value.split('@')
+      if (emailSP[1] != "smhsstudents.org" && emailSP[1] != "smhs.org"
+        || emailSP.length > 2) {
+        this.error.signup = "It is not a SM email"
+        this.alerttype.signup = "alert alert-danger alert-dismissible fade show"
+      }
+
+      if (tar.id == "sign-email" ){
+
+      if (tar.value[tar.value.length - 1] == "@") {
+        tar.value = tar.value + "smhsstudents.org"
+      }
+    }
+ */
 
 
 /***/ }),
@@ -1073,9 +1080,9 @@ var UserpageComponent = /** @class */ (function () {
             }
             var hjhjh = document.querySelector(".hjhjh");
             //fix the lunch-empty bug
-            if (hjhjh != undefined && hjhjh.innerText == "You have ") {
-                hjhjh.innerText = "You have " + _this.lunchOfDay;
-            }
+            //if (hjhjh != undefined && hjhjh.innerText == "You have ") {
+            hjhjh.innerText = "You have " + _this.lunchOfDay;
+            //}
             if (_this.notificationOffPeriof > 0) {
                 _this.canSendNotification = false;
                 _this.notificationOffPeriof--;
@@ -1707,20 +1714,14 @@ var UserpageComponent = /** @class */ (function () {
         var val = document.querySelector(".upemail").value;
         var valSP = val.split('@');
         if (val.length != 0) {
-            if (valSP[1] != "smhsstudents.org" && valSP[1] != "smhs.org"
-                || valSP.length > 2) {
-                this.updatemessage.email = "Not a SM Email";
-            }
-            else {
-                this.auth.updateEmail(this.userid, val).subscribe(function (data) {
-                    if (data.meesage != "hhh") {
-                        _this.updatemessage.email = data.meesage;
-                    }
-                    else {
-                        _this.cookie.set("email_smlunch", val);
-                    }
-                });
-            }
+            this.auth.updateEmail(this.userid, val).subscribe(function (data) {
+                if (data.meesage != "hhh") {
+                    _this.updatemessage.email = data.meesage;
+                }
+                else {
+                    _this.cookie.set("email_smlunch", val);
+                }
+            });
         }
         else {
             this.updatemessage.email = "Can't be empty";
@@ -1800,7 +1801,13 @@ var UserpageComponent = /** @class */ (function () {
         if (this.count_updatetime == 41) {
           this.count_updatetime = 0
         }
-      }*/
+      }
+
+      if (valSP[1] != "smhsstudents.org" && valSP[1] != "smhs.org"
+        || valSP.length > 2) {
+        this.updatemessage.email = "Not a SM Email"
+      } else
+*/
 
 
 /***/ }),

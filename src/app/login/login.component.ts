@@ -243,26 +243,9 @@ export class LoginComponent implements OnInit {
     }else if (password != passwordc){
       this.error.signup = "Passwords don\'t match"
       this.alerttype.signup = "alert alert-danger alert-dismissible fade show"
-    } else if (emailSP[1] != "smhsstudents.org" && emailSP[1] != "smhs.org"
-      || emailSP.length > 2) {
-      this.error.signup = "It is not a SM email"
-      this.alerttype.signup = "alert alert-danger alert-dismissible fade show"
-    }  else {
+    } else {
       this.error.signup = "No error so far"
       this.alerttype.signup = "alert alert-success alert-dismissible fade show"
-    }
-
-    if (tar.id == "sign-email" ){
-
-      if (tar.value[tar.value.length - 1] == "@") {
-        tar.value = tar.value + "smhsstudents.org"
-      }
-      const emailSP = tar.value.split('@')
-      if (emailSP[1] != "smhsstudents.org" && emailSP[1] != "smhs.org"
-        || emailSP.length > 2) {
-        this.error.signup = "It is not a SM email"
-        this.alerttype.signup = "alert alert-danger alert-dismissible fade show"
-      }   
     }
   }
 
@@ -329,7 +312,7 @@ export class LoginComponent implements OnInit {
             this.cookie.set("name_smlunch", data.name);
             this.cookie.set("display_smlunch", data.display);
             this.cookie.set("email_smlunch", data.email);
-            this.router.navigate(['userpage']) 
+            this.router.navigate(['userpage']);
 
           },700)
         } else {
@@ -342,4 +325,28 @@ export class LoginComponent implements OnInit {
 }
 
 }
+
+/*
+not used code
+checkSignUp
+      else if (emailSP[1] != "smhsstudents.org" && emailSP[1] != "smhs.org"
+        || emailSP.length > 2) {
+        this.error.signup = "It is not a SM email"
+        this.alerttype.signup = "alert alert-danger alert-dismissible fade show"
+      }
+
+      const emailSP = tar.value.split('@')
+      if (emailSP[1] != "smhsstudents.org" && emailSP[1] != "smhs.org"
+        || emailSP.length > 2) {
+        this.error.signup = "It is not a SM email"
+        this.alerttype.signup = "alert alert-danger alert-dismissible fade show"
+      }
+
+      if (tar.id == "sign-email" ){
+
+      if (tar.value[tar.value.length - 1] == "@") {
+        tar.value = tar.value + "smhsstudents.org"
+      }
+    }
+ */
 
