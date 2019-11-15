@@ -70,6 +70,12 @@ h5 {
     }
 }
 
+@media (max-width:540px) {
+    #account {
+        padding: 0 10px;
+    }
+}
+
 @media (max-height:568px) {
     #account {
         height: 450px;
