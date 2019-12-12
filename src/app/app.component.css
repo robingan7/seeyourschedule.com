@@ -57,3 +57,11 @@ p{
     font-size:0.875rem;
     height: 25px;
 }
+.appLoaderTop{
+    position: absolute;
+    top:5px;
+    right:5px;
+    width: 30px!important;
+    height: 30px!important;
+    font-size:20px;
+}

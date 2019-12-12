@@ -10,14 +10,16 @@ import { CookieService } from 'ngx-cookie-service';
 import { ServiceService } from './service.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PushNotificationsModule } from 'ng-push';
-import { YuhanComponent } from './yuhan/yuhan.component'; //import the module
+import { YuhanComponent } from './yuhan/yuhan.component';
+import { FrontpageComponent } from './frontpage/frontpage.component'; //import the module
 
 @NgModule({
   declarations: [
     routingRoads,
     PageNotFoundComponent,
     LoginComponent,
-    YuhanComponent
+    YuhanComponent,
+    FrontpageComponent
   ],
   imports: [
     BrowserModule,

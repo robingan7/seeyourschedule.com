@@ -2,11 +2,11 @@
 <ul class="nav nav-pills mb-3 mmmb" id="pills-tab" role="tablist">
     <li class="nav-item">
         <button class="nav-link active btn btn-outline-primary btn-sm see" id="pills-home-tab" data-toggle="pill"
-            href="#Search-home" role="tab" aria-controls="pills-home" aria-selected="true">Search</button>
+            href="#Search-home" role="tab" aria-controls="pills-home" aria-selected="true">Quick Check</button>
     </li>
     <li class="nav-item">
         <button class="nav-link btn btn-outline-primary btn-sm see" id="pills-profile-tab" data-toggle="pill"
-            href="#loginAndSignUp" role="tab" aria-controls="pills-profile" aria-selected="false">Login & Sign up</button>
+            [routerLink]="['./my-submissions']" role="tab" aria-controls="pills-profile" aria-selected="false">Login & Sign up</button>
     </li>
 </ul>
 
@@ -14,8 +14,7 @@
     <div class="tab-pane fade show active width320" id="Search-home" role="tabpanel" aria-labelledby="pills-home-tab">
         <span class="badge badge-success" style="font-size: 20px;">Quick Check</span>
         <br>
-        <span class="badge badge-dark">You can do a quick check of your lunch here.</span>
-        <span class="badge badge-dark">You can create an account to see more features.</span>
+        <span class="badge badge-info check">Create an account to see more features :)</span>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <label class="input-group-text" for="inputGroupSelect01">Peroid

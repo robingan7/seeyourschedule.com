@@ -1,3 +1,3 @@
-# SMart
+# Seeyourschedule.com
 #second version of SM Lunch Website
-#http://smlunch.ga
+#https://seeyourschedule.com

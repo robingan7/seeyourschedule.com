@@ -113,6 +113,12 @@ label {
     box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.5);
 }
 
+.check{
+    font-size:14px;
+    margin-bottom: 15px;
+    box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.5);
+}
+
 @media(max-width:500px){
     #logins, #signup{
         width:100%;

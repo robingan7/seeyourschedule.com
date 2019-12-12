@@ -62,7 +62,7 @@ export class ServiceService {
 
   constructor(private http: HttpClient) { }
   private isloggin: boolean
-  //private path = "http://localhost/smlunch_php/"
+  //private path = "http://localhost/seeyourschedule.com/"
   private userInfo
   private isAuto = true
   private isChange = false
