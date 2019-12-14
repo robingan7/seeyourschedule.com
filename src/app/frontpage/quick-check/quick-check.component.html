@@ -1,0 +1,54 @@
+<div class="tab-content" class="quick-check-body">
+    <div class="tab-pane fade show active width320" id="Search-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <span class="badge badge-success" style="font-size: 20px;">Quick Check</span>
+        <br>
+        <a [routerLink]="['/login&signup']">
+            <span class="badge badge-info check">Click HERE</span> <span class="badge badge-info check">Create a free account for more features :)</span>
+        </a>
+        <div class="input-group mb-3" style="margin-bottom:0!important; margin-top:10px;">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Peroid
+                    <div *ngIf="isDone" class="spinner-border" style="width: 1rem; height: 1rem;" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <b>-{{luncper}}-</b> building</label>
+            </div>
+            <select (change)="isFirstLunch($event)" value={{room}} class="custom-select op" id="inputGrojjupSelect01">
+                <option value="">Options</option>
+                <option value="B">B</option>
+                <option value="Talon">Talon</option>
+                <option value="C">C</option>
+                <option value="S">S</option>
+                <option value="G115">G115</option>
+                <option value="G116">G116</option>
+                <option value="G117">G117</option>
+                <option value="A">A</option>
+                <option value="T">T</option>
+                <option value="R">R</option>
+                <option value="G">G</option>
+                <option value="GYM">GYM</option>
+                <option value="Library">Library</option>
+            </select>
+        </div>
+        <div class="toast" role="alert" aria-live="polite" aria-atomic="true" data-autohide="true">
+            <div class="toast-header">
+                <img src="https://seeyourschedule.com/logoo_5805.png" width="40" height="40" class="rounded mr-2"
+                    alt="...">
+                <strong class="mr-auto">You have <b style="color:black;">{{lunchOfDay}}</b></strong>
+                <small></small>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">;)</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                Hello, friend! FROM <a style="text-decoration: underline;"
+                    href="https://www.smhs.org/academics/departments-and-courses/science/robotics"><b>SMbly Required
+                        5805</b></a>
+            </div>
+        </div>
+        <div class="alert alert-warning warr" role="alert">
+            We <b>ARE NOT</b> responsible for any wrong information on this website
+            It's to help you understand SM schedule faster. You should <b>NOT</b> rely on this app
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+.width320 {
+    width: 320px;
+    margin: 0 auto;
+}
+
+.check{
+    font-size:14px;
+    margin-bottom: 0px;
+    box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.5);
+    cursor: pointer;
+    text-decoration: underline;
+    animation: jump 2s 0s ease-in-out infinite;
+}
+
+.toast {
+    opacity: 1;
+}
+
+.check:hover{
+    text-decoration: none;
+}
+
+@keyframes jump{
+	0%{
+		transform: translateY(-1px);
+	}
+	50%{
+		transform: translateY(1.5px);
+	}
+	100%{
+		transform: translateY(-1px);
+	}
+}
+
+@media(max-width:340px){
+    .width320{
+        width: calc(100% - 10px);
+        margin: 0 5px;
+    }
+}

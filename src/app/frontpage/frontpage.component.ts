@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { ServiceService } from '../services/service.service';
 
 @Component({
   selector: 'app-frontpage',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FrontpageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: ServiceService,
+    private cookie: CookieService,
+    private router: Router) {
+      var iss = this.cookie.get('isLog_smlunch')
+      if (iss === "true") {
+        this.router.navigate(['app']);
+      } else {
+        this.cookie.deleteAll();
+      }
+    }
 
-  ngOnInit() {
-  }
-
+    ngOnInit() {}
 }

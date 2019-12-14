@@ -1,0 +1,219 @@
+<!--account section-->
+<div class="tab-pane fade show active generalWidth" id="account" role="tabpanel" aria-labelledby="account-tab">
+    <div *ngIf="isLoad" class="spinner-border text-dark loader" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <span class="badge badge-info">User Name</span>
+    <div class="input-group mb-3">
+        <input type="text" value={{name}} class="form-control upname" placeholder="username"
+            aria-label="Recipient's username" aria-describedby="button-addon2">
+        <div class="input-group-append">
+            <button (click)="updateUsername()" placement="left" ngbPopover="{{updatemessage.name}}"
+                class="btn btn-outline-success" type="button" id="button-addon2">Change</button>
+        </div>
+    </div>
+
+    <span class="badge badge-info">Display Name</span>
+    <div class="input-group mb-3">
+        <input type="text" value={{display}} class="form-control updisplay" placeholder="display name"
+            aria-label="Recipient's username" aria-describedby="button-addon2">
+        <div class="input-group-append">
+            <button (click)="updateDisplay()" class="btn btn-outline-success" placement="left"
+                ngbPopover="{{updatemessage.display}}" type="button" id="button-addon2">Change</button>
+        </div>
+    </div>
+
+    <span class="badge badge-info">Email</span>
+    <div class="input-group mb-3">
+        <input type="text" value={{email}} class="form-control upemail" placeholder="email"
+            aria-label="Recipient's username" aria-describedby="button-addon2">
+        <div class="input-group-append">
+            <button (click)="updateEmail()" placement="left" ngbPopover="{{updatemessage.email}}"
+                class="btn btn-outline-success" type="button" id="button-addon2">Change</button>
+        </div>
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">P 1 Building</label>
+        </div>
+        <select (change)="updatePeriod($event)" value={{sche.p1}} class="custom-select" id="inputGroupSelect01">
+            <option value="">Options</option>
+            <option value="B">B</option>
+            <option value="Talon">Talon</option>
+            <option value="C">C</option>
+            <option value="S">S</option>
+            <option value="G115">G115</option>
+            <option value="G116">G116</option>
+            <option value="G117">G117</option>
+            <option value="A">A</option>
+            <option value="T">T</option>
+            <option value="R">R</option>
+            <option value="G">G</option>
+            <option value="GYM">GYM</option>
+            <option value="Library">Library</option>
+        </select>
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">P 2 Building</label>
+        </div>
+        <select (change)="updatePeriod($event)" value={{sche.p2}} class="custom-select" id="inputGroupSelect02">
+            <option value="">Options</option>
+            <option value="B">B</option>
+            <option value="Talon">Talon</option>
+            <option value="C">C</option>
+            <option value="S">S</option>
+            <option value="G115">G115</option>
+            <option value="G116">G116</option>
+            <option value="G117">G117</option>
+            <option value="A">A</option>
+            <option value="T">T</option>
+            <option value="R">R</option>
+            <option value="G">G</option>
+            <option value="GYM">GYM</option>
+            <option value="Library">Library</option>
+        </select>
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">P 3 Building</label>
+        </div>
+        <select (change)="updatePeriod($event)" value={{sche.p3}} class="custom-select" id="inputGroupSelect03">
+            <option value="">Options</option>
+            <option value="B">B</option>
+            <option value="Talon">Talon</option>
+            <option value="C">C</option>
+            <option value="S">S</option>
+            <option value="G115">G115</option>
+            <option value="G116">G116</option>
+            <option value="G117">G117</option>
+            <option value="A">A</option>
+            <option value="T">T</option>
+            <option value="R">R</option>
+            <option value="G">G</option>
+            <option value="GYM">GYM</option>
+            <option value="Library">Library</option>
+        </select>
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">P 4 Building</label>
+        </div>
+        <select (change)="updatePeriod($event)" value={{sche.p4}} class="custom-select" id="inputGroupSelect04">
+            <option value="">Options</option>
+            <option value="B">B</option>
+            <option value="Talon">Talon</option>
+            <option value="C">C</option>
+            <option value="S">S</option>
+            <option value="G115">G115</option>
+            <option value="G116">G116</option>
+            <option value="G117">G117</option>
+            <option value="A">A</option>
+            <option value="T">T</option>
+            <option value="R">R</option>
+            <option value="G">G</option>
+            <option value="GYM">GYM</option>
+            <option value="Library">Library</option>
+        </select>
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">P 5 Building</label>
+        </div>
+        <select (change)="updatePeriod($event)" value={{sche.p5}} class="custom-select" id="inputGroupSelect05">
+            <option value="">Options</option>
+            <option value="B">B</option>
+            <option value="Talon">Talon</option>
+            <option value="C">C</option>
+            <option value="S">S</option>
+            <option value="G115">G115</option>
+            <option value="G116">G116</option>
+            <option value="G117">G117</option>
+            <option value="A">A</option>
+            <option value="T">T</option>
+            <option value="R">R</option>
+            <option value="G">G</option>
+            <option value="GYM">GYM</option>
+            <option value="Library">Library</option>
+        </select>
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">P 6 Building</label>
+        </div>
+        <select (change)="updatePeriod($event)" value={{sche.p6}} class="custom-select" id="inputGroupSelect06">
+            <option value="">Options</option>
+            <option value="B">B</option>
+            <option value="Talon">Talon</option>
+            <option value="C">C</option>
+            <option value="S">S</option>
+            <option value="G115">G115</option>
+            <option value="G116">G116</option>
+            <option value="G117">G117</option>
+            <option value="A">A</option>
+            <option value="T">T</option>
+            <option value="R">R</option>
+            <option value="G">G</option>
+            <option value="GYM">GYM</option>
+            <option value="Library">Library</option>
+        </select>
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">P 7 Building</label>
+        </div>
+        <select (change)="updatePeriod($event)" value={{sche.p7}} class="custom-select" id="inputGroupSelect07">
+            <option value="">Options</option>
+            <option value="B">B</option>
+            <option value="Talon">Talon</option>
+            <option value="C">C</option>
+            <option value="S">S</option>
+            <option value="G115">G115</option>
+            <option value="G116">G116</option>
+            <option value="G117">G117</option>
+            <option value="A">A</option>
+            <option value="T">T</option>
+            <option value="R">R</option>
+            <option value="G">G</option>
+            <option value="GYM">GYM</option>
+            <option value="Library">Library</option>
+        </select>
+    </div>
+
+    <div class="form-group form-check">
+        <input *ngIf="!isPeriod8" type="checkbox" class="form-check-input" (change)="period8($event)"
+            id="exampleCheck1">
+        <input *ngIf="isPeriod8" type="checkbox" class="form-check-input" (change)="period8($event)" id="exampleCheck1"
+            checked>
+        <label class="form-check-label" for="exampleCheck1">Check if you have period 8th class</label>
+    </div>
+
+    <div *ngIf="isPeriod8" class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">P 8 Building</label>
+        </div>
+        <select (change)="updatePeriod($event)" value={{sche.p8}} class="custom-select" id="inputGroupSelect08">
+            <option value="">Options(if you have period 8th class)</option>
+            <option value="B">B</option>
+            <option value="Talon">Talon</option>
+            <option value="C">C</option>
+            <option value="S">S</option>
+            <option value="G115">G115</option>
+            <option value="G116">G116</option>
+            <option value="G117">G117</option>
+            <option value="A">A</option>
+            <option value="T">T</option>
+            <option value="R">R</option>
+            <option value="G">G</option>
+            <option value="GYM">GYM</option>
+            <option value="Library">Library</option>
+        </select>
+    </div>
+</div>

@@ -1,6 +1,6 @@
 import { Component ,OnInit} from '@angular/core';
-import { ServiceService } from './service.service';
-import { CookieService } from 'ngx-cookie-service';
+import { ServiceService } from './services/service.service';
+import { DataTransferService } from './services/data-transfer.service';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +10,8 @@ import { CookieService } from 'ngx-cookie-service';
 
 export class AppComponent implements OnInit{
   constructor(private auth: ServiceService,
-    private cookie: CookieService){
-
-  }
+    private dataTransfer: DataTransferService){}
+    
   ngOnInit(){
     this.auth.getSche("non").subscribe(data => {
       this.datelist = data.scheArray
@@ -46,16 +45,16 @@ export class AppComponent implements OnInit{
       tee.style.display = "none"
       this.isManual = true
     }else{
-        e.target.innerText = "Current"
-        tee.style.display = "block"
-        this.isManual = false
-        this.auth.setIsAuto(true)
+      e.target.innerText = "Current"
+      tee.style.display = "block"
+      this.isManual = false
+      this.dataTransfer.setIsAuto(true)
     }
   }
   changeData(){
-    this.auth.setIsAuto(false)
-    var b = this.auth.getisChange
-    this.auth.setIsChange(!b)
+    this.dataTransfer.setIsAuto(false)
+    var b = this.dataTransfer.getisChange
+    this.dataTransfer.setIsChange(!b)
   }
 
   hexClock() {

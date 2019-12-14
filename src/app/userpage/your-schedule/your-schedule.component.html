@@ -1,0 +1,118 @@
+<div *ngIf="isLoad && isAllPeriod" class="spinner-border text-dark loader" role="status">
+    <span class="sr-only">Loading...</span>
+</div>
+<div *ngIf="todayB && isAllPeriod" class="tab-pane fade show active" id="today" role="tabpanel" aria-labelledby="today-tab">
+    <div class="alert alert-success" role="alert">
+        Today's block: <b>{{todayblockD.today}}</b>
+    </div>
+   
+    <div id="timeL">
+        <div *ngFor="let obj of timeLines.today.timeline; index as i;" class="btn-group sep b{{i}}" role="group"
+            aria-label="Basic example">
+            <button type="button" class="btn btn-primary spbtn {{obj.style}}">{{obj.title}}</button>
+            <button type="button" class="btn btn-warning spbtn {{obj.style}}">{{obj.where}}</button>
+            <button type="button" class="btn btn-dark spbtn {{obj.style}}">{{obj.time}}</button>
+            <button type="button" class="btn btn-success spbtn {{obj.style}}">{{obj.timeleft}}</button>
+        </div>
+    </div>
+
+    <div class="toast" role="alert" aria-live="polite" aria-atomic="true" data-autohide="true">
+        <div class="toast-header">
+            <img src="https://seeyourschedule.com/logoo_5805.png" width="40" height="40" class="rounded mr-2" alt="...">
+            <strong class="mr-auto hjhjh">You have {{lunchOfDay}}</strong>
+            <small></small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">;)</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Hello, <b>{{display}}</b>! FROM <a style="text-decoration: underline;"
+                href="https://www.smhs.org/academics/departments-and-courses/science/robotics"><b>SMbly Required
+                    5805</b></a>
+        </div>
+    </div>
+
+    <div *ngIf="isBreak" class="alert alert-info" role="alert">
+        You're at break now :)
+    </div>
+</div>
+
+<!--this week section-->
+<div *ngIf="!todayB && isAllPeriod" class="tab-pane fade show active" id="thisweek" role="tabpanel" aria-labelledby="direction-tab">
+    <div class="form-group generalWidth">
+        <span class="badge badge-pill badge-info largerFont">Switch Week</span><span class="badge badge-pill badge-success largerFont">Scroll right for more days -----> </span>
+        
+        <div class="input-group">
+            <select (change)="switchWeek($event)" value="{{currentWeek * 7}}" class="form-control" id="switchweekSelect">
+                <option *ngFor="let weekNum of weekList" value="{{7 * (weekNum - 1)}}">Week
+                    {{weekNum}}----{{weekStartAndEnd[7 * (weekNum - 1)].start}} >>
+                    {{weekStartAndEnd[7 * (weekNum - 1)].end}}</option>
+            </select>
+            <div class="input-group-append">
+                <button class="btn btn-outline-info" type="button" (click)="resetWeek()">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="thisweek_container">
+        <div class="timeLL">
+            <h5><span class="badge badge-secondary weekTi">Mon</span>{{timeLines.monday.date}}<span
+                    class="badge badge-secondary weekTi">{{todayblockD.monday}}</span>
+            </h5>
+            <div *ngFor="let obj of timeLines.monday.timeline; index as i;" class="btn-group sep a{{i}} sep_week"
+                role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-primary a{{i}}_1 spbtn">{{obj.title}}</button>
+                <button type="button" class="btn btn-warning spbtn a{{i}}_2">{{obj.where}}</button>
+                <button type="button" class="btn btn-dark spbtn a{{i}}_3">{{obj.time}}</button>
+            </div>
+        </div>
+
+        <div class="timeLL">
+            <h5><span class="badge badge-secondary weekTi">Tues</span>{{timeLines.tuesday.date}}<span
+                    class="badge badge-secondary weekTi">{{todayblockD.tuesday}}</span>
+            </h5>
+            <div *ngFor="let obj of timeLines.tuesday.timeline; index as i;" class="btn-group sep a{{i}} sep_week"
+                role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-primary a{{i}}_1 spbtn">{{obj.title}}</button>
+                <button type="button" class="btn btn-warning spbtn a{{i}}_2">{{obj.where}}</button>
+                <button type="button" class="btn btn-dark spbtn a{{i}}_3">{{obj.time}}</button>
+            </div>
+        </div>
+
+        <div class="timeLL">
+            <h5><span class="badge badge-secondary weekTi">Wed</span>{{timeLines.wednesday.date}}<span
+                    class="badge badge-secondary weekTi">{{todayblockD.wednesday}}</span>
+            </h5>
+            <div *ngFor="let obj of timeLines.wednesday.timeline; index as i;" class="btn-group sep a{{i}} sep_week"
+                role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-primary a{{i}}_1 spbtn">{{obj.title}}</button>
+                <button type="button" class="btn btn-warning spbtn a{{i}}_2">{{obj.where}}</button>
+                <button type="button" class="btn btn-dark spbtn a{{i}}_3">{{obj.time}}</button>
+            </div>
+        </div>
+
+        <div class="timeLL">
+            <h5><span class="badge badge-secondary weekTi">Thurs</span>{{timeLines.thursday.date}}<span
+                    class="badge badge-secondary weekTi">{{todayblockD.thursday}}</span>
+            </h5>
+            <div *ngFor="let obj of timeLines.thursday.timeline; index as i;" class="btn-group sep a{{i}} sep_week"
+                role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-primary a{{i}}_1 spbtn">{{obj.title}}</button>
+                <button type="button" class="btn btn-warning spbtn a{{i}}_2">{{obj.where}}</button>
+                <button type="button" class="btn btn-dark spbtn a{{i}}_3">{{obj.time}}</button>
+            </div>
+        </div>
+
+        <div class="timeLL">
+            <h5><span class="badge badge-secondary weekTi">Fri</span>{{timeLines.friday.date}}<span
+                    class="badge badge-secondary weekTi">{{todayblockD.friday}}</span>
+            </h5>
+            <div *ngFor="let obj of timeLines.friday.timeline; index as i;" class="btn-group sep a{{i}} sep_week"
+                role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-primary a{{i}}_1 spbtn">{{obj.title}}</button>
+                <button type="button" class="btn btn-warning spbtn a{{i}}_2">{{obj.where}}</button>
+                <button type="button" class="btn btn-dark spbtn a{{i}}_3">{{obj.time}}</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,10 +1,26 @@
 main{
     margin-top:5px;
 }
+
+.generalWidth{
+    padding: 0 10px;
+    width:400px;
+    margin-left: calc(50% - 205px);
+}
+
+.nav-link{
+    cursor: pointer!important;
+}
+
 #account {
     height: 100%;
-    overflow-y: scroll;
-    padding: 0 250px;
+    overflow-y: auto;
+}
+
+.largerFont{
+    font-size:0.9rem;
+    margin-top:5px;
+    margin-bottom:2px;
 }
 
 #thisweek_container {
@@ -63,16 +79,24 @@ h5 {
     opacity: 1;
 }
 
+.loader{
+    margin:0 calc(50% - 1rem);
+    margin-top:10px;
+}
+
+.beGray{
+    background-color: #aaa;
+}
 @media (max-width:940px) {
     #account {
         height: 600px;
-        padding: 0 50px;
     }
 }
 
-@media (max-width:540px) {
+@media (max-width:450px) {
     #account {
-        padding: 0 10px;
+        width:100%;
+        margin-left: 0;
     }
 }
 

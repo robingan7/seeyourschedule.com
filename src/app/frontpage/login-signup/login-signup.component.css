@@ -57,32 +57,13 @@ label {
     padding: 10px 3px;
 }
 
-.see {
-    padding: 0;
-    height: 30px;
-    width: 125px;
-}
-
-.mmmb {
-    margin-bottom: 0;
-}
-
 .warr {
     font-size: 0.90625rem;
-}
-
-.width320 {
-    width: 320px;
-    margin: 0 auto;
 }
 
 .op {
     border: 5px solid var(--primary);
     height: 45px;
-}
-
-.toast {
-    opacity: 1;
 }
 
 #loginAndSignUp{
@@ -111,12 +92,6 @@ label {
     padding:5px 10px;
     border: 1px solid var(--primary);
     box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.5);
-}
-
-.check{
-    font-size:14px;
-    margin-bottom: 15px;
-    box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.5);
 }
 
 @media(max-width:500px){

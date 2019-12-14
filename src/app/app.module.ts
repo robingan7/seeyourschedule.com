@@ -3,35 +3,40 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule ,routingRoads} from './app-routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { LoginComponent } from './login/login.component';
-import { AgmCoreModule } from '@agm/core';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { ServiceService } from './service.service';
+import { ServiceService } from './services/service.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PushNotificationsModule } from 'ng-push';
 import { YuhanComponent } from './yuhan/yuhan.component';
-import { FrontpageComponent } from './frontpage/frontpage.component'; //import the module
+import { FrontpageComponent } from './frontpage/frontpage.component';
+import { QuickCheckComponent } from './frontpage/quick-check/quick-check.component'; //import the module
+import { RouterModule } from '@angular/router';
+import { LoginSignupComponent } from './frontpage/login-signup/login-signup.component';
+import { SettingComponent } from './userpage/setting/setting.component';
+import { YourScheduleComponent } from './userpage/your-schedule/your-schedule.component';
+import { DataTransferService } from './services/data-transfer.service';
 
 @NgModule({
   declarations: [
     routingRoads,
     PageNotFoundComponent,
-    LoginComponent,
     YuhanComponent,
-    FrontpageComponent
+    FrontpageComponent,
+    QuickCheckComponent,
+    LoginSignupComponent,
+    SettingComponent,
+    YourScheduleComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    PushNotificationsModule
-   // AgmCoreModule.forRoot({
-   //   apiKey: 'AIzaSyBXblJBNX6ul-oPWkDNRJm6oI9IQf_j3Tw'
-   // })
+    PushNotificationsModule,
+    RouterModule
   ],
-  providers: [CookieService, ServiceService],
+  providers: [CookieService, ServiceService, DataTransferService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

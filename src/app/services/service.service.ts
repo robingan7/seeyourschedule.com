@@ -8,12 +8,13 @@ const httpOptions = {
     "X-TBA-Auth-Key": ""
   })
 };
+
 interface loginData {
   success: boolean,
   message: string,
   name: string,
   display: string,
-  email:string,
+  email: string,
   id: number
 }
 
@@ -25,8 +26,9 @@ interface signupData {
   email: string,
   id: number
 }
+
 interface scheData {
-  p1:string,
+  p1: string,
   p2: string,
   p3: string,
   p4: string,
@@ -35,23 +37,24 @@ interface scheData {
   p7: string,
   p8: string
 }
-interface status{
-  meesage:string
+
+interface status {
+  meesage: string
 }
 
 interface timeData {
   block: string,
   sche: string,
-  scheArray:string,
-  startAndEnd:string
+  scheArray: string,
+  startAndEnd: string
 }
 
-interface sendemail{
-   back: string
+interface sendemail {
+  back: string
 }
 
-interface version{
-  version:string
+interface version {
+  version: string
 }
 
 @Injectable({
@@ -61,50 +64,36 @@ interface version{
 export class ServiceService {
 
   constructor(private http: HttpClient) { }
-  private isloggin: boolean
-  //private path = "http://localhost/seeyourschedule.com/"
-  private userInfo
-  private isAuto = true
-  private isChange = false
+  //private path = "http://localhost/seeyourschedule.com/";
   private path = "/php/";
   sendEmail(non) {
     return this.http.post<sendemail>(this.path + 'sendEmail.php', {
       non
     })
   }
-  setIsChange(b: boolean) {
-    this.isChange = b;
-  }
-  get getisChange(){
-    return this.isChange
-  }
-  get getisAuto(){
-    return this.isAuto
-  }
-  setIsAuto(b:boolean){
-    this.isAuto = b;
-  }
-  setLoggedIn(b:boolean){
-    this.isloggin = b
-  }
+
+  
   getScheVersion(non) {
     return this.http.post<version>(this.path + 'getScheVersion.php', {
       non
     })
   }
+
   getSche(non) {
-    return this.http.post<timeData>(this.path +'scheduleYuhan(1).php',{
+    return this.http.post<timeData>(this.path + 'scheduleYuhan(1).php', {
       non
     })
   }
-  updatePeriod(id, val, idin){
+
+  updatePeriod(id, val, idin) {
     return this.http.post<status>(this.path + 'updatePeriod.php', {
       id,
       val,
       idin
     })
   }
-  updateUsername(id,val){
+
+  updateUsername(id, val) {
     return this.http.post<status>(this.path + 'updateUsername.php', {
       id,
       val
@@ -125,20 +114,19 @@ export class ServiceService {
     })
   }
 
-  get getLogin(){
-    return this.isloggin
-  }
-  getPeriods(id){
+  getPeriods(id) {
     return this.http.post<scheData>(this.path + 'getPeriods.php', {
       id
     })
   }
+
   login(name, password) {
     return this.http.post<loginData>(this.path + 'login.php', {
       name,
       password
     })
   }
+
   signup(username, display, email, password, passwordc, check) {
     return this.http.post<signupData>(this.path + 'signup.php', {
       username,
@@ -148,8 +136,5 @@ export class ServiceService {
       passwordc,
       check
     })
-  }
-  changeUseInfo(data){
-    this.userInfo=data
   }
 }

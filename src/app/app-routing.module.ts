@@ -3,15 +3,32 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserpageComponent } from './userpage/userpage.component';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { LoginComponent } from './login/login.component';
+import { FrontpageComponent } from './frontpage/frontpage.component';
 import { YuhanComponent } from './yuhan/yuhan.component';
+import { QuickCheckComponent } from './frontpage/quick-check/quick-check.component';
+import { LoginSignupComponent } from './frontpage/login-signup/login-signup.component';
+import { SettingComponent } from './userpage/setting/setting.component';
+import { YourScheduleComponent } from './userpage/your-schedule/your-schedule.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent, pathMatch: 'full' },//it should be AppComponent
-  {path:'userpage',component:UserpageComponent},
-  { path: 'login', component: LoginComponent},
+  { path: '', component: FrontpageComponent,
+    children: [
+      { path: '', redirectTo: 'quick-check', pathMatch: 'full' },
+      { path: 'quick-check', component: QuickCheckComponent },
+      { path: 'login&signup', component: LoginSignupComponent }
+    ]
+  },
+  {
+    path: 'app', component: UserpageComponent,
+    children: [
+      { path: '', redirectTo: 'today', pathMatch: 'full' },
+      { path: 'today', component: YourScheduleComponent },
+      { path: 'this-week', component: YourScheduleComponent },
+      { path: 'setting', component: SettingComponent }
+    ]
+  },
   { path: 'yuhan', component: YuhanComponent },
-  { path: '**', component: PageNotFoundComponent}
+  { path: '**', component: PageNotFoundComponent, pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -19,5 +36,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingRoads = [AppComponent, LoginComponent,
+export const routingRoads = [AppComponent, LoginSignupComponent,
   UserpageComponent, PageNotFoundComponent, YuhanComponent]
