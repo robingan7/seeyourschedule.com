@@ -1674,14 +1674,13 @@ var YourScheduleComponent = /** @class */ (function () {
         setTimeout(function () {
             _this.display = _this.dataTransfer.getUserInfo.display;
             _this.sche = _this.dataTransfer.getSche;
-            if (_this.isFullPeriods()) {
-                _this.getSche();
-            }
-        }, 200);
+            _this.getSche();
+        }, 400);
         this.setIntervalWithoutDelay(function () {
             //this.getSche();
             if (_this.isFullPeriods()) {
                 _this.isAllPeriod = _this.dataTransfer.getIsAllPeriod;
+                _this.sche = _this.dataTransfer.getSche;
                 //get the current time from getElementbyId
                 _this.time = document.querySelector('#clock').innerText;
                 //get minute from used to check if the minute has change
@@ -1722,7 +1721,7 @@ var YourScheduleComponent = /** @class */ (function () {
                 try {
                     var hjhjh = document.querySelector('.hjhjh');
                     //fix the lunch-empty bug
-                    hjhjh.innerText = 'You have ' + _this.lunchOfDay;
+                    //hjhjh.innerText = 'You have ' + this.lunchOfDay;
                 }
                 catch (_a) { }
                 if (_this.notificationOffPeriof > 0) {
@@ -1734,6 +1733,7 @@ var YourScheduleComponent = /** @class */ (function () {
                 }
             }
             else {
+                _this.sche = _this.dataTransfer.getSche;
                 _this.isLoad = false;
             }
         }, 1000);

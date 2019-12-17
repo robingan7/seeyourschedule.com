@@ -1612,14 +1612,13 @@ let YourScheduleComponent = class YourScheduleComponent {
         setTimeout(() => {
             this.display = this.dataTransfer.getUserInfo.display;
             this.sche = this.dataTransfer.getSche;
-            if (this.isFullPeriods()) {
-                this.getSche();
-            }
-        }, 200);
+            this.getSche();
+        }, 400);
         this.setIntervalWithoutDelay(() => {
             //this.getSche();
             if (this.isFullPeriods()) {
                 this.isAllPeriod = this.dataTransfer.getIsAllPeriod;
+                this.sche = this.dataTransfer.getSche;
                 //get the current time from getElementbyId
                 this.time = document.querySelector('#clock').innerText;
                 //get minute from used to check if the minute has change
@@ -1660,7 +1659,7 @@ let YourScheduleComponent = class YourScheduleComponent {
                 try {
                     let hjhjh = document.querySelector('.hjhjh');
                     //fix the lunch-empty bug
-                    hjhjh.innerText = 'You have ' + this.lunchOfDay;
+                    //hjhjh.innerText = 'You have ' + this.lunchOfDay;
                 }
                 catch (_a) { }
                 if (this.notificationOffPeriof > 0) {
@@ -1672,6 +1671,7 @@ let YourScheduleComponent = class YourScheduleComponent {
                 }
             }
             else {
+                this.sche = this.dataTransfer.getSche;
                 this.isLoad = false;
             }
         }, 1000);

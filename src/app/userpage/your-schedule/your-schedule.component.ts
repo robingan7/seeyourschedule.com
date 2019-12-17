@@ -16,17 +16,16 @@ export class YourScheduleComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.display = this.dataTransfer.getUserInfo.display;
-      this.sche = this.dataTransfer.getSche;
 
-      if(this.isFullPeriods()){
-        this.getSche();
-      }
-    }, 200);
+      this.sche = this.dataTransfer.getSche;
+      this.getSche();
+    }, 400);
 
     this.setIntervalWithoutDelay(() => {
       //this.getSche();
       if(this.isFullPeriods()){
         this.isAllPeriod = this.dataTransfer.getIsAllPeriod;
+        this.sche = this.dataTransfer.getSche;
         //get the current time from getElementbyId
         this.time = (<HTMLButtonElement>document.querySelector('#clock')).innerText;
 
@@ -76,7 +75,7 @@ export class YourScheduleComponent implements OnInit {
           let hjhjh = (<HTMLElement>document.querySelector('.hjhjh'));
 
           //fix the lunch-empty bug
-          hjhjh.innerText = 'You have ' + this.lunchOfDay;
+          //hjhjh.innerText = 'You have ' + this.lunchOfDay;
         } catch{}
 
         if (this.notificationOffPeriof > 0) {
@@ -86,6 +85,7 @@ export class YourScheduleComponent implements OnInit {
           this.canSendNotification = true;
         }
       } else {
+        this.sche = this.dataTransfer.getSche;
         this.isLoad = false;
       }
     }, 1000);

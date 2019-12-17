@@ -64,15 +64,15 @@ interface version {
 export class ServiceService {
 
   constructor(private http: HttpClient) { }
-  //private path = "http://localhost/seeyourschedule.com/";
-  private path = "/php/";
+  private path = "http://localhost/seeyourschedule.com/";
+  //private path = "/php/";
+
   sendEmail(non) {
     return this.http.post<sendemail>(this.path + 'sendEmail.php', {
       non
     })
   }
 
-  
   getScheVersion(non) {
     return this.http.post<version>(this.path + 'getScheVersion.php', {
       non
