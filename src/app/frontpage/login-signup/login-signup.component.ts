@@ -85,7 +85,7 @@ export class LoginSignupComponent implements OnInit {
           this.error.login = data.message;
           this.alerttype.login = "alert alert-success alert-dismissible fade show";
 
-          this.setData(data);
+          this.setData(data, true);
         } else {
           (<HTMLButtonElement>document.querySelector("#login-btn")).innerText = "Login";
           this.error.login = data.message;
@@ -115,7 +115,7 @@ export class LoginSignupComponent implements OnInit {
           this.alerttype.signup = "alert alert-success alert-dismissible fade show";
 
           setTimeout(() => {
-            this.setData(data);
+            this.setData(data, false);
           }, 700)
         } else {
           this.alerttype.signup = "alert alert-danger alert-dismissible fade show";
@@ -125,7 +125,7 @@ export class LoginSignupComponent implements OnInit {
     }
   }
 
-  setData(data:any) {
+  setData(data:any, isFromLogin:boolean) {
     this.loginb = false;
 
     this.cookie.set("isLog_smlunch", "true", 365, '/');
@@ -141,6 +141,11 @@ export class LoginSignupComponent implements OnInit {
       display: data.display
     });
 
-    this.router.navigate(['app']);
+    if (isFromLogin) {
+      this.router.navigate(["app"]);           
+    } else {
+      this.router.navigate(["app/setting"]);           
+    }
+      
   }
 }

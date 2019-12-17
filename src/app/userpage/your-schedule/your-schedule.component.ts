@@ -16,73 +16,78 @@ export class YourScheduleComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.display = this.dataTransfer.getUserInfo.display;
-      this.getSche();
+      this.sche = this.dataTransfer.getSche;
+
+      if(this.isFullPeriods()){
+        this.getSche();
+      }
     }, 200);
 
     this.setIntervalWithoutDelay(() => {
-      this.sche = this.dataTransfer.getSche;
       //this.getSche();
+      if(this.isFullPeriods()){
+        this.isAllPeriod = this.dataTransfer.getIsAllPeriod;
+        //get the current time from getElementbyId
+        this.time = (<HTMLButtonElement>document.querySelector('#clock')).innerText;
 
-      this.isAllPeriod = this.dataTransfer.getIsAllPeriod;
-      //get the current time from getElementbyId
-      this.time = (<HTMLButtonElement>document.querySelector('#clock')).innerText;
+        //get minute from used to check if the minute has change
+        var cTime = Number(this.time.split(':')[1]);
 
-      //get minute from used to check if the minute has change
-      var cTime = Number(this.time.split(':')[1]);
+        //if the there is new day, or we didn;t have the schedule, we get the scedule
+        if (this.time === '00 : 00 : 01' || !this.isGotDate) {
+          this.getSche();
+        }
 
-      //if the there is new day, or we didn;t have the schedule, we get the scedule
-      if (this.time === '00 : 00 : 01' || !this.isGotDate) {
-        this.getSche();
-      }
+        //check if the MODE is changed
+        var b = this.dataTransfer.getisAuto;
+        if (b !== this.isAAuto) {
+          this.isAAuto = b;
+          this.getSche();
+          this.runTwice = 0;//make updateTimeLeft() run twice so that we get result(it was a bug)
+        }
 
-      //check if the MODE is changed
-      var b = this.dataTransfer.getisAuto;
-      if (b !== this.isAAuto) {
-        this.isAAuto = b;
-        this.getSche();
-        this.runTwice = 0;//make updateTimeLeft() run twice so that we get result(it was a bug)
-      }
+        //check if the DATE has changed
+        var b2 = this.dataTransfer.getisChange;
+        if (!this.isAAuto && b2 !== this.isDateChange) {
+          this.isDateChange = b2;
+          this.getSche();
+        }
 
-      //check if the DATE has changed
-      var b2 = this.dataTransfer.getisChange;
-      if (!this.isAAuto && b2 !== this.isDateChange) {
-        this.isDateChange = b2;
-        this.getSche();
-      }
+        //get the formatted month like 2019-9-9
+        var cuurentD = (<HTMLElement>document.querySelector('#monnum')).innerText;
+        if (this.isAAuto && cuurentD !== this.formerDate) {
+          this.formerDate = cuurentD;
+          this.getSche();
+        }
 
-      //get the formatted month like 2019-9-9
-      var cuurentD = (<HTMLElement>document.querySelector('#monnum')).innerText;
-      if (this.isAAuto && cuurentD !== this.formerDate) {
-        this.formerDate = cuurentD;
-        this.getSche();
-      }
+        //check if the minute value has change, 
+        //CTime-current minute value
+        if (cTime !== this.formerTime) {
+          this.updateTimeLeft();
+          this.formerTime = cTime;
+        }
 
-      //check if the minute value has change, 
-      //CTime-current minute value
-      if (cTime !== this.formerTime) {
-        this.updateTimeLeft();
-        this.formerTime = cTime;
-      }
+        if (this.runTwice <= 1) {
+          this.updateTimeLeft();
+          this.runTwice++;
+        }
 
-      if (this.runTwice <= 1) {
-        this.updateTimeLeft();
-        this.runTwice++;
-      }
+        try {
+          let hjhjh = (<HTMLElement>document.querySelector('.hjhjh'));
 
-      try {
-        let hjhjh = (<HTMLElement>document.querySelector('.hjhjh'));
+          //fix the lunch-empty bug
+          hjhjh.innerText = 'You have ' + this.lunchOfDay;
+        } catch{}
 
-        //fix the lunch-empty bug
-        //hjhjh.innerText = 'You have ' + this.lunchOfDay;
-      } catch{}
-
-      if (this.notificationOffPeriof > 0) {
-        this.canSendNotification = false;
-        this.notificationOffPeriof--;
+        if (this.notificationOffPeriof > 0) {
+          this.canSendNotification = false;
+          this.notificationOffPeriof--;
+        } else {
+          this.canSendNotification = true;
+        }
       } else {
-        this.canSendNotification = true;
+        this.isLoad = false;
       }
-
     }, 1000);
   }
 
@@ -194,6 +199,7 @@ export class YourScheduleComponent implements OnInit {
 
     return setInterval(loopFunc, interval);
   }
+
   isFullPeriods() {
     if (this.sche.p1.length == 0 || this.sche.p2.length == 0 || this.sche.p3.length == 0 || this.sche.p4.length == 0 ||
       this.sche.p5.length == 0 || this.sche.p6.length == 0 || this.sche.p7.length == 0) {

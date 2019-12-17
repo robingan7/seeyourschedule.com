@@ -12,7 +12,9 @@ export class SettingComponent implements OnInit {
 
   constructor(private cookie: CookieService,
     private auth: ServiceService,
-    private dataTransfer: DataTransferService) { }
+    private dataTransfer: DataTransferService) { 
+      document.title = "Setting | See Your Schedule";
+    }
 
   private userid: any;
 
@@ -53,6 +55,11 @@ export class SettingComponent implements OnInit {
     this.sche = this.dataTransfer.getSche;
     this.isLoad = false;
     }, 400);
+
+    this.setIntervalWithoutDelay(() => {
+    this.isPeriod8 = this.dataTransfer.getIsPeriod8;
+    this.sche = this.dataTransfer.getSche;
+    }, 1000);
   }
 
   setIntervalWithoutDelay(loopFunc:any, interval:any) {
@@ -65,8 +72,6 @@ export class SettingComponent implements OnInit {
     document.querySelector('#today-tab').classList.remove('active');
     document.querySelector('#thisweek-tab').classList.remove('active');
     document.querySelector('#setting-tab').classList.add('active');
-
-    document.title = "Setting | See Your Schedule";
   }
 
   updatePeriod(e:any) {
@@ -154,6 +159,7 @@ export class SettingComponent implements OnInit {
   period8(e) {
     e.preventDefault();
     this.isPeriod8 = e.target.checked;
+    this.dataTransfer.setIsPeriod8(e.target.checked);
   }
 
   updateToService(input:string, val:any) {

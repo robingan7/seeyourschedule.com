@@ -52,7 +52,7 @@ module.exports = "<ul class=\"nav nav-pills mb-3 mmmb\" id=\"pills-tab\" role=\"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"tab-pane fade show active\" id=\"loginAndSignUp\" role=\"tabpanel\" aria-labelledby=\"pills-profile-tab\">\n    <div class=\"credit-container\">\n        <div id=\"logins\" *ngIf=\"loginb\" class=\"credit\">\n            <form (submit)=\"loginUser($event)\">\n                <h1>Login</h1>\n                <div class=\"{{alerttype.login}} errorr logine\" role=\"alert\">\n                    <strong>Hello!</strong> {{error.login}}\n                    <button type=\"button\" class=\"close\" data-dismiss=\"alet\" aria-label=\"Close\">\n                        <span aria-hidden=\"true\"></span>\n                    </button>\n                </div>\n\n                <div class=\"form-group\">\n                    <label for=\"exampleInputEmail1\">User Name or Email</label>\n                    <input (input)=\"checkLogin()\" type=\"text\" class=\"form-control\" id=\"name-or-email\"\n                        aria-describedby=\"emailHelp\" placeholder=\"Name or Email\">\n                </div>\n\n                <div class=\"form-group\">\n                    <label for=\"exampleInputPassword1\">Password</label>\n                    <input (input)=\"checkLogin()\" type=\"password\" class=\"form-control\" id=\"login-password\"\n                        placeholder=\"Password\">\n                </div>\n\n                <button type=\"submit\" id=\"login-btn\" class=\"btn btn-primary\">Login</button>\n            </form>\n            <div class=\"alert alert-warning warr\" role=\"alert\">\n                We <b>ARE NOT</b> responsible for any wrong information on this website\n                It's to help you understand SM schedule faster. You should <b>NOT</b> rely on this app\n            </div>\n        </div>\n    </div>\n\n    <div class=\"credit-container\">\n        <div id=\"signup\" class=\"credit\">\n            <form (submit)=\"signup($event)\">\n                <h1>Sign Up</h1>\n                <div class=\"{{alerttype.signup}} errorr signupe\" role=\"alert\">\n                    <strong>Hello!</strong> {{error.signup}}\n                    <button type=\"button\" class=\"close\" data-dismiss=\"alet\" aria-label=\"Close\">\n                        <span aria-hidden=\"true\"></span>\n                    </button>\n                </div>\n\n                <div class=\"form-group\">\n                    <label for=\"exampleInputEmail2\">User Name</label>\n                    <input (input)=\"checkSignUp($event)\" type=\"text\" class=\"form-control\" id=\"sign-username\"\n                        aria-describedby=\"emailHelp\" placeholder=\"User Name\" />\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"exampleInputPassword1\">Display Name</label>\n                    <input (input)=\"checkSignUp($event)\" type=\"text\" class=\"form-control\" id=\"sign-display\"\n                        placeholder=\"Display Name\" />\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"exampleInputPassword1\">Email</label>\n                    <input (input)=\"checkSignUp($event)\" type=\"text\" class=\"form-control\" id=\"sign-email\"\n                        placeholder=\"prefer sm email\" />\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"exampleInputPassword2\">Password</label>\n                    <input (input)=\"checkSignUp($event)\" type=\"password\" class=\"form-control\" id=\"sign-password\"\n                        placeholder=\"Password\" />\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"exampleInputPassword1\">Password Confirm</label>\n                    <input (input)=\"checkSignUp($event)\" type=\"password\" class=\"form-control\" id=\"sign-passwordcon\"\n                        placeholder=\"Password Again\" />\n                </div>\n                <div class=\"form-group form-check\">\n                    <input (input)=\"checkSignUp($event)\" type=\"checkbox\" class=\"form-check-input\" id=\"sign-check\">\n                    <label class=\"form-check-label agree\" for=\"exampleCheck1\">Agree To <a>Terms and\n                            Condition</a></label>\n                </div>\n                <button type=\"submit\" class=\"btn btn-primary\">Sign Up</button>\n\n            </form>\n        </div>\n    </div>\n</div>\n\n<!--//////////////////modal///////////-->\n\n<!--\n<div *ngIf=\"loginb\" class=\"carousel slide ad\" data-ride=\"carousel\">\n    <div class=\"carousel-inner\">\n        <div class=\"carousel-item active\" data-interval=\"2000\">\n            <img src=\"http://frcscouting.ga/Scope_Ad.png\" class=\"d-block w-100\" alt=\"...\">\n        </div>\n        <div class=\"carousel-item\" data-interval=\"2000\">\n            <img id=\"yoshi\" src=\"http://frcscouting.ga/Scope_Ad.png\" class=\"d-block w-100\" alt=\"...\">\n        </div>\n        <div class=\"carousel-item\" data-interval=\"2000\">\n            <img src=\"http://frcscouting.ga/Scope_Ad.png\" class=\"d-block w-100\" alt=\"...\">\n        </div>\n    </div>\n</div>-->\n<!--end of ad-->"
+module.exports = "<div class=\"tab-pane fade show active\" id=\"loginAndSignUp\" role=\"tabpanel\" aria-labelledby=\"pills-profile-tab\">\n    <div class=\"credit-container\">\n        <div id=\"logins\" *ngIf=\"loginb\" class=\"credit\">\n            <form (submit)=\"loginUser($event)\">\n                <h1>Login</h1>\n                <div class=\"{{alerttype.login}} errorr logine\" role=\"alert\">\n                    <strong>Hello!</strong> {{error.login}}\n                    <button type=\"button\" class=\"close\" data-dismiss=\"alet\" aria-label=\"Close\">\n                        <span aria-hidden=\"true\"></span>\n                    </button>\n                </div>\n\n                <div class=\"form-group\">\n                    <label for=\"exampleInputEmail1\">User Name or Email</label>\n                    <input (input)=\"checkLogin()\" type=\"text\" class=\"form-control\" id=\"name-or-email\"\n                        aria-describedby=\"sign-in-username\" placeholder=\"Name or Email\">\n                </div>\n\n                <div class=\"form-group\">\n                    <label for=\"exampleInputPassword1\">Password</label>\n                    <input (input)=\"checkLogin()\" type=\"password\" class=\"form-control\" id=\"login-password\"\n                        placeholder=\"Password\">\n                </div>\n\n                <button type=\"submit\" id=\"login-btn\" class=\"btn btn-primary\">Login</button>\n            </form>\n            <div class=\"alert alert-warning warr\" role=\"alert\">\n                We <b>ARE NOT</b> responsible for any wrong information on this website\n                It's to help you understand SM schedule faster. You should <b>NOT</b> rely on this app\n            </div>\n        </div>\n    </div>\n\n    <div class=\"credit-container\">\n        <div id=\"signup\" class=\"credit\">\n            <form (submit)=\"signup($event)\">\n                <h1>Sign Up</h1>\n                <div class=\"{{alerttype.signup}} errorr signupe\" role=\"alert\">\n                    <strong>Hello!</strong> {{error.signup}}\n                    <button type=\"button\" class=\"close\" data-dismiss=\"alet\" aria-label=\"Close\">\n                        <span aria-hidden=\"true\"></span>\n                    </button>\n                </div>\n\n                <div class=\"form-group\">\n                    <label for=\"exampleInputEmail2\">User Name</label>\n                    <input (input)=\"checkSignUp($event)\" type=\"text\" class=\"form-control\" id=\"sign-username\"\n                        aria-describedby=\"sign-up-username\" placeholder=\"User Name\" />\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"exampleInputPassword1\">Display Name</label>\n                    <input (input)=\"checkSignUp($event)\" type=\"text\" class=\"form-control\" id=\"sign-display\"\n                        placeholder=\"Display Name\" />\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"exampleInputPassword1\">Email</label>\n                    <input (input)=\"checkSignUp($event)\" type=\"text\" class=\"form-control\" id=\"sign-email\"\n                        placeholder=\"prefer sm email\" />\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"exampleInputPassword2\">Password</label>\n                    <input (input)=\"checkSignUp($event)\" type=\"password\" class=\"form-control\" id=\"sign-password\"\n                        placeholder=\"Password\" />\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"exampleInputPassword1\">Password Confirm</label>\n                    <input (input)=\"checkSignUp($event)\" type=\"password\" class=\"form-control\" id=\"sign-passwordcon\"\n                        placeholder=\"Password Again\" />\n                </div>\n                <div class=\"form-group form-check\">\n                    <input (input)=\"checkSignUp($event)\" type=\"checkbox\" class=\"form-check-input\" id=\"sign-check\">\n                    <label class=\"form-check-label agree\" for=\"exampleCheck1\">Agree To <a>Terms and\n                            Condition</a></label>\n                </div>\n                <button type=\"submit\" class=\"btn btn-primary\">Sign Up</button>\n\n            </form>\n        </div>\n    </div>\n</div>\n\n<!--//////////////////modal///////////-->\n\n<!--\n<div *ngIf=\"loginb\" class=\"carousel slide ad\" data-ride=\"carousel\">\n    <div class=\"carousel-inner\">\n        <div class=\"carousel-item active\" data-interval=\"2000\">\n            <img src=\"http://frcscouting.ga/Scope_Ad.png\" class=\"d-block w-100\" alt=\"...\">\n        </div>\n        <div class=\"carousel-item\" data-interval=\"2000\">\n            <img id=\"yoshi\" src=\"http://frcscouting.ga/Scope_Ad.png\" class=\"d-block w-100\" alt=\"...\">\n        </div>\n        <div class=\"carousel-item\" data-interval=\"2000\">\n            <img src=\"http://frcscouting.ga/Scope_Ad.png\" class=\"d-block w-100\" alt=\"...\">\n        </div>\n    </div>\n</div>-->\n<!--end of ad-->"
 
 /***/ }),
 
@@ -96,7 +96,7 @@ module.exports = "<!--account section-->\n<div class=\"tab-pane fade show active
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<main>\n    <!--nav bar-->\n    <ul class=\"nav nav-tabs\">\n        <li class=\"nav-item\">\n            <a class=\"nav-link\" id=\"today-tab\" data-toggle=\"tab\" [routerLink]=\"['./today']\"  role=\"tab\" aria-controls=\"today\" aria-selected=\"true\">Today</a>\n        </li>\n        <li class=\"nav-item\">\n            <a class=\"nav-link\" id=\"thisweek-tab\" data-toggle=\"tab\" [routerLink]=\"['./this-week']\"  role=\"tab\" aria-controls=\"direction\" aria-selected=\"false\">This Week</a>\n        </li>\n        <li class=\"nav-item\">\n            <a class=\"nav-link\" id=\"setting-tab\" data-toggle=\"tab\" [routerLink]=\"['./setting']\"  role=\"tab\" aria-controls=\"account\" aria-selected=\"false\">Setting</a>\n        </li>\n        <li class=\"nav-item\">\n            <button (click)=\"signOut()\" class=\"btn btn-warning btn-sm signno\"><b>Sign Out</b></button>\n        </li>    \n    </ul>\n\n    <!--nav content-->\n    <div class=\"tab-content\" id=\"myTabContent\">\n        <div *ngIf=\"!isPeriodAll\" class=\"alert alert-danger\" role=\"alert\">\n            You haven't put your building info click <b ><a style=\"color:black;\" [routerLink]=\"['./setting']\" >HERE</a></b>\n        </div>\n        <router-outlet></router-outlet>\n    </div>\n</main>"
+module.exports = "<main>\n    <!--nav bar-->\n    <ul class=\"nav nav-tabs\">\n        <li class=\"nav-item\">\n            <a class=\"nav-link\" id=\"today-tab\" data-toggle=\"tab\" [routerLink]=\"['./today']\"  role=\"tab\" aria-controls=\"today\" aria-selected=\"true\">Today</a>\n        </li>\n        <li class=\"nav-item\">\n            <a class=\"nav-link\" id=\"thisweek-tab\" data-toggle=\"tab\" [routerLink]=\"['./this-week']\"  role=\"tab\" aria-controls=\"direction\" aria-selected=\"false\">This Week</a>\n        </li>\n        <li class=\"nav-item\">\n            <a class=\"nav-link\" id=\"setting-tab\" data-toggle=\"tab\" [routerLink]=\"['./setting']\"  role=\"tab\" aria-controls=\"account\" aria-selected=\"false\">Setting</a>\n        </li>\n        <li class=\"nav-item\">\n            <button (click)=\"signOut()\" class=\"btn btn-warning btn-sm signno\"><b>Sign Out</b></button>\n        </li>    \n    </ul>\n\n    <!--nav content-->\n    <div class=\"tab-content\" id=\"myTabContent\">\n        <div *ngIf=\"!isPeriodAll\" class=\"alert alert-danger\" role=\"alert\">\n            Please put your building info in <b ><a style=\"color:black;\" [routerLink]=\"['./setting']\" >Setting</a></b> tab\n        </div>\n        <router-outlet></router-outlet>\n    </div>\n</main>"
 
 /***/ }),
 
@@ -561,7 +561,7 @@ var LoginSignupComponent = /** @class */ (function () {
                     _this.dataTransfer.setLoggedIn(true);
                     _this.error.login = data.message;
                     _this.alerttype.login = "alert alert-success alert-dismissible fade show";
-                    _this.setData(data);
+                    _this.setData(data, true);
                 }
                 else {
                     document.querySelector("#login-btn").innerText = "Login";
@@ -591,7 +591,7 @@ var LoginSignupComponent = /** @class */ (function () {
                     _this.error.signup = data.message;
                     _this.alerttype.signup = "alert alert-success alert-dismissible fade show";
                     setTimeout(function () {
-                        _this.setData(data);
+                        _this.setData(data, false);
                     }, 700);
                 }
                 else {
@@ -601,7 +601,7 @@ var LoginSignupComponent = /** @class */ (function () {
             });
         }
     };
-    LoginSignupComponent.prototype.setData = function (data) {
+    LoginSignupComponent.prototype.setData = function (data, isFromLogin) {
         this.loginb = false;
         this.cookie.set("isLog_smlunch", "true", 365, '/');
         this.cookie.set("userid_smlunch", String(data.id), 365, '/');
@@ -614,7 +614,12 @@ var LoginSignupComponent = /** @class */ (function () {
             userid: String(data.id),
             display: data.display
         });
-        this.router.navigate(['app']);
+        if (isFromLogin) {
+            this.router.navigate(["app"]);
+        }
+        else {
+            this.router.navigate(["app/setting"]);
+        }
     };
     LoginSignupComponent.ctorParameters = function () { return [
         { type: _services_service_service__WEBPACK_IMPORTED_MODULE_4__["ServiceService"] },
@@ -1210,6 +1215,7 @@ var SettingComponent = /** @class */ (function () {
             p8: ''
         };
         this.isLoad = true;
+        document.title = "Setting | See Your Schedule";
     }
     SettingComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1225,6 +1231,10 @@ var SettingComponent = /** @class */ (function () {
             _this.sche = _this.dataTransfer.getSche;
             _this.isLoad = false;
         }, 400);
+        this.setIntervalWithoutDelay(function () {
+            _this.isPeriod8 = _this.dataTransfer.getIsPeriod8;
+            _this.sche = _this.dataTransfer.getSche;
+        }, 1000);
     };
     SettingComponent.prototype.setIntervalWithoutDelay = function (loopFunc, interval) {
         loopFunc();
@@ -1234,7 +1244,6 @@ var SettingComponent = /** @class */ (function () {
         document.querySelector('#today-tab').classList.remove('active');
         document.querySelector('#thisweek-tab').classList.remove('active');
         document.querySelector('#setting-tab').classList.add('active');
-        document.title = "Setting | See Your Schedule";
     };
     SettingComponent.prototype.updatePeriod = function (e) {
         var _this = this;
@@ -1326,6 +1335,7 @@ var SettingComponent = /** @class */ (function () {
     SettingComponent.prototype.period8 = function (e) {
         e.preventDefault();
         this.isPeriod8 = e.target.checked;
+        this.dataTransfer.setIsPeriod8(e.target.checked);
     };
     SettingComponent.prototype.updateToService = function (input, val) {
         var current = this.dataTransfer.getUserInfo;
@@ -1663,61 +1673,68 @@ var YourScheduleComponent = /** @class */ (function () {
         var _this = this;
         setTimeout(function () {
             _this.display = _this.dataTransfer.getUserInfo.display;
-            _this.getSche();
+            _this.sche = _this.dataTransfer.getSche;
+            if (_this.isFullPeriods()) {
+                _this.getSche();
+            }
         }, 200);
         this.setIntervalWithoutDelay(function () {
-            _this.sche = _this.dataTransfer.getSche;
             //this.getSche();
-            _this.isAllPeriod = _this.dataTransfer.getIsAllPeriod;
-            //get the current time from getElementbyId
-            _this.time = document.querySelector('#clock').innerText;
-            //get minute from used to check if the minute has change
-            var cTime = Number(_this.time.split(':')[1]);
-            //if the there is new day, or we didn;t have the schedule, we get the scedule
-            if (_this.time === '00 : 00 : 01' || !_this.isGotDate) {
-                _this.getSche();
-            }
-            //check if the MODE is changed
-            var b = _this.dataTransfer.getisAuto;
-            if (b !== _this.isAAuto) {
-                _this.isAAuto = b;
-                _this.getSche();
-                _this.runTwice = 0; //make updateTimeLeft() run twice so that we get result(it was a bug)
-            }
-            //check if the DATE has changed
-            var b2 = _this.dataTransfer.getisChange;
-            if (!_this.isAAuto && b2 !== _this.isDateChange) {
-                _this.isDateChange = b2;
-                _this.getSche();
-            }
-            //get the formatted month like 2019-9-9
-            var cuurentD = document.querySelector('#monnum').innerText;
-            if (_this.isAAuto && cuurentD !== _this.formerDate) {
-                _this.formerDate = cuurentD;
-                _this.getSche();
-            }
-            //check if the minute value has change, 
-            //CTime-current minute value
-            if (cTime !== _this.formerTime) {
-                _this.updateTimeLeft();
-                _this.formerTime = cTime;
-            }
-            if (_this.runTwice <= 1) {
-                _this.updateTimeLeft();
-                _this.runTwice++;
-            }
-            try {
-                var hjhjh = document.querySelector('.hjhjh');
-                //fix the lunch-empty bug
-                //hjhjh.innerText = 'You have ' + this.lunchOfDay;
-            }
-            catch (_a) { }
-            if (_this.notificationOffPeriof > 0) {
-                _this.canSendNotification = false;
-                _this.notificationOffPeriof--;
+            if (_this.isFullPeriods()) {
+                _this.isAllPeriod = _this.dataTransfer.getIsAllPeriod;
+                //get the current time from getElementbyId
+                _this.time = document.querySelector('#clock').innerText;
+                //get minute from used to check if the minute has change
+                var cTime = Number(_this.time.split(':')[1]);
+                //if the there is new day, or we didn;t have the schedule, we get the scedule
+                if (_this.time === '00 : 00 : 01' || !_this.isGotDate) {
+                    _this.getSche();
+                }
+                //check if the MODE is changed
+                var b = _this.dataTransfer.getisAuto;
+                if (b !== _this.isAAuto) {
+                    _this.isAAuto = b;
+                    _this.getSche();
+                    _this.runTwice = 0; //make updateTimeLeft() run twice so that we get result(it was a bug)
+                }
+                //check if the DATE has changed
+                var b2 = _this.dataTransfer.getisChange;
+                if (!_this.isAAuto && b2 !== _this.isDateChange) {
+                    _this.isDateChange = b2;
+                    _this.getSche();
+                }
+                //get the formatted month like 2019-9-9
+                var cuurentD = document.querySelector('#monnum').innerText;
+                if (_this.isAAuto && cuurentD !== _this.formerDate) {
+                    _this.formerDate = cuurentD;
+                    _this.getSche();
+                }
+                //check if the minute value has change, 
+                //CTime-current minute value
+                if (cTime !== _this.formerTime) {
+                    _this.updateTimeLeft();
+                    _this.formerTime = cTime;
+                }
+                if (_this.runTwice <= 1) {
+                    _this.updateTimeLeft();
+                    _this.runTwice++;
+                }
+                try {
+                    var hjhjh = document.querySelector('.hjhjh');
+                    //fix the lunch-empty bug
+                    hjhjh.innerText = 'You have ' + _this.lunchOfDay;
+                }
+                catch (_a) { }
+                if (_this.notificationOffPeriof > 0) {
+                    _this.canSendNotification = false;
+                    _this.notificationOffPeriof--;
+                }
+                else {
+                    _this.canSendNotification = true;
+                }
             }
             else {
-                _this.canSendNotification = true;
+                _this.isLoad = false;
             }
         }, 1000);
     };
