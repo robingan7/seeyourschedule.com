@@ -91,7 +91,6 @@ export class DataTransferService {
 
   signout() {
     this.userInfo = {};
-    this.isAuto = true;
     this.isloggin = false;
     this.isChange = false;
     this.currentSche = {

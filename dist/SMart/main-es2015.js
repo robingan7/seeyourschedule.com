@@ -41,7 +41,7 @@ module.exports = "<a class=\"navbar-brand logo\" href=\"https://github.com/robin
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ul class=\"nav nav-pills mb-3 mmmb\" id=\"pills-tab\" role=\"tablist\">\n    <li class=\"nav-item\">\n        <button class=\"nav-link active btn btn-outline-primary btn-sm see\" id=\"linkToQuickCheck\" data-toggle=\"pill\"\n            [routerLink]=\"['/quick-check']\" role=\"tab\" aria-controls=\"pills-home\">Quick Check</button>\n    </li>\n    <li class=\"nav-item\">\n        <button class=\"nav-link btn btn-outline-primary btn-sm see\" id=\"linkToLogin\" data-toggle=\"pill\"\n            [routerLink]=\"['/login&signup']\" role=\"tab\" aria-controls=\"pills-profile\">Login &\n            Sign up</button>\n    </li>\n</ul>\n<router-outlet></router-outlet>"
+module.exports = "<ul class=\"nav nav-pills mb-3 mmmb\" id=\"pills-tab\" role=\"tablist\">\n    <li class=\"nav-item\">\n        <button class=\"nav-link active btn btn-outline-primary btn-sm see\" id=\"linkToQuickCheck\" data-toggle=\"pill\"\n            [routerLink]=\"['/quick-check']\" role=\"tab\" aria-controls=\"pills-home\">Quick Check</button>\n    </li>\n    <li class=\"nav-item\">\n        <button class=\"nav-link btn btn-outline-primary btn-sm see\" id=\"linkToLogin\" data-toggle=\"pill\"\n            [routerLink]=\"['/login&signup']\" role=\"tab\" aria-controls=\"pills-profile\">Login &\n            Sign up</button>\n    </li>\n</ul>\n\n<!-- first time visite guide -->\n<div class=\"modal fade show\" id=\"firstTimeGuide\" tabindex=\"-1\" role=\"dialog\"\n    aria-labelledby=\"exampleModalScrollableTitle\" aria-modal=\"true\">\n    <div class=\"modal-dialog modal-dialog-scrollable\" role=\"document\">\n        <div class=\"modal-content\">\n            <div class=\"modal-header\">\n                <h5 class=\"modal-title\" id=\"exampleModalScrollableTitle\">Welcome to \n                <img src=\"https://seeyourschedule.com/assets/logo512x512.png\" alt=\"logo512x512\" width=\"32\"/><span style=\"color:var(--primary)\">See Your Schedule</span>\n                </h5>\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"closeGuide()\">\n                    <span aria-hidden=\"true\">&times;</span>\n                </button>\n            </div>\n            <div class=\"modal-body\">\n                <p>We are a non-profit organization that helps you quickly learn and check SMCHS's block schedule. </p>\n                <p>Our feature contains two parts:</p>\n                <ul>\n                    <li>1. Quick Check: you can check your lunch without an account in our home page. </li>\n                    <img src=\"https://seeyourschedule.com/assets/firstTimeGuide/home-guide.gif\" class=\"rounded mr-2 guideImg\" alt=\"...\" style=\"margin-bottom: 20px;\">\n\n                    <li>2. When you sign up and log in to your account. You are able to: </li>\n                    <ul>\n                        <li>view your entire schedule today with real-time update</li>\n                        <li>view your schedule each week</li>\n                    </ul>\n                    <img src=\"https://seeyourschedule.com/assets/firstTimeGuide/user-guide.gif\" class=\"rounded mr-2 guideImg\" alt=\"...\">\n                </ul>\n            </div>\n            <div class=\"modal-footer\">\n                <button type=\"button\" class=\"btn btn-outline-primary\" data-dismiss=\"modal\" (click)=\"closeGuide()\">Start your journey</button>\n            </div>\n        </div>\n    </div>\n</div>\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -395,7 +395,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".see {\n    padding: 0;\n    height: 30px;\n    width: 125px;\n}\n\n.mmmb {\n    margin-bottom: 0;\n    margin-left: 5px;\n    margin-top:8px;\n    padding-bottom: 2px;\n    border-bottom: 2px solid var(--primary);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZnJvbnRwYWdlL2Zyb250cGFnZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksVUFBVTtJQUNWLFlBQVk7SUFDWixZQUFZO0FBQ2hCOztBQUVBO0lBQ0ksZ0JBQWdCO0lBQ2hCLGdCQUFnQjtJQUNoQixjQUFjO0lBQ2QsbUJBQW1CO0lBQ25CLHVDQUF1QztBQUMzQyIsImZpbGUiOiJzcmMvYXBwL2Zyb250cGFnZS9mcm9udHBhZ2UuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5zZWUge1xuICAgIHBhZGRpbmc6IDA7XG4gICAgaGVpZ2h0OiAzMHB4O1xuICAgIHdpZHRoOiAxMjVweDtcbn1cblxuLm1tbWIge1xuICAgIG1hcmdpbi1ib3R0b206IDA7XG4gICAgbWFyZ2luLWxlZnQ6IDVweDtcbiAgICBtYXJnaW4tdG9wOjhweDtcbiAgICBwYWRkaW5nLWJvdHRvbTogMnB4O1xuICAgIGJvcmRlci1ib3R0b206IDJweCBzb2xpZCB2YXIoLS1wcmltYXJ5KTtcbn0iXX0= */"
+module.exports = ".see {\n    padding: 0;\n    height: 30px;\n    width: 125px;\n}\n\n.mmmb {\n    margin-bottom: 0;\n    margin-left: 5px;\n    margin-top:8px;\n    padding-bottom: 2px;\n    border-bottom: 2px solid var(--primary);\n}\n\n.firstTimeActive {\n    display: block; \n    background-color: rgba(0, 0, 0, 0.4);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZnJvbnRwYWdlL2Zyb250cGFnZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksVUFBVTtJQUNWLFlBQVk7SUFDWixZQUFZO0FBQ2hCOztBQUVBO0lBQ0ksZ0JBQWdCO0lBQ2hCLGdCQUFnQjtJQUNoQixjQUFjO0lBQ2QsbUJBQW1CO0lBQ25CLHVDQUF1QztBQUMzQzs7QUFFQTtJQUNJLGNBQWM7SUFDZCxvQ0FBb0M7QUFDeEMiLCJmaWxlIjoic3JjL2FwcC9mcm9udHBhZ2UvZnJvbnRwYWdlLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuc2VlIHtcbiAgICBwYWRkaW5nOiAwO1xuICAgIGhlaWdodDogMzBweDtcbiAgICB3aWR0aDogMTI1cHg7XG59XG5cbi5tbW1iIHtcbiAgICBtYXJnaW4tYm90dG9tOiAwO1xuICAgIG1hcmdpbi1sZWZ0OiA1cHg7XG4gICAgbWFyZ2luLXRvcDo4cHg7XG4gICAgcGFkZGluZy1ib3R0b206IDJweDtcbiAgICBib3JkZXItYm90dG9tOiAycHggc29saWQgdmFyKC0tcHJpbWFyeSk7XG59XG5cbi5maXJzdFRpbWVBY3RpdmUge1xuICAgIGRpc3BsYXk6IGJsb2NrOyBcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDAsIDAsIDAsIDAuNCk7XG59Il19 */"
 
 /***/ }),
 
@@ -424,15 +424,28 @@ let FrontpageComponent = class FrontpageComponent {
         this.auth = auth;
         this.cookie = cookie;
         this.router = router;
-        var iss = this.cookie.get('isLog_smlunch');
+    }
+    ngOnInit() {
+        let iss = this.cookie.get('isLog_smlunch');
         if (iss === "true") {
             this.router.navigate(['app']);
         }
         else {
+            let isFirstTime = this.cookie.get('isF_smlunch');
             this.cookie.deleteAll();
+            if (isFirstTime !== 'false') {
+                this.openGuide();
+            }
+            this.cookie.set('isF_smlunch', 'false');
         }
     }
-    ngOnInit() { }
+    closeGuide() {
+        this.cookie.set('isF_smlunch', 'false');
+        document.querySelector('#firstTimeGuide').classList.remove('firstTimeActive');
+    }
+    openGuide() {
+        document.querySelector('#firstTimeGuide').classList.add('firstTimeActive');
+    }
 };
 FrontpageComponent.ctorParameters = () => [
     { type: _services_service_service__WEBPACK_IMPORTED_MODULE_4__["ServiceService"] },
@@ -990,7 +1003,6 @@ let DataTransferService = class DataTransferService {
     }
     signout() {
         this.userInfo = {};
-        this.isAuto = true;
         this.isloggin = false;
         this.isChange = false;
         this.currentSche = {
@@ -1430,6 +1442,7 @@ let UserpageComponent = class UserpageComponent {
         this.cookie.deleteAll('/');
         this.dataTransfer.signout();
         this.router.navigate(['']);
+        this.cookie.set('isF_smlunch', 'false');
     }
     isFullPeriods() {
         if (this.sche.p1.length == 0 || this.sche.p2.length == 0 || this.sche.p3.length == 0 || this.sche.p4.length == 0 ||

@@ -12,14 +12,30 @@ export class FrontpageComponent implements OnInit {
 
   constructor(private auth: ServiceService,
     private cookie: CookieService,
-    private router: Router) {
-      var iss = this.cookie.get('isLog_smlunch')
+    private router: Router) {}
+
+    ngOnInit() {
+      let iss = this.cookie.get('isLog_smlunch');
+
       if (iss === "true") {
         this.router.navigate(['app']);
       } else {
+        let isFirstTime = this.cookie.get('isF_smlunch');
         this.cookie.deleteAll();
+
+        if (isFirstTime !== 'false') {
+          this.openGuide();
+        }
+        this.cookie.set('isF_smlunch', 'false');
       }
     }
 
-    ngOnInit() {}
+    closeGuide() {
+      this.cookie.set('isF_smlunch', 'false');
+      document.querySelector('#firstTimeGuide').classList.remove('firstTimeActive');
+    }
+
+    openGuide() {
+      document.querySelector('#firstTimeGuide').classList.add('firstTimeActive');
+    }
 }

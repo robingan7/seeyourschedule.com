@@ -84,6 +84,7 @@ export class UserpageComponent implements OnInit {
     this.cookie.deleteAll('/');
     this.dataTransfer.signout();
     this.router.navigate(['']);
+    this.cookie.set('isF_smlunch', 'false');
   }
 
   isFullPeriods() {

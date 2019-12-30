@@ -60,3 +60,7 @@ a {
 img[alt="www.000webhost.com"] {
     display: none;
 }
+.guideImg{
+  box-shadow: 0 10px 12px 5px rgb(0,0,0, 0.5);
+  width:350px;
+}

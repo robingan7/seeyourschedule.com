@@ -9,4 +9,39 @@
             Sign up</button>
     </li>
 </ul>
+
+<!-- first time visite guide -->
+<div class="modal fade show" id="firstTimeGuide" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalScrollableTitle" aria-modal="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Welcome to 
+                <img src="https://seeyourschedule.com/assets/logo512x512.png" alt="logo512x512" width="32"/><span style="color:var(--primary)">See Your Schedule</span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeGuide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>We are a non-profit organization that helps you quickly learn and check SMCHS's block schedule. </p>
+                <p>Our feature contains two parts:</p>
+                <ul>
+                    <li>1. Quick Check: you can check your lunch without an account in our home page. </li>
+                    <img src="https://seeyourschedule.com/assets/firstTimeGuide/home-guide.gif" class="rounded mr-2 guideImg" alt="..." style="margin-bottom: 20px;">
+
+                    <li>2. When you sign up and log in to your account. You are able to: </li>
+                    <ul>
+                        <li>view your entire schedule today with real-time update</li>
+                        <li>view your schedule each week</li>
+                    </ul>
+                    <img src="https://seeyourschedule.com/assets/firstTimeGuide/user-guide.gif" class="rounded mr-2 guideImg" alt="...">
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal" (click)="closeGuide()">Start your journey</button>
+            </div>
+        </div>
+    </div>
+</div>
 <router-outlet></router-outlet>
