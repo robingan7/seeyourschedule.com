@@ -426,21 +426,34 @@ let FrontpageComponent = class FrontpageComponent {
         this.router = router;
     }
     ngOnInit() {
+        let d = new Date();
+        let year = d.getFullYear();
+        let month = d.getMonth();
+        let day = d.getDate();
+        let c = new Date(year + 5, month, day);
         let iss = this.cookie.get('isLog_smlunch');
         if (iss === "true") {
             this.router.navigate(['app']);
         }
         else {
             let isFirstTime = this.cookie.get('isF_smlunch');
-            this.cookie.deleteAll();
+            //this.cookie.deleteAll();
             if (isFirstTime !== 'false') {
                 this.openGuide();
             }
-            this.cookie.set('isF_smlunch', 'false');
+            else {
+                this.closeGuide();
+            }
+            this.cookie.set('isF_smlunch', 'false', c, '/');
         }
     }
     closeGuide() {
-        this.cookie.set('isF_smlunch', 'false');
+        let d = new Date();
+        let year = d.getFullYear();
+        let month = d.getMonth();
+        let day = d.getDate();
+        let c = new Date(year + 5, month, day);
+        this.cookie.set('isF_smlunch', 'false', c, '/');
         document.querySelector('#firstTimeGuide').classList.remove('firstTimeActive');
     }
     openGuide() {
@@ -1441,8 +1454,13 @@ let UserpageComponent = class UserpageComponent {
     signOut() {
         this.cookie.deleteAll('/');
         this.dataTransfer.signout();
+        let d = new Date();
+        let year = d.getFullYear();
+        let month = d.getMonth();
+        let day = d.getDate();
+        let c = new Date(year + 5, month, day);
+        this.cookie.set('isF_smlunch', 'false', c, '/');
         this.router.navigate(['']);
-        this.cookie.set('isF_smlunch', 'false');
     }
     isFullPeriods() {
         if (this.sche.p1.length == 0 || this.sche.p2.length == 0 || this.sche.p3.length == 0 || this.sche.p4.length == 0 ||
