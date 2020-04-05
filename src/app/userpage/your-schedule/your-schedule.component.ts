@@ -113,7 +113,10 @@ export class YourScheduleComponent implements OnInit {
     TR: 'Modified schedule Trial run Regular day',
     TM: 'Modified schedule Trial run Meeting',
     Ex: 'Exam',
-    ExO: 'Exam'
+    ExO: 'Exam',
+    Online: `Online Instruction Periods`,
+    OnlineOffice: `Online Instruction Periods`,
+    OnlineAll: `Online Instruction Periods`
   };
 
   private isAllPeriod:boolean = true;
@@ -358,7 +361,7 @@ export class YourScheduleComponent implements OnInit {
   updateBANDP(sche: string, c = -1) {
     this.blockAndTime = []
     if (c !== -1) {
-      if (sche === 'All' || sche === '0812Sp' || sche === 'Rec' || sche === 'TA') {
+      if (sche === 'All' || sche === '0812Sp' || sche === 'Rec' || sche === 'TA' || sche === 'OfficeAll') {
         for (var i = c; i < c + 7; i++) {
           if (i <= 7) {
             this.blockAndTime.push('p' + i)

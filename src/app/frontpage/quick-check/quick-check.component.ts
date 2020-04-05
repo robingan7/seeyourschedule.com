@@ -38,7 +38,17 @@ export class QuickCheckComponent implements OnInit {
     SE: `Single Block Mtg ETV`,
     RlyE: `Rally ETV`,
     SpE: `Special ETV`,
-    AP: `Academic Period`
+    AP: `Academic Period`,
+    MsE: 'Mass Special',
+    OHM: 'Office hour meeting',
+    TA: 'Modified schedule Trial run All periods',
+    TR: 'Modified schedule Trial run Regular day',
+    TM: 'Modified schedule Trial run Meeting',
+    Ex: 'Exam',
+    ExO: 'Exam',
+    Online: `Online Instruction Periods`,
+    OnlineOffice: `Online Instruction Periods`,
+    OnlineAll: `Online Instruction Periods`
   }
   private isAAuto = true
   private isDateChange = false
@@ -143,7 +153,7 @@ export class QuickCheckComponent implements OnInit {
     if (c == -1) {
 
     } else {
-      if (sche == "All") {
+      if (sche === 'All' || sche === '0812Sp' || sche === 'Rec' || sche === 'TA' || sche === 'OfficeAll') {
         for (var i = c; i < c + 7; i++) {
           if (i <= 7) {
             this.blockAndTime.push("p" + i)

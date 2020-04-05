@@ -705,7 +705,17 @@ let QuickCheckComponent = class QuickCheckComponent {
             SE: `Single Block Mtg ETV`,
             RlyE: `Rally ETV`,
             SpE: `Special ETV`,
-            AP: `Academic Period`
+            AP: `Academic Period`,
+            MsE: 'Mass Special',
+            OHM: 'Office hour meeting',
+            TA: 'Modified schedule Trial run All periods',
+            TR: 'Modified schedule Trial run Regular day',
+            TM: 'Modified schedule Trial run Meeting',
+            Ex: 'Exam',
+            ExO: 'Exam',
+            Online: `Online Instruction Periods`,
+            OnlineOffice: `Online Instruction Periods`,
+            OnlineAll: `Online Instruction Periods`
         };
         this.isAAuto = true;
         this.isDateChange = false;
@@ -807,7 +817,7 @@ let QuickCheckComponent = class QuickCheckComponent {
         if (c == -1) {
         }
         else {
-            if (sche == "All") {
+            if (sche === 'All' || sche === '0812Sp' || sche === 'Rec' || sche === 'TA' || sche === 'OfficeAll') {
                 for (var i = c; i < c + 7; i++) {
                     if (i <= 7) {
                         this.blockAndTime.push("p" + i);
@@ -1573,7 +1583,10 @@ let YourScheduleComponent = class YourScheduleComponent {
             TR: 'Modified schedule Trial run Regular day',
             TM: 'Modified schedule Trial run Meeting',
             Ex: 'Exam',
-            ExO: 'Exam'
+            ExO: 'Exam',
+            Online: `Online Instruction Periods`,
+            OnlineOffice: `Online Instruction Periods`,
+            OnlineAll: `Online Instruction Periods`
         };
         this.isAllPeriod = true;
         this.time_line = []; //the time line of the day(used in HTML as ngFor) NOT_USED
@@ -1861,7 +1874,7 @@ let YourScheduleComponent = class YourScheduleComponent {
     updateBANDP(sche, c = -1) {
         this.blockAndTime = [];
         if (c !== -1) {
-            if (sche === 'All' || sche === '0812Sp' || sche === 'Rec' || sche === 'TA') {
+            if (sche === 'All' || sche === '0812Sp' || sche === 'Rec' || sche === 'TA' || sche === 'OfficeAll') {
                 for (var i = c; i < c + 7; i++) {
                     if (i <= 7) {
                         this.blockAndTime.push('p' + i);

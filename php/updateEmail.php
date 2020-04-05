@@ -5,12 +5,21 @@ if(isset($_POST) && !empty($_POST)) {
     $id = mysqli_real_escape_string($conn,$_POST['id']);
     $val = mysqli_real_escape_string($conn,$_POST['val']);
 
-    $sql2="SELECT `email` FROM `users` WHERE email='$val';";
-    $result2=mysqli_query($conn, $sql2);
+    $sql2 = "SELECT `email` FROM `users` WHERE email='$val';";
+    $result2 = mysqli_query($conn, $sql2);
 
-    if(mysqli_num_rows($result2)==0){
-        $sql2="UPDATE `users` SET email='$val' WHERE id='$id';";
-        $result2=mysqli_query($conn, $sql2);
+    if(mysqli_num_rows($result2) == 1) {
+      $row = mysqli_fetch_row($result2);
+      
+      if($row[0] == $val) {
+        echo '
+        {
+            "meesage":"hhh"
+        }';
+      }
+    } else if(mysqli_num_rows($result2) == 0) {
+        $sql2 = "UPDATE `users` SET email='$val' WHERE id='$id';";
+        $result2 = mysqli_query($conn, $sql2);
 
         echo '
         {
